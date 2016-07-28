@@ -1,0 +1,26 @@
+<h1>Alias: <%= @user.name %></h1>
+  <div class="col-md-6">
+    <% if @user.items.any? %>
+      <% count = 0 %>
+      <% @user.items.each do |item| %>
+        <% count += item[:count] %>
+      <% end %>
+
+      <h3>Items (<%= count %>)</h3>
+      <ol class="items">
+        <%= render @items %>
+      </ol>
+      <%= will_paginate @items %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <% if @user.pokemon.any? %>
+
+      <h3>Pokemon (<%= @user.pokemon.count %>)</h3>
+      <ol class="items">
+        <%= render @pokemon %>
+      </ol>
+      <%= will_paginate @pokemon %>
+    <% end %>
+  </div>
+</div>
