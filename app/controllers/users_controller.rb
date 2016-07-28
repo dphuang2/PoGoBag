@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    @items = @user.items.paginate(page: params[:page])
-    @pokemon = @user.pokemon.paginate(page: params[:page])
+    @items = @user.items.all
+    @pokemon = @user.pokemon.all
   end
 end
