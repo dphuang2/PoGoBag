@@ -1,24 +1,26 @@
 <h1>Alias: <%= @user.name %></h1>
-  <div class="col-md-4">
-    <% if @user.items.any? %>
-      <% count = 0 %>
-      <% @user.items.each do |item| %>
-        <% count += item[:count] %>
+<div class="col-md-4">
+  <% if @user.items.any? %>
+    <% count = 0 %>
+    <% @user.items.each do |item| %>
+      <% count += item[:count] %>
+    <% end %>
+
+    <h3>Items (<%= count %>)</h3>
+    <ol class="items">
+      <%= render @items %>
+    </ol>
+  <% end %>
+</div>
+<div class="col-md-8">
+  <% if @user.pokemon.any? %>
+    <% pokemon = @user.pokemon.all.each_slice(4).to_a %>
+    <h3>Pokemon (<%= @user.pokemon.count %>)</h3>
+    <ol class="items">
+      <% pokemon.each do |poke| %>
+        <%= render 'pokemons/pokemon', poke: poke%>
       <% end %>
-
-      <h3>Items (<%= count %>)</h3>
-      <ol class="items">
-        <%= render @items %>
-      </ol>
-    <% end %>
-  </div>
-  <div class="col-md-8">
-    <% if @user.pokemon.any? %>
-
-      <h3>Pokemon (<%= @user.pokemon.count %>)</h3>
-      <ol class="items">
-        <%= render @pokemon %>
-      </ol>
-    <% end %>
-  </div>
+    </ol>
+  <% end %>
+</div>
 </div>

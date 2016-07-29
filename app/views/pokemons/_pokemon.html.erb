@@ -1,11 +1,17 @@
-<li id="pokemon-<%= pokemon.id %>">
-  <span class="name"><%= pokemon[:poke_id] %></span> <br>
-  Move 1: <span class="move"><%= pokemon[:move_1] %></span> <br>
-  Move 2: <span class="move"><%= pokemon[:move_2] %></span> <br>
-  Max Health: <span class="health"><%= pokemon[:health] %></span> <br>
-  IV Stats = 
-  Attack: <span class="stat"><%= pokemon[:attack] %></span>
-  Defense: <span class="stat"><%= pokemon[:defense] %></span>
-  Stamina: <span class="stat"><%= pokemon[:stamina] %></span>
-  IV: <span class="stat"> <%= pokemon[:iv] %></span>
-</li>
+<div class="row">
+  <% poke.each do |p| %>
+    <div class="col-md-3">
+      <li id="p-<%= p.id %>">
+        <span class="name"><%= p[:poke_id] %></span> <br>
+        Move 1: <span class="move"><%= p[:move_1] %></span> <br>
+        Move 2: <span class="move"><%= p[:move_2] %></span> <br>
+        Max Health: <span class="health"><%= p[:health] %></span> <br>
+        IV Stats = 
+        Attack: <span class="stat"><%= p[:attack] %></span>
+        Defense: <span class="stat"><%= p[:defense] %></span>
+        Stamina: <span class="stat"><%= p[:stamina] %></span>
+        IV: <span class="stat"> <%= p[:iv] %></span>
+      </li>
+    </div>
+  <% end %>
+</div>
