@@ -33,12 +33,8 @@ module SessionsHelper
 
 
     # Reset database
-    if user.pokemon.any?
-      user.pokemon.delete_all
-    end
-    if user.items.any?
-      user.items.delete_all
-    end
+    user.pokemon.destroy_all
+    user.items.destroy_all
 
     response[:GET_INVENTORY][:inventory_delta][:inventory_items].each do |item|
       item[:inventory_item_data].each do |type, i|
