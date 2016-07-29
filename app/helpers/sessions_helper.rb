@@ -25,10 +25,12 @@ module SessionsHelper
   end
 
   # Parse through all data and store into database
-  def store_inventory(client, user)
+  def store_inventory(client)
     client.get_inventory
     call = client.call
     response = call.response
+    user = User.find_by(name: session[:pogo_alias])
+
 
     # Reset database
     user.pokemon.delete_all

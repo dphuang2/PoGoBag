@@ -24,10 +24,11 @@ class SessionsController < ApplicationController
       user = User.create(name: name)
     end
 
-    store_inventory(client, user)
-
     # set session variable
     session[:pogo_alias] = name
+
+    store_inventory(client)
+
     redirect_to user
   end
 
