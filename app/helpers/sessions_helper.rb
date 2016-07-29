@@ -30,6 +30,10 @@ module SessionsHelper
     call = client.call
     response = call.response
 
+    # Reset database
+    user.pokemon.delete_all
+    user.items.delete_all
+
     response[:GET_INVENTORY][:inventory_delta][:inventory_items].each do |item|
       item[:inventory_item_data].each do |type, i|
         case type
@@ -37,11 +41,7 @@ module SessionsHelper
           if i != nil 
             item_id = i[:item_id]
             count = i[:count]
-            if item = Item.find_by(user_id: user.id, item_id: item_id)
-              item.update_attribute(:count, count)
-            else
-              user.items.create(item_id: item_id, count: count)
-            end
+            user.items.create(item_id: item_id, count: count)
           end
         when :pokemon_data
           if i != nil
@@ -52,15 +52,13 @@ module SessionsHelper
             attack = i[:individual_attack]
             defense = i[:individual_defense]
             stamina = i[:individual_stamina]
-            if pokemon = Item.find_by(user_id: user.id, item_id: item_id)
-              pokemon.update_attribute(:poke_id => poke_id, :move_1 => move_1, :move_2 => move_2, :health => health, :attack => attack, :defense => defense, :stamina => stamina)
-            else
-              user.pokemon.create(:poke_id => poke_id, :move_1 => move_1, :move_2 => move_2, :health => health, :attack => attack, :defense => defense, :stamina => stamina)
-            end
+            iv = ((attack + defense + stamina) / 45.0).round(2)
+            user.pokemon.create(:poke_id => poke_id, :move_1 => move_1, :move_2 => move_2, :health => health, :attack => attack, :defense => defense, :stamina => stamina, :iv => iv)
           end
         end
       end
     end
+    Pokemon.delete_all("poke_id = 'MISSINGNO'")
   end
 
 

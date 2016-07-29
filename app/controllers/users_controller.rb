@@ -9,4 +9,7 @@ class UsersController < ApplicationController
     @items = @user.items.all
     @pokemon = @user.pokemon.all
   end
+
+  def refresh
+  end
 end

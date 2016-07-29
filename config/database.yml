@@ -14,15 +14,15 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-development: &default
-  adapter: postgresql
-  username: postgres
-  password: postgres
-  encoding: unicode
-  # For details on connection pooling, see rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
-
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
 production: 
   adapter: postgresql
   username: postgres

@@ -1,5 +1,5 @@
 <h1>Alias: <%= @user.name %></h1>
-  <div class="col-md-6">
+  <div class="col-md-4">
     <% if @user.items.any? %>
       <% count = 0 %>
       <% @user.items.each do |item| %>
@@ -12,7 +12,7 @@
       </ol>
     <% end %>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-8">
     <% if @user.pokemon.any? %>
 
       <h3>Pokemon (<%= @user.pokemon.count %>)</h3>

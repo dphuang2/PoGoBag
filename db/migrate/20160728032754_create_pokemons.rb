@@ -12,5 +12,6 @@ class CreatePokemons < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_column :pokemons, :iv, :decimal
   end
 end
