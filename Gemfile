@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'will_paginate',           '3.1.0'
-gem 'bootstrap-will_paginate', '0.0.10'
 # bootstrap
 gem 'bootstrap-sass'
 # poke-api
 gem 'poke-api',
     git: "https://github.com/nabeelamjad/poke-api.git",
     tag: '0.0.4'
+# google-protobuf
+gem 'google-protobuf'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgres the database for Active Record

@@ -54,7 +54,7 @@ module SessionsHelper
           end
         end
       end
-    rescue NoMethodError
+    rescue 
       logger.debug "Rescued from storing"
       return false
     end
