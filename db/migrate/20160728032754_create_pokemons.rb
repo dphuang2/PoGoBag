@@ -8,6 +8,7 @@ class CreatePokemons < ActiveRecord::Migration[5.0]
       t.integer :attack
       t.integer :defense
       t.integer :stamina
+      t.integer :cp
       t.references :user, foreign_key: true
 
       t.timestamps

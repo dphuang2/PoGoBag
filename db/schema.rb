@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160728032754) do
     t.integer  "attack"
     t.integer  "defense"
     t.integer  "stamina"
+    t.integer  "cp"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -7,4 +7,5 @@ class Pokemon < ApplicationRecord
   validates :attack, presence: true
   validates :defense, presence: true
   validates :stamina, presence: true
+  validates :cp, presence: true
 end

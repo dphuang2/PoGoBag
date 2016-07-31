@@ -1,4 +1,4 @@
-PoGoBag
+# PoGoBag
 
-Access your PokemonGo Inventory online!
+**Access** and **Share** your PokemonGo Inventory online!
 

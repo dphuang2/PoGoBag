@@ -1,35 +1,46 @@
 class SessionsController < ApplicationController
   rescue_from Poke::API::Errors::LoginFailure, :with => :login_error
-  rescue_from NoMethodError, :with => :missing_auth
 
   def new
   end
 
   def create
-
+    Poke::API::Logging.log_level = :DEBUG
     # Grab all credentials from form
-    user = params[:user][:username]
+    username = params[:user][:username]
     pass = params[:user][:password]
     auth = params[:user][:auth]
 
     # Log client in 
     client = Poke::API::Client.new
-    client.login(user, pass, auth)
+    client.login(username, pass, auth)
 
     # Create new user if user is new, otherwise retrieve it
     name = get_name(client)
-    if user = user_exist?(name)
-      user
+    if User.exists?(:name => name)
+      logger.debug "User exists"
+      @user = User.find_by(name: name)
     else 
-      user = User.create(name: name)
+      logger.debug "New User"
+      @user = User.create(name: name)
     end
 
     # set session variable
     session[:pogo_alias] = name
+    #session[:user][:username] = username
+    #session[:user][:pass] = pass
+    #session[:user][:auth] = auth
+    session[:user] = {username: username, password: pass, provider: auth}
 
-    store_inventory(client)
-
-    redirect_to user
+    
+    if store_inventory(client, @user)
+      flash[:success] = 'You logged in!'
+      redirect_to @user
+    else 
+      flash.now[:danger] = 'Servers are under heavy load. Please try again.'
+      log_out
+      render 'new'
+    end
   end
 
   def destroy
@@ -38,15 +49,9 @@ class SessionsController < ApplicationController
   end
 
   protected
-    def login_error
-      flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
-    end
+  def login_error
+    flash.now[:danger] = 'Invalid email/password combination'
+    render 'new'
+  end
 
-    def missing_auth
-      flash.now[:danger] = 'Select an authorization method (PTC or Google)'
-      render 'new'
-    end
-
-      
 end
