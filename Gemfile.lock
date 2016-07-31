@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/nabeelamjad/poke-api.git
-  revision: 8f3caa91adb07c1e636dd9e9b71cfec4ae0bde5b
-  tag: 0.0.4
+  revision: 85ee2d01f8697f558cc169652fdbfc2147b5e0b5
+  tag: 0.0.6
   specs:
-    poke-api (0.0.4)
+    poke-go-api (0.0.6)
       geocoder (= 1.3.7)
       google-protobuf (~> 3.0.0.alpha)
       gpsoauth-rb (= 0.1.2)
@@ -183,12 +183,11 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.2)
-  google-protobuf
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
   pg
-  poke-api!
+  poke-go-api!
   puma (~> 3.0)
   rails (~> 5.0.0)
   sass-rails (~> 5.0)
