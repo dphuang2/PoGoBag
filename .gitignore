@@ -20,3 +20,5 @@
 # Ignore Byebug command history file.
 .byebug_history
 *.swp
+database.yml
+secrets.yml
