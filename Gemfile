@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'capistrano', '~> 3.6'
 gem 'capistrano-rails', '~> 1.1', '>= 1.1.7'
 gem 'capistrano-rbenv', '~> 2.0.3'
+gem 'capistrano-passenger'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,10 +51,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sqlite3'
-  # for GCE deploy
-  gem 'capistrano', '~> 3.6'
-  gem 'capistrano-rails', '~> 1.1', '>= 1.1.7'
-  gem 'capistrano-rbenv', '~> 2.0.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

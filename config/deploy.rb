@@ -32,6 +32,7 @@ lock '3.6.0'
 # set :keep_releases, 5
 set :application, 'PoGoBag'
 set :repo_url, 'git@github.com:dphuang2/PokemonGo-Bag.git'
+set :passenger_restart_with_touch, true
 
 set :deploy_to, '/home/deploy/PoGoBag'
 
