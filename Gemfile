@@ -51,7 +51,7 @@ group :development do
   # for GCE deploy
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.1', '>= 1.1.7'
-  gem 'capistrano-rvm', github: "capistrano/rvm"
+  gem 'capistrano-rbenv', github: "capistrano/rbenv"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
