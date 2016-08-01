@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/capistrano/rbenv.git
-  revision: e056efc0c361cc15b76ff961d6c5f65ed5e2c57e
-  specs:
-    capistrano-rbenv (2.0.4)
-      capistrano (~> 3.1)
-      sshkit (~> 1.3)
-
-GIT
   remote: https://github.com/nabeelamjad/poke-api.git
   revision: 85ee2d01f8697f558cc169652fdbfc2147b5e0b5
   tag: 0.0.6
@@ -80,6 +72,9 @@ GEM
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rbenv (2.0.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -213,7 +208,7 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.6)
   capistrano-rails (~> 1.1, >= 1.1.7)
-  capistrano-rbenv!
+  capistrano-rbenv (~> 2.0.3)
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
