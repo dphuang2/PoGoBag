@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   rescue_from Poke::API::Errors::LoginFailure, :with => :login_error
+  rescue_from ActionController::InvalidAuthenticityToken, :with => logout_error
 
   def new
   end
@@ -49,5 +50,8 @@ class SessionsController < ApplicationController
     def login_error
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
+    end
+    def logout_error
+      redirect_to 'new'
     end
 end
