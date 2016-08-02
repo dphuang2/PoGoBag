@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   rescue_from Poke::API::Errors::LoginFailure, :with => :login_error
-  rescue_from ActionController::InvalidAuthenticityToken, :with => logout_error
+  rescue_from ActionController::InvalidAuthenticityToken, :with => :logout_error
 
   def new
   end
