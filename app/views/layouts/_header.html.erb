@@ -21,6 +21,7 @@
             <button type="submit" class="btn btn-default">Search</button>
           </form>
         </li>
+        <li><%= link_to "Statistics", '#' %></li>
         <% if !logged_in? %>
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "About", about_path %></li>
