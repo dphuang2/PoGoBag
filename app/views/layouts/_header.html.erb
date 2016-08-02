@@ -1,18 +1,39 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "Pokemon Go Bag", root_path, id: "logo" %>
-    <nav>
+<header class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Band and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <%= link_to "Pokemon Go Bag", root_path, id: "logo" %>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collection-navlinks" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <!-- -Collect nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collection-navlinks"> 
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <form class="navbar-form" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search other trainers">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+        </li>
         <% if !logged_in? %>
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "Contact", contact_path %></li>
           <li><%= link_to "Log in", login_path %></li>
         <% else %> 
-          <li><%= link_to "Bag", current_user %></li>
+          <li><%= link_to "Bag", '/users/'+session[:pogo_alias] %></li>
           <li><%= link_to "Log out", logout_path, method: "delete" %></li>
         <% end %>
       </ul>
-    </nav>
+    </div> <!-- navbar-collapse -->
   </div>
 </header>
+
+
+

@@ -32,15 +32,12 @@ class SessionsController < ApplicationController
     #session[:user][:auth] = auth
     session[:user] = {username: username, password: pass, provider: auth}
 
-    
-    if store_inventory(client, @user)
-      flash[:success] = 'You logged in!'
-      redirect_to @user
-    else 
-      flash.now[:danger] = 'Servers are under heavy load. Please try again.'
-      log_out
-      render 'new'
+    # Make requests until success (to deal with inconsistent response)
+    while store_inventory(client, @user) == false
+      store_inventory(client, @user)
     end
+    flash[:success] = 'You logged in! Share your link with others: pogobag.me/users/'+name
+    redirect_to '/users/'+name
   end
 
   def destroy

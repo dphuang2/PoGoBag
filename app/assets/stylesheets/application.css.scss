@@ -27,21 +27,22 @@
 #logo {
   float: left;
   margin-right: 10px;
+  margin-left: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: black;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 15px;
+  padding-top: 10px;
   font-weight: bold;
 }
 
 #logo:hover {
-  color: #fff;
+  color: gray;
   text-decoration: none;
 }
 
 body {
-  padding-top: 60px;
+  //padding-top: 70px; // This is to allow for fixed navbar at top.
 }
 
 .debug_dump {
