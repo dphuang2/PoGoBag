@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     if logged_in?
-      redirect_to '/users/'+current_user.name
+      redirect_to user_link
     end
   end
 

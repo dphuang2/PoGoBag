@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
       store_inventory(client, @user)
     end
     flash[:success] = 'You logged in! Share your link with others: pogobag.me/users/'+name
-    redirect_to '/users/'+name
+    redirect_to user_link
   end
 
   def destroy
@@ -46,9 +46,8 @@ class SessionsController < ApplicationController
   end
 
   protected
-  def login_error
-    flash.now[:danger] = 'Invalid email/password combination'
-    render 'new'
-  end
-
+    def login_error
+      flash.now[:danger] = 'Invalid email/password combination'
+      render 'new'
+    end
 end

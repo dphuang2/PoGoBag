@@ -27,7 +27,7 @@
           <li><%= link_to "Contact", contact_path %></li>
           <li><%= link_to "Log in", login_path %></li>
         <% else %> 
-          <li><%= link_to "Bag", '/users/'+session[:pogo_alias] %></li>
+          <li><%= link_to "Bag", user_link %></li>
           <li><%= link_to "Log out", logout_path, method: "delete" %></li>
         <% end %>
       </ul>

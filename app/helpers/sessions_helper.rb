@@ -6,6 +6,10 @@ module SessionsHelper
     end
   end
 
+  def user_link
+    '/users/'+current_user.name
+  end
+
   def logged_in?
     !current_user.nil?
   end
