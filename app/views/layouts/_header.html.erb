@@ -21,14 +21,15 @@
             <button type="submit" class="btn btn-default">Search</button>
           </form>
         </li>
-        <li><%= link_to "Statistics", '#' %></li>
         <% if !logged_in? %>
           <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Statistics", '#' %></li>
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "Contact", contact_path %></li>
           <li><%= link_to "Log in", login_path %></li>
         <% else %> 
           <li><%= link_to "Bag", user_link %></li>
+          <li><%= link_to "Statistics", '#' %></li>
           <li><%= link_to "Log out", logout_path, method: "delete" %></li>
         <% end %>
       </ul>
