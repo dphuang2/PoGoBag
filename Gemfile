@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # for GCE deploy
 gem 'capistrano', '~> 3.6'
 gem 'capistrano-rails', '~> 1.1', '>= 1.1.7'
-gem 'capistrano-rbenv', '~> 2.0.3'
+gem 'capistrano-rvm', '~> 0.1.2'
 gem 'capistrano-passenger'
 
 group :development, :test do
