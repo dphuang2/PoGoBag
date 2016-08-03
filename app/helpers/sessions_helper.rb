@@ -26,6 +26,10 @@ module SessionsHelper
   # Parse through all data and store into database
   def store_inventory(client, user)
     call = get_call(client, :get_inventory)
+    while call.response == nil
+      logger.debug "GET_INVENTORY yielded nil response...Calling again"
+      call = get_call(client, :get_inventory)
+    end
     response = call.response
     file = File.read('app/assets/pokemon.en.json')
     pokemon_hash = JSON.parse(file)
