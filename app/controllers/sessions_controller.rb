@@ -17,9 +17,9 @@ class SessionsController < ApplicationController
     session[:pogo_alias] = name
 
     destroy_user_data(@user)
-    while store_inventory(client, @user) == false
+    #while store_inventory(client, @user) == false
       store_inventory(client, @user)
-    end
+    #end
 
     flash[:success] = 'You logged in! Share your link with others: pogobag.me/'+name
     redirect_to user_link

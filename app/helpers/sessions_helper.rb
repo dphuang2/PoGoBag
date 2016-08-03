@@ -26,7 +26,7 @@ module SessionsHelper
   # Parse through all data and store into database
   def store_inventory(client, user)
     call = get_call(client, :get_inventory)
-    while call.response == nil
+    while call.response[:status_code] != 1
       logger.debug "GET_INVENTORY yielded nil response...Calling again"
       call = get_call(client, :get_inventory)
     end
@@ -34,7 +34,7 @@ module SessionsHelper
     file = File.read('app/assets/pokemon.en.json')
     pokemon_hash = JSON.parse(file)
 
-    begin
+    #begin
       response[:GET_INVENTORY][:inventory_delta][:inventory_items].each do |item|
         item[:inventory_item_data].each do |type, i|
           case type
@@ -72,10 +72,10 @@ module SessionsHelper
           end
         end
       end
-    rescue NoMethodError
-      logger.debug "Rescued from store_inventory"
-      return false
-    end
+    #rescue NoMethodError
+      #logger.debug "Rescued from store_inventory"
+      #return false
+    #end
     # Cleanup error pokemonn
     Pokemon.delete_all("poke_id = 'MISSINGNO'")
     return true
