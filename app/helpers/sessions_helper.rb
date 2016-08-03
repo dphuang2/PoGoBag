@@ -46,19 +46,22 @@ module SessionsHelper
             end
           when :pokemon_data
             if i != nil
+              # Set poke_id
               poke_id = i[:pokemon_id].capitalize.to_s
-              
               # To deal with Nidoran naming
               poke_id.match('Nidoran_female') ? poke_id = 'Nidoran♀' : nil
               poke_id.match('Nidoran_male') ? poke_id = 'Nidoran♂' : nil
-              
+
+              # Set poke_num
+              poke_num = ""
               # To deal with MISSINGNO Pokemon
               if pokemon_hash.key(poke_id) != nil
                 poke_num = format("%03d", pokemon_hash.key(poke_id))
               else
-                poke_num = 000
+                poke_num = "000"
               end
 
+              # Save data
               move_1 = i[:move_1]
               move_2 = i[:move_2]
               health = i[:stamina_max]
