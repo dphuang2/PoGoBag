@@ -27,7 +27,6 @@ module SessionsHelper
   def store_inventory(client, user)
     call = get_call(client, :get_inventory)
     response = call.response
-    destroy_user_data(user)
     file = File.read('app/assets/pokemon.en.json')
     pokemon_hash = JSON.parse(file)
 
@@ -70,10 +69,12 @@ module SessionsHelper
         end
       end
     rescue NoMethodError
-      store_inventory(client, user)
+      logger.debug "Rescued from store_inventory"
+      return false
     end
     # Cleanup error pokemonn
     Pokemon.delete_all("poke_id = 'MISSINGNO'")
+    return true
   end
 
   # get name from logged in client
@@ -82,7 +83,8 @@ module SessionsHelper
     begin
     name = call.response[:GET_PLAYER][:player_data][:username].downcase
     rescue NoMethodError
-      get_name(client) # Retry
+      logger.debug "Rescued from get_name"
+      get_name(client)
     end
   end
    
@@ -98,7 +100,6 @@ module SessionsHelper
       # Keep requesting until response
       name = get_name(client)
       @user = User.where(:name => name).first_or_create!
-      return @user
     #end
     #else             # GOOGLE LOGIN---------
       #@user = User.from_omniauth(env["omniauth.auth"])
@@ -119,7 +120,8 @@ module SessionsHelper
       client.send req
       call = client.call
     rescue
-      retry
+      logger.debug "Rescued from get_call"
+      get_call(client, req)
     end
   end
 

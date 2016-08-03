@@ -6,8 +6,7 @@ gem "omniauth-google-oauth2"
 gem 'bootstrap-sass'
 # poke-api
 gem 'poke-go-api',
-    git: "https://github.com/nabeelamjad/poke-api.git",
-    tag: '0.0.6'
+    git: "https://github.com/nabeelamjad/poke-api.git"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgres the database for Active Record

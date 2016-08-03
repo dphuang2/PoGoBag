@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    #Poke::API::Logging.log_level = :DEBUG
+    Poke::API::Logging.log_level = :DEBUG
 
     # Log client in 
     client = Poke::API::Client.new
@@ -15,12 +15,11 @@ class SessionsController < ApplicationController
 
     # set session variable
     session[:pogo_alias] = name
-    #session[:user][:username] = username
-    #session[:user][:pass] = pass
-    #session[:user][:auth] = auth
-    #session[:user] = {username: username, password: pass, provider: auth}
 
-    store_inventory(client, @user)
+    destroy_user_data(@user)
+    while store_inventory(client, @user) == false
+      store_inventory(client, @user)
+    end
 
     flash[:success] = 'You logged in! Share your link with others: pogobag.me/'+name
     redirect_to user_link
