@@ -20,10 +20,8 @@ class SessionsController < ApplicationController
     #session[:user][:auth] = auth
     #session[:user] = {username: username, password: pass, provider: auth}
 
-    # Make requests until success (to deal with inconsistent response)
-    while store_inventory(client, @user) == false
-      store_inventory(client, @user)
-    end
+    store_inventory(client, @user)
+
     flash[:success] = 'You logged in! Share your link with others: pogobag.me/'+name
     redirect_to user_link
   end

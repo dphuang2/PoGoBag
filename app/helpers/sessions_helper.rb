@@ -70,14 +70,11 @@ module SessionsHelper
         end
       end
     rescue NoMethodError
-      logger.debug "Rescued from storing"
-      return false
+      store_inventory(client, user)
     end
     # Cleanup error pokemonn
     Pokemon.delete_all("poke_id = 'MISSINGNO'")
-    return true
   end
-
 
   # get name from logged in client
   def get_name(client)
@@ -85,9 +82,7 @@ module SessionsHelper
     begin
     name = call.response[:GET_PLAYER][:player_data][:username].downcase
     rescue NoMethodError
-      logger.debug "Rescued from get name"
-      flash[:danger] = 'Servers are busy. Please try again later.'
-      render 'new'
+      get_name(client) # Retry
     end
   end
    
@@ -100,6 +95,7 @@ module SessionsHelper
       auth = params[:user][:auth]
       client.login(username, pass, auth)
       # Create new user if user is new, otherwise retrieve it
+      # Keep requesting until response
       name = get_name(client)
       @user = User.where(:name => name).first_or_create!
       return @user
