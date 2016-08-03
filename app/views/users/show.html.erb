@@ -14,16 +14,14 @@
     <% end %>
   </div>
   <div class="col-md-8">
-    <div class="container-fluid">
-      <div class="row">
-        <% if @user.pokemon.any? %>
-          <% pokemon = @user.pokemon.all.each_slice(4).to_a %>
-          <h3>Pokemon (<%= @user.pokemon.count %>)</h3>
-          <% pokemon.each do |poke| %>
-            <%= render 'pokemons/pokemon', poke: poke%>
-          <% end %>
+    <div class="row">
+      <% if @user.pokemon.any? %>
+        <% pokemon = @user.pokemon.all.each_slice(4).to_a %>
+        <h3>Pokemon (<%= @user.pokemon.count %>)</h3>
+        <% pokemon.each do |poke| %>
+          <%= render 'pokemons/pokemon', poke: poke%>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,21 +1,19 @@
 <% poke.each do |p| %>
-  <div class="col-xs-6 col-sm-4 col-md-3">
+  <div class="pokemon-card col-xs-6 col-sm-4 col-md-3 col-lg-2">
     <div class="pokemon" id="p-<%= p.id %>">
       <%= image_tag("pokemon/"+/[0-9]{3}.{10}.png/.match(Dir["app/assets/images/pokemon/#{p[:poke_num]}*"][0]).to_s) %>
-      <div class="data-container">
-        <span class="name"><%= p[:poke_id] %></span> <br>
-        <!--
-          -Move 1: <span class="move"><%= p[:move_1] %></span> <br>
-          -Move 2: <span class="move"><%= p[:move_2] %></span> <br>
-          -Max Health: <span class="health"><%= p[:health] %></span> <br>
-          -IV Stats = 
-          -Attack: <span class="stat"><%= p[:attack] %></span>
-          -Defense: <span class="stat"><%= p[:defense] %></span>
-          -Stamina: <span class="stat"><%= p[:stamina] %></span> <br>
-          -IV: <span class="stat"> <%= p[:iv] %></span> <br>
-          -CP: <span class="stat"> <%= p[:cp] %></span>
-        -->
-      </div>
+      <h4 class="name"><%= p[:poke_id] %> </h4> <br>
+      <!--
+        -Move 1: <span class="move"><%= p[:move_1] %></span> <br>
+        -Move 2: <span class="move"><%= p[:move_2] %></span> <br>
+        -Max Health: <span class="health"><%= p[:health] %></span> <br>
+        -IV Stats = 
+        -Attack: <span class="stat"><%= p[:attack] %></span>
+        -Defense: <span class="stat"><%= p[:defense] %></span>
+        -Stamina: <span class="stat"><%= p[:stamina] %></span> <br>
+        -IV: <span class="stat"> <%= p[:iv] %></span> <br>
+        -CP: <span class="stat"> <%= p[:cp] %></span>
+      -->
     </div>
   </div>
 <% end %>
