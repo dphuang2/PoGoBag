@@ -6,7 +6,7 @@ gem "omniauth-google-oauth2"
 gem 'bootstrap-sass'
 # poke-api
 gem 'poke-go-api',
-    git: "https://github.com/nabeelamjad/poke-api.git"
+  git: "https://github.com/nabeelamjad/poke-api.git"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgres the database for Active Record
@@ -33,12 +33,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# for GCE deploy
-gem 'capistrano', '~> 3.6'
-gem 'capistrano-rails', '~> 1.1', '>= 1.1.7'
-gem 'capistrano-rvm', '~> 0.1.2'
-gem 'capistrano-passenger'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -52,6 +46,12 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sqlite3'
+  # for GCE deploy
+  gem 'capistrano', '~> 3.6'
+  gem 'capistrano-rails', '~> 1.1', '>= 1.1.7'
+  gem 'capistrano-rvm', '~> 0.1.2'
+  gem 'capistrano-passenger'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
