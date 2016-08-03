@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'users/show'
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
 
+  get 'users/show'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/home', to: 'static_pages#home'
   get '/about', to: 'static_pages#about'
+  get '/:id', to: 'users#show'
 
   resources :users
 

@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :not_found
   def show
-
     if @user = User.find_by(name: params[:id]) 
     else
       @user = User.find(params[:id])
     end
-
-    @items = @user.items.all
   end
 
   def refresh

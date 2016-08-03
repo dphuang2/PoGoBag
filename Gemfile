@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# For google authentication
+gem "omniauth-google-oauth2"
 # bootstrap
 gem 'bootstrap-sass'
 # poke-api
