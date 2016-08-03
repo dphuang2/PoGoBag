@@ -75,10 +75,6 @@ module SessionsHelper
           end
         end
       end
-    #rescue NoMethodError
-      #logger.debug "Rescued from store_inventory"
-      #return false
-    #end
     # Cleanup error pokemonn
     Pokemon.delete_all("poke_id = 'MISSINGNO'")
     return true
