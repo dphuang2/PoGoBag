@@ -2,7 +2,6 @@ class CreatePokemons < ActiveRecord::Migration[5.0]
   def change
     create_table :pokemons do |t|
       t.string :poke_id
-      t.string :poke_num
       t.string :move_1
       t.string :move_2
       t.integer :health
