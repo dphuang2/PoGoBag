@@ -2,24 +2,20 @@ class SessionsController < ApplicationController
   rescue_from Poke::API::Errors::LoginFailure, :with => :login_error
   rescue_from ActionController::InvalidAuthenticityToken, :with => :logout_error
 
-  def new
-  end
-
   def create
     Poke::API::Logging.log_level = :DEBUG
 
     # Log client in 
     client = Poke::API::Client.new
-    @user = setup_client(client)
-    name = @user.name
+    client = setup_client(client)
+    name = get_name(client)
+    @user = User.where(:name => name).first_or_create!
 
     # set session variable
     session[:pogo_alias] = name
 
     destroy_user_data(@user)
-    #while store_inventory(client, @user) == false
-      store_inventory(client, @user)
-    #end
+    store_inventory(client, @user)
 
     flash[:success] = 'You logged in! Share your link with others: pogobag.me/'+name
     redirect_to user_link

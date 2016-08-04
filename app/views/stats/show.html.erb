@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <h1>Top 10</h1>
+  <div class="row">
+    <div class="col-xs-3">
+      <h3> CP </h3>
+      <% if @pokemon_cp.any? %>
+        <ul>
+          <% rank = 1 %>
+          <% @pokemon_cp.each do |p| %>
+            <li>
+              <%= render partial: 'pokemons/pokemon', locals: {:pokemon => p, :img => rank_image(rank)} %>
+            </li>
+            <% rank += 1 %>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="col-xs-3">
+      <h3> IV </h3>
+      <% if @pokemon_iv.any? %>
+        <ul>
+          <% rank = 1 %>
+          <% @pokemon_iv.each do |p| %>
+            <li>
+              <%= render partial: 'pokemons/pokemon', locals: {:pokemon => p, :img => rank_image(rank)} %>
+            </li>
+            <% rank += 1 %>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

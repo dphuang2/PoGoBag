@@ -1,27 +1,26 @@
 <div class="login-box">
   <h1>Log in</h1>
-
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <!--
-         -<%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-         -->
-      <%= form_for(:user, url: login_path) do |f| %>
+      <div class="google-login">
+        <a href="https://accounts.google.com/o/oauth2/auth?client_id=848232511240-73ri3t7plvk96pj4f85uj8otdat2alem.apps.googleusercontent.com&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=openid%20email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email" class="btn btn-block btn-social btn-google">
+          <span class="fa fa-google"></span> Sign in with Google
+        </a>
+        <%= form_for(:google, url: login_path) do |f| %>
+          <%= f.text_field :code, class: 'form-control code-field', placeholder: "Put your authorization code here" %>
+          <%= f.submit "Authorize", id: "login-btn", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="ptc-login">
+        <%= form_for(:ptc, url: login_path) do |f| %>
+          <%= f.label :username %>
+          <%= f.text_field :username, class: 'form-control' %>
 
-        <%= f.label :authentication %> <br>
-        Google
-        <%= f.radio_button :auth, "google" %>
-        PTC
-        <%= f.radio_button :auth, "ptc" %> <br>
-
-        <%= f.label :username %>
-        <%= f.text_field :username, class: 'form-control' %>
-
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
-
-        <%= f.submit "Log in", id: "login-btn", class: "btn btn-primary" %>
-      <% end %>
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+          <%= f.submit "Log in", id: "login-btn", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

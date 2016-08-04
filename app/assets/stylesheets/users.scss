@@ -2,47 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* items */
-
-.items {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-    span.item{
-      font-weight: bold;
+.user-show-container{
+  h1 {
+    text-align: center;
+  }
+  /* items */
+  .items {
+    list-style: none;
+    padding: 0;
+    li {
+      padding: 10px 0;
+      border-top: 1px solid #e8e8e8;
+      span.item{
+        font-weight: bold;
+      }
     }
   }
-}
-
-.pokemon-card{
-  padding-top: 20px;
-}
-.pokemon {
-  overflow: hidden;
-  height: 250px;
-  text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  position: relative;
-  h4 {
-    position: absolute;
-    bottom: 3px;
-    width: 100%;
-    margin: 0;
-  }
-  img {
-    max-width: 80%;
-    position: absolute;
-    bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0px;
-    right: 0px;
-  }
-}
-.pokemon:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }

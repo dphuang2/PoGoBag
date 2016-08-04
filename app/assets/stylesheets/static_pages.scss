@@ -1,13 +1,18 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 .home-page {
   .landing-title{
     display: block;
     width: 100%;
     text-align: center;
     margin: 0 auto;
+    img {
+      width: 50px;
+    }
+    h3{
+      margin-top: 0px;
+    }
   }
   h1 {
     a {
@@ -24,10 +29,12 @@
     display: block;
     width: 80%;
     margin: 0 auto;
-  }
-  .features-image{
-    img {
-      max-width: 100%;
+    li {
+      .glyphicon {
+        margin-right: 5px;
+      }
+      list-style-type: none;
+      margin-top: 14px;
     }
   }
 }
@@ -47,4 +54,36 @@
     text-align: center;
     font-size: 20px;
   }
+}
+h1 {
+  text-align: center;
+}
+.login-box{
+  display: block;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 5px;
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  h1 {
+    line-height: 1;
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .code-field{
+    margin-top: 10px;
+  }
+  #login-btn{
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+.form-container{
+  width: 95%;
+  height: 85%;
+  margin: 0 auto;
 }

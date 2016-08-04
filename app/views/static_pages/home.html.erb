@@ -1,27 +1,24 @@
-<div class="home-page">
-  <div class="landing-title">
-    <h1>PoGoBag
-      <a href="https://github.com/dphuang2/PoGoBag" class="btn btn-primary"> Github </a>
-    </h1>
-    <h3>Share your Pok&eacute;mon Go bag!</h3>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="features-list">
-        <h3>Features</h3>
-        <ul>
-          <li>Share your bag with others</li>
-          <li>Search for other players inventorys</li>
-          <li>See your item storage</li>
-          <li>See your pokemon's IV values</li>
-          <li>Order by IV Perfection, CP, Health, Attack, Defense, Stamina, Name </li>
-          <li>See statistics of trainer's pokemons</li>
-        </ul>
-      </div>
+<div class="container">
+  <div class="home-page">
+    <div class="landing-title">
+      <h1><%= image_tag 'itemstorageupgrade.1.png' %>PoGoBag</h1>
+      <h3>Share your Pok&eacute;mon Go bag!</h3>
     </div>
-    <div class="col-md-8">
-      <div class="features-image">
-        <%= image_tag("bag.png") %>
+    <div class="row">
+      <div class="col-md-push-8 col-md-4">
+        <%= render 'sessions/login'%>
+      </div>
+      <div class="col-md-pull-4 col-md-8">
+        <div class="features-list">
+          <ul>
+            <li><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>Share your Pok&eacute;mon and Items</li>
+            <li><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search for other trainers</li>
+            <li><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>See your Pok&eacute;mon's IV values</li>
+            <li><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Order by IV Perfection, CP, Health, Attack, Defense, Stamina, Name </li>
+            <li><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>See the top Pok&eacute;mon in the world</li>
+            <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Personal bag page recieved on login</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

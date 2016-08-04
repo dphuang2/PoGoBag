@@ -13,8 +13,10 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'bootstrap-social';
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;

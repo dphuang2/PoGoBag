@@ -83,49 +83,56 @@ module SessionsHelper
   # get name from logged in client
   def get_name(client)
     call = get_call(client, :get_player)
-    begin
+    #begin
       name = call.response[:GET_PLAYER][:player_data][:username].downcase
-    rescue NoMethodError
-      logger.debug "Rescued from get_name"
-      get_name(client)
-    end
+    #rescue NoMethodError
+      #logger.debug "Rescued from get_name"
+      #get_name(client)
+    #end
   end
 
   # Handle login logic
   def setup_client(client)
-    #if !params[:user].nil? # PTC LOGIN------------
-    # Grab all credentials from form
-    username = params[:user][:username]
-    pass = params[:user][:password]
-    auth = params[:user][:auth]
-    client.login(username, pass, auth)
-    # Create new user if user is new, otherwise retrieve it
-    # Keep requesting until response
-    name = get_name(client)
-    @user = User.where(:name => name).first_or_create!
-    #end
-    #else             # GOOGLE LOGIN---------
-    #@user = User.from_omniauth(env["omniauth.auth"])
-    #google = Poke::API::Auth::GOOGLE.new(@user.name, "password")
-    #google.instance_variable_set(:@access_token, @user.access_token)
-    #client.instance_variable_set(:@auth, google)
-    #client.instance_eval{ fetch_endpoint }
-    #debugger
-    #name = get_name(client)
-    #@user.update_attribute(:name, name)
-    #return @user
-    #end
+    if params.has_key? :ptc # PTC LOGIN------------
+      # Grab all credentials from form
+      username = params[:ptc][:username]
+      pass = params[:ptc][:password]
+      client.login(username, pass, 'ptc')
+      return client
+    end
+    if params.has_key? :google # GOOGLE LOGIN---------
+      clnt = HTTPClient.new
+      body = {
+        grant_type: 'authorization_code',
+        redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+        scope: 'openid email https://www.googleapis.com/auth/userinfo.email',
+        client_secret: 'NCjF1TLi2CcY6t5mt0ZveuL7',
+        client_id: '848232511240-73ri3t7plvk96pj4f85uj8otdat2alem.apps.googleusercontent.com',
+        code: params[:google][:code],
+      }
+      uri = 'https://accounts.google.com/o/oauth2/token'
+      response = clnt.post(uri, body)
+      body = response.body
+      hash = JSON.parse body
+      token = hash["id_token"]
+      client = Poke::API::Client.new
+      google = Poke::API::Auth::GOOGLE.new("username", "password")
+      google.instance_variable_set(:@access_token, token)
+      client.instance_variable_set(:@auth, google)
+      client.instance_eval { fetch_endpoint }
+      return client
+    end
   end 
 
   # get response from call by providing client and request
   def get_call(client, req)
-    begin
+    #begin
       client.send req
       call = client.call
-    rescue
-      logger.debug "Rescued from get_call"
-      get_call(client, req)
-    end
+    #rescue
+      #logger.debug "Rescued from get_call"
+      #get_call(client, req)
+    #end
   end
 
 end

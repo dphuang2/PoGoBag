@@ -1,22 +1,30 @@
-<div class="container-fluid">
-  <h1><%= @user.name %></h1>
-  <div class="col-md-4">
-    <% if @user.items.any? %>
-      <% count = 0 %>
-      <% @user.items.each do |item| %>
-        <% count += item[:count] %>
+<div class="user-show-container">
+  <div class="container-fluid">
+    <h1><%= @user.name %></h1>
+    <div class="col-sm-3">
+      <% if @user.items.any? %>
+        <% count = 0 %>
+        <% @user.items.each do |item| %>
+          <% count += item[:count] %>
+        <% end %>
+        <h3>Items (<%= count %>)</h3>
+        <ol class="items">
+          <%= render @user.items %>
+        </ol>
       <% end %>
-      <h3>Items (<%= count %>)</h3>
-      <ol class="items">
-        <%= render @user.items %>
-      </ol>
-    <% end %>
-  </div>
-  <div class="col-md-8">
-    <div class="row">
-      <% if @user.pokemon.any? %>
-        <%= render @user.pokemon %>
-      <% end %>
+    </div>
+    <div class="col-sm-9">
+      <div class="row">
+        <% if @user.pokemon.any? %>
+          <h3>Pokemon (<%= @user.pokemon.count %>)</h3>
+          <% @user.pokemon.each do |p| %>
+            <div class="col-xs-4 col-sm-3 col-md-2">
+              <%= render 'pokemons/pokemon', pokemon: p %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+

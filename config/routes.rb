@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
-
-  get 'users/show'
-  get '/login', to: 'sessions#new'
+  # Logging routes
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/logout', to: 'sessions#destroy'
 
-  get '/contact', to: 'static_pages#contact'
+  # Global content
   get '/home', to: 'static_pages#home'
   get '/about', to: 'static_pages#about'
-  get '/:id', to: 'users#show'
+  get '/stats', to: 'stats#show'
 
+  # User content
+  get '/:id', to: 'users#show'
+  get 'users/show'
   resources :users
 
   root 'static_pages#home'

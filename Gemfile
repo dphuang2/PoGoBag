@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
-# For google authentication
-gem "omniauth-google-oauth2"
+# For awesome developer fonts
+gem "font-awesome-rails"
+# For awesome bootstrap social buttons
+gem 'bootstrap-social-rails'
+# For token scraping for google login
+gem 'httpclient'
 # bootstrap
 gem 'bootstrap-sass'
 # poke-api
