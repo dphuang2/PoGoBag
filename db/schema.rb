@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804042930) do
+ActiveRecord::Schema.define(version: 20160804110925) do
 
   create_table "items", force: :cascade do |t|
     t.string   "item_id"
@@ -49,8 +49,22 @@ ActiveRecord::Schema.define(version: 20160804042930) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "screen_name"
+    t.integer  "level"
+    t.integer  "experience"
+    t.integer  "prev_level_xp"
+    t.integer  "next_level_xp"
+    t.integer  "pokemons_encountered"
+    t.decimal  "km_walked"
+    t.integer  "pokemons_captured"
+    t.integer  "poke_stop_visits"
+    t.integer  "pokeballs_thrown"
+    t.integer  "battle_attack_won"
+    t.integer  "battle_attack_total"
+    t.integer  "battle_defended_won"
+    t.integer  "prestige_rasied_total"
   end
 
 end

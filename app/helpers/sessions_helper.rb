@@ -24,7 +24,7 @@ module SessionsHelper
   end
 
   # Parse through all data and store into database
-  def store_inventory(client, user)
+  def store_data(client, user)
     call = get_call(client, :get_inventory)
     while call.response[:status_code] != 1
       logger.debug "GET_INVENTORY yielded nil response...Calling again"
@@ -37,15 +37,28 @@ module SessionsHelper
     #begin
     response[:GET_INVENTORY][:inventory_delta][:inventory_items].each do |item|
       item[:inventory_item_data].each do |type, i|
-        case type
-        when :item 
-          if i != nil 
+        if i != nil
+          case type
+          when :player_stats
+            user.level = i[:level]
+            user.experience = i[:experience]
+            user.prev_level_xp = i[:prev_level_xp]
+            user.next_level_xp = i[:next_level_xp]
+            user.pokemons_encountered = i[:pokemons_encountered]
+            user.km_walked = i[:km_walked]
+            user.pokemons_captured = i[:pokemons_captured]
+            user.poke_stop_visits = i[:poke_stop_visits]
+            user.pokeballs_thrown = i[:pokeballs_thrown]
+            user.battle_attack_won = i[:battle_attack_won]
+            user.battle_attack_total = i[:battle_attack_total]
+            user.battle_defended_won = i[:battle_defended_won]
+            user.prestige_rasied_total = i[:prestige_rasied_total]
+            user.save
+          when :item 
             item_id = i[:item_id]
             count = i[:count]
             user.items.create(item_id: item_id, count: count)
-          end
-        when :pokemon_data
-          if i != nil
+          when :pokemon_data
             # Set poke_id
             poke_id = i[:pokemon_id].capitalize.to_s
             # To deal with Nidoran naming
@@ -87,7 +100,7 @@ module SessionsHelper
         end
       end
     end
-    # Cleanup error pokemonn
+    # Cleanup error pokemonn (Actually eggs)
     Pokemon.where(poke_id: "Missingno").delete_all
     return true
   end
@@ -95,7 +108,7 @@ module SessionsHelper
   # get name from logged in client
   def get_name(client)
     call = get_call(client, :get_player)
-    name = call.response[:GET_PLAYER][:player_data][:username].downcase
+    name = call.response[:GET_PLAYER][:player_data][:username]
   end
 
   # Handle login logic

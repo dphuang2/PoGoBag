@@ -28,7 +28,12 @@
         <% else %> 
           <li><%= link_to "Bag", user_link %></li>
           <li><%= link_to "Top 10", stats_path %></li>
-          <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.screen_name%><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            </ul>
+          </li>
         <% end %>
       </ul>
     </div> <!-- navbar-collapse -->

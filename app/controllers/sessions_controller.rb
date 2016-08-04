@@ -8,15 +8,17 @@ class SessionsController < ApplicationController
     # Log client in 
     client = Poke::API::Client.new
     client = setup_client(client)
-    name = get_name(client)
+    # Save name to ActiveRecord
+    screen_name = get_name(client)
+    name = screen_name.downcase
     @user = User.where(:name => name).first_or_create!
-
-    # set session variable
+    @user.screen_name = screen_name
+    @user.save
+    # set session variable to log in
     session[:pogo_alias] = name
-
+    # Store all data
     destroy_user_data(@user)
-    store_inventory(client, @user)
-
+    store_data(client, @user)
     flash[:success] = 'You logged in! Share your link with others: pogobag.me/'+name
     redirect_to user_link
   end
