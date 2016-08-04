@@ -1,11 +1,13 @@
 <div class="pokemon-card" 
   <% if defined? img %>
-       style="background-image: url('<%=img%>');background-repeat: no-repeat;"
+       style="background-image: url('<%=img%>');"
      <% end %> >
-     <span id="CP"> <%= pokemon[:cp] %> </span>
+
      <div class="pokemon" id="pokemon-<%= pokemon.id %>">
+       <h3 class="CP data"> <%= pokemon[:cp] %></h3>
+       <h4 class="IV data"> <%= pokemon[:iv] %></h4>
        <%= image_tag("pokemon/"+/[0-9]{3}.{10}.png/.match(Dir["app/assets/images/pokemon/#{pokemon[:poke_num]}*"][0]).to_s) %>
-       <h4 class="name"><%= pokemon[:poke_id] %> </h4> <br>
+       <h3 class="name data"><%= pokemon[:poke_id] %></h4>
        <!--
          -Move 1: <span class="move"><%= pokemon[:move_1] %></span> <br>
          -Move 2: <span class="move"><%= pokemon[:move_2] %></span> <br>

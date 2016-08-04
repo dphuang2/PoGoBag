@@ -52,8 +52,6 @@ module SessionsHelper
             poke_id.match('Nidoran_female') ? poke_id = 'Nidoran♀' : nil
             poke_id.match('Nidoran_male') ? poke_id = 'Nidoran♂' : nil
 
-            # Set poke_num
-            poke_num = ""
             # To deal with MISSINGNO Pokemon
             if pokemon_hash.key(poke_id) != nil
               poke_num = format("%03d", pokemon_hash.key(poke_id))
@@ -61,16 +59,30 @@ module SessionsHelper
               poke_num = "000"
             end
 
-            # Save data
-            move_1 = i[:move_1]
-            move_2 = i[:move_2]
-            health = i[:stamina_max]
-            attack = i[:individual_attack]
-            defense = i[:individual_defense]
-            stamina = i[:individual_stamina]
-            cp = i[:cp]
-            iv = ((attack + defense + stamina) / 45.0).round(2)
-            user.pokemon.create(:poke_id => poke_id, :poke_num => poke_num, :move_1 => move_1, :move_2 => move_2, :health => health, :attack => attack, :defense => defense, :stamina => stamina, :iv => iv, :cp => cp)
+            # Instantiate pokemon
+            pokemon = user.pokemon.new
+            # Set data
+            pokemon.poke_id = poke_id
+            pokemon.poke_num = poke_num
+            pokemon.move_1 = i[:move_1]
+            pokemon.move_2 = i[:move_2]
+            pokemon.health = i[:stamina]
+            pokemon.max_health = i[:stamina_max]
+            pokemon.attack = i[:individual_attack]
+            pokemon.defense = i[:individual_defense]
+            pokemon.stamina = i[:individual_stamina]
+            pokemon.cp = i[:cp]
+            pokemon.iv = ((pokemon.attack + pokemon.defense + pokemon.stamina) / 45.0).round(2)
+            pokemon.nickname = i[:nickname]
+            pokemon.favorite = i[:favorite]
+            pokemon.num_upgrades = i[:num_upgrades]
+            pokemon.battles_attacked = i[:battles_attacked]
+            pokemon.battles_defended = i[:battles_defended]
+            pokemon.pokeball = i[:pokeball]
+            pokemon.height_m = i[:height_m]
+            pokemon.weight_kg = i[:weight_kg]
+            # Save record
+            pokemon.save
           end
         end
       end
@@ -83,12 +95,7 @@ module SessionsHelper
   # get name from logged in client
   def get_name(client)
     call = get_call(client, :get_player)
-    #begin
-      name = call.response[:GET_PLAYER][:player_data][:username].downcase
-    #rescue NoMethodError
-      #logger.debug "Rescued from get_name"
-      #get_name(client)
-    #end
+    name = call.response[:GET_PLAYER][:player_data][:username].downcase
   end
 
   # Handle login logic
@@ -126,13 +133,8 @@ module SessionsHelper
 
   # get response from call by providing client and request
   def get_call(client, req)
-    #begin
-      client.send req
-      call = client.call
-    #rescue
-      #logger.debug "Rescued from get_call"
-      #get_call(client, req)
-    #end
+    client.send req
+    call = client.call
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804002306) do
+ActiveRecord::Schema.define(version: 20160804042930) do
 
   create_table "items", force: :cascade do |t|
     t.string   "item_id"
@@ -25,16 +25,25 @@ ActiveRecord::Schema.define(version: 20160804002306) do
     t.string   "poke_id"
     t.string   "move_1"
     t.string   "move_2"
-    t.integer  "health"
+    t.integer  "max_health"
     t.integer  "attack"
     t.integer  "defense"
     t.integer  "stamina"
     t.integer  "cp"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.decimal  "iv"
     t.string   "poke_num"
+    t.string   "nickname"
+    t.integer  "favorite"
+    t.integer  "num_upgrades"
+    t.integer  "battles_attacked"
+    t.integer  "battles_defended"
+    t.string   "pokeball"
+    t.decimal  "height_m"
+    t.decimal  "weight_kg"
+    t.integer  "health"
     t.index ["user_id"], name: "index_pokemons_on_user_id"
   end
 

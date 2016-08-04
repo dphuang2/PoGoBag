@@ -1,6 +1,9 @@
 /* pokemon */
 .pokemon-card{
   padding-top: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
 }
 .pokemon {
   overflow: hidden;
@@ -11,13 +14,23 @@
   border-radius: 5px;
   position: relative;
   width: 100%;
-  h4 {
-    position: absolute;
-    bottom: 3px;
+  .data {
+    z-index: 1;
+    position:absolute;
     width: 100%;
     margin: 0;
   }
+  .CP{
+    top: 5px;
+  }
+  .IV {
+    top: 25px;
+  }
+  .name {
+    bottom: 3px;
+  }
   img {
+    z-index: 0;
     max-width: 95%;
     position: absolute;
     bottom: 30px;
@@ -29,7 +42,4 @@
 }
 .pokemon:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-#CP{
-  position: absolute;
 }

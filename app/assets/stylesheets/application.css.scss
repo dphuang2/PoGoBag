@@ -46,7 +46,9 @@
 body {
   //padding-top: 70px; // This is to allow for fixed navbar at top.
 }
-
+.alert {
+  text-align: center;
+}
 .debug_dump {
   clear: both;
   float: left;

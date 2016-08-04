@@ -12,7 +12,11 @@ class UsersController < ApplicationController
 
   private 
     def not_found
-      redirect_to user_link
+      if logged_in?
+        redirect_to user_link
+      else
+        redirect_to root_path
+      end
       flash[:danger] = 'The player you are looking for does not exist (Trainers have to log into PoGoBag to be seen)'
     end
 end

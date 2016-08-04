@@ -29,9 +29,9 @@ class SessionsController < ApplicationController
   protected
     def login_error
       flash.now[:danger] = 'Invalid user/password combination'
-      render 'new'
+      render 'static_pages/home'
     end
     def logout_error
-      redirect_to 'new'
+      redirect_to 'static_pages/home'
     end
 end
