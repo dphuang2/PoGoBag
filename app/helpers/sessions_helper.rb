@@ -67,9 +67,9 @@ module SessionsHelper
 
             # To deal with MISSINGNO Pokemon
             if pokemon_hash.key(poke_id) != nil
-              poke_num = format("%03d", pokemon_hash.key(poke_id))
+              poke_num = pokemon_hash.key(poke_id)
             else
-              poke_num = "000"
+              poke_num = "0"
             end
 
             # Instantiate pokemon
