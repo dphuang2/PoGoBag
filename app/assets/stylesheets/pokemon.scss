@@ -7,8 +7,8 @@
 }
 .pokemon {
   overflow: hidden;
-  height: 250px;
   text-align: center;
+  height: 250px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px;
@@ -19,6 +19,7 @@
     position:absolute;
     width: 100%;
     margin: 0;
+    font-size: 150%;
   }
   .CP{
     top: 5px;
@@ -32,6 +33,7 @@
   img {
     z-index: 0;
     max-width: 95%;
+    max-height: 70%;
     position: absolute;
     bottom: 30px;
     margin-left: auto;
@@ -42,4 +44,14 @@
 }
 .pokemon:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+@media (max-width: 1333px){
+  .pokemon {
+    height: 192px;
+  }
+}
+@media (max-width: 1111px){
+  .pokemon {
+    height: 150px;
+  }
 }

@@ -3,5 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 ul {
   padding-left: 0px;
+  li {
+    list-style-type: none;
+  }
 }
 

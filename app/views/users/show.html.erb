@@ -1,7 +1,7 @@
 <div class="user-show-container">
   <div class="container-fluid">
     <h1><%= @user.name %></h1>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <% if @user.items.any? %>
         <% count = 0 %>
         <% @user.items.each do |item| %>
@@ -13,7 +13,7 @@
         </ol>
       <% end %>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       <div class="row">
         <% if @user.pokemon.any? %>
           <h3>Pokemon (<%= @user.pokemon.count %>)</h3>

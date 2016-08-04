@@ -75,6 +75,8 @@ GEM
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rails-collection (0.0.3)
+      capistrano-rails (~> 1.1.0)
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
@@ -215,6 +217,7 @@ DEPENDENCIES
   capistrano (~> 3.6)
   capistrano-passenger
   capistrano-rails (~> 1.1, >= 1.1.7)
+  capistrano-rails-collection
   capistrano-rvm (~> 0.1.2)
   coffee-rails (~> 4.2)
   font-awesome-rails
