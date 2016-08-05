@@ -68,16 +68,14 @@ module SessionsHelper
             # To deal with Nidoran naming
             poke_id.match('Nidoran_female') ? poke_id = 'Nidoran♀' : nil
             poke_id.match('Nidoran_male') ? poke_id = 'Nidoran♂' : nil
-
             # To deal with MISSINGNO Pokemon
             if pokemon_hash.key(poke_id) != nil
               poke_num = pokemon_hash.key(poke_id)
             else
               poke_num = "0"
             end
-
             # Instantiate pokemon
-            pokemon = user.pokemon.where(:poke_id => poke_id).first_or_create!
+            pokemon = user.pokemon.new
             # Set data
             pokemon.poke_id = poke_id
             pokemon.poke_num = poke_num
@@ -101,16 +99,16 @@ module SessionsHelper
             pokemon.weight_kg = i[:weight_kg]
             # Save record
             pokemon.save
-          when :pokemon_family
-            poke_id = i[:family_id].to_s
-            poke_id.slice! 'FAMILY_'
-            poke_id = poke_id.capitalize.to_s
-            candy = i[:candy]
+          #when :pokemon_family
+            #poke_id = i[:family_id].to_s
+            #poke_id.slice! 'FAMILY_'
+            #poke_id = poke_id.capitalize.to_s
+            #candy = i[:candy]
 
-            # Instantiate pokemon
-            pokemon = user.pokemon.where(:poke_id => poke_id).first_or_create!
-            pokemon.candy = candy 
-            pokemon.save
+            ## Instantiate pokemon
+            #pokemon = user.pokemon.where(:poke_id => poke_id).first_or_create!
+            #pokemon.candy = candy 
+            #pokemon.save
           end
         end
       end
