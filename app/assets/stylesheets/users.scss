@@ -2,20 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.user-show-container{
-  h1 {
-    text-align: center;
-  }
-  /* items */
-  .items {
-    list-style: none;
-    padding: 0;
-    li {
-      padding: 10px 0;
-      border-top: 1px solid #e8e8e8;
-      span.item{
-        font-weight: bold;
-      }
-    }
-  }
+.show-pokemon-container{
+  padding-left: 6rem;
 }

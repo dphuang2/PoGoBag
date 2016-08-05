@@ -1,57 +1,108 @@
+:root {
+  font-size: 10px;
+}
+@mixin data-color{
+  background-color: #999999;
+  color: white;
+}
+@mixin center-absolute{
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%,0%)
+}
 /* pokemon */
 .pokemon-card{
-  padding-top: 20px;
+  margin-top: 10px;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: -1;
 }
 .pokemon {
-  //overflow: hidden;
+  border-bottom-left-radius: .8rem;
+  border-bottom-right-radius: .8rem;
+  //border-bottom: 3px solid #2980b9;
+  overflow: hidden;
   text-align: center;
-  height: 250px;
-  //box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  //transition: 0.3s;
-  //border-radius: 5px;
+  height: 25rem;
   position: relative;
   width: 100%;
-  .data {
-    z-index: 1;
-    position:absolute;
+  table{
+    position: absolute;
+    bottom: 0px;
     width: 100%;
-    margin: 0;
-    font-size: 150%;
+    tr {
+      height: 5rem;
+      position: relative;
+      z-index: 1;
+      @include data-color;
+    }
   }
   .CP{
-    top: 5px;
+    position: relative;
+    font-weight: bold;
+    .CP-text{
+      position: relative;
+      z-index: 1;
+    }
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    border-left: 1px solid rgba(255,255,255,.5);
   }
   .IV {
-    top: 25px;
+    font-size: 2rem;
+    opacity: .75;
+  }
+  .HP {
+    font-size: 1.7rem;
+    border-left: 1px solid rgba(255,255,255,.5);
+    opacity: .75;
+  }
+  .image-box{
+    position: absolute;
+    top: 4rem;
+    left: 0px;
+    width: 100%;
+    height: 16rem;
+    .NUM{
+      font-size: 1.2rem;
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      color: lightgray;
+      z-index: 1;
+    }
+    img{
+      z-index: 0;
+      position: absolute;
+      bottom: 1px;
+      @include center-absolute;
+      max-height: 100%;
+      max-width: 100%;
+    }
   }
   .name {
-    bottom: 3px;
-  }
-  img {
-    z-index: 0;
-    max-width: 95%;
-    max-height: 70%;
-    position: absolute;
-    bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0px;
-    right: 0px;
+    font-weight: bold;
+    background-color: #3793d4;
+    color: white;
+    border-top-left-radius: .8rem;
+    border-top-right-radius: .8rem;
+    position: relative;
+    font-size: 3rem;
+    height: 4rem;
+    z-index: 1;
   }
 }
-//.pokemon:hover {
-  //box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-//}
-@media (max-width: 1333px){
-  .pokemon {
-    height: 192px;
+@media (max-width: 1262px){
+  :root {
+    font-size: 8px;
   }
 }
-@media (max-width: 1111px){
-  .pokemon {
-    height: 150px;
+@media (max-width: 515px){
+  :root {
+    font-size: 5px;
+  }
+}
+@media (max-width: 318px){
+  :root {
+    font-size: 4px;
   }
 }

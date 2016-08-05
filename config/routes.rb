@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # User content
   get '/:id', to: 'users#show'
+  get '/:id/:stat', to: 'users#show'
   get 'users/show'
   resources :users
 

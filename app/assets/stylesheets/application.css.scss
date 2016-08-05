@@ -56,3 +56,23 @@ body {
   margin-top: 45px;
   @include box_sizing;
 }
+@media (max-width: 768px){
+  ul{
+    text-align: right;
+    li {
+      display: inline;
+    }
+  }
+  .form-control {
+    margin-left: 6rem;
+    width: 91%;
+  }
+  /* webkit */
+  ::-webkit-input-placeholder { 
+    text-align:right; 
+  }
+  /* mozilla */
+  input:-moz-placeholder { 
+    text-align:right; 
+  }
+}
