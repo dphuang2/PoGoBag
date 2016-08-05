@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :not_found
+  rescue_from ActiveRecord::StatementInvalid, :with => :direct_to_default
 
   def show
     if @user = User.find_by(name: params[:id]) 
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
       if params[:stat] == 'poke_num' || params[:stat] == 'poke_id'
         direction = ' ASC'
       end
-      @pokemon = @user.pokemon.order(params[:stat]+direction+', cp DESC')
+      @pokemon = @user.pokemon.order(params[:stat]+direction+', cp DESC, iv DESC')
     else
       @pokemon = @user.pokemon
     end
@@ -30,6 +31,6 @@ class UsersController < ApplicationController
       flash[:danger] = 'The player you are looking for does not exist (Trainers have to log into PoGoBag to be seen)'
     end
     def direct_to_default
-      render '/'+params[:id]
+      redirect_to '/'+params[:id]
     end
 end

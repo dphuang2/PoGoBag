@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Scheduler
+gem 'daemons', '~> 1.2', '>= 1.2.4'
+gem 'rufus-scheduler', '~> 3.2', '>= 3.2.1'
 # For awesome developer fonts
 gem "font-awesome-rails"
 # For awesome bootstrap social buttons

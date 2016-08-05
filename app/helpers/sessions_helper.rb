@@ -125,37 +125,64 @@ module SessionsHelper
   end
 
   # Handle login logic
-  def setup_client(client)
+  def setup_user
     if params.has_key? :ptc # PTC LOGIN------------
+      client = Poke::API::Client.new
       # Grab all credentials from form
       username = params[:ptc][:username]
       pass = params[:ptc][:password]
       client.login(username, pass, 'ptc')
-      return client
     end
     if params.has_key? :google # GOOGLE LOGIN---------
+      response =  authorized_client params[:google][:code]
+      client = response[:client]
+      refresh_token = response[:refresh_token]
+    end
+    # Save name to ActiveRecord
+    screen_name = get_name(client)
+    name = screen_name.downcase
+    @user = User.where(:name => name).first_or_create!
+    @user.screen_name = screen_name
+    if defined? refresh_token
+      @user.refresh_token = refresh_token
+    end
+    @user.save
+    return {:user => @user, :client => client}
+  end 
+
+  def refresh_pokemon(token)
+    client = authorized_client(token, 'refresh_token')
+  end
+
+  def authorized_client(token, type = 'authorization_code')
       clnt = HTTPClient.new
       body = {
-        grant_type: 'authorization_code',
+        grant_type: type,
         redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
         scope: 'openid email https://www.googleapis.com/auth/userinfo.email',
         client_secret: 'NCjF1TLi2CcY6t5mt0ZveuL7',
         client_id: '848232511240-73ri3t7plvk96pj4f85uj8otdat2alem.apps.googleusercontent.com',
-        code: params[:google][:code],
       }
+      if type == 'authorization_code'
+        body[:code] = token
+      end
+      if type =='refresh_token'
+        body[:refresh_token] = token
+      end
       uri = 'https://accounts.google.com/o/oauth2/token'
       response = clnt.post(uri, body)
       body = response.body
       hash = JSON.parse body
-      token = hash["id_token"]
+      access_token = hash["id_token"]
+      refresh_token = hash["refresh_token"]
       client = Poke::API::Client.new
       google = Poke::API::Auth::GOOGLE.new("username", "password")
-      google.instance_variable_set(:@access_token, token)
+      google.instance_variable_set(:@access_token, access_token)
       client.instance_variable_set(:@auth, google)
       client.instance_eval { fetch_endpoint }
-      return client
-    end
-  end 
+      return {:client => client, :refresh_token => refresh_token}
+  end
+
 
   # get response from call by providing client and request
   def get_call(client, req)

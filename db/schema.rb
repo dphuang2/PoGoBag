@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805091252) do
+ActiveRecord::Schema.define(version: 20160805121536) do
 
   create_table "items", force: :cascade do |t|
     t.string   "item_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160805091252) do
     t.integer  "eggs_hatched"
     t.integer  "evolutions"
     t.integer  "unique_pokedex_entries"
+    t.string   "refresh_token"
   end
 
 end
