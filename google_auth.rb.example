@@ -8,7 +8,7 @@ body = {
   scope: 'openid email https://www.googleapis.com/auth/userinfo.email',
   client_secret: 'NCjF1TLi2CcY6t5mt0ZveuL7',
   client_id: '848232511240-73ri3t7plvk96pj4f85uj8otdat2alem.apps.googleusercontent.com',
-  code: "4/A2gPfiqGjpdygbAy-xcopHHjF1SsCdmowgre-n9oE8w",
+  code: "", # <--- Insert token from google here
 }
 uri = 'https://accounts.google.com/o/oauth2/token'
 response = clnt.post(uri, body)
