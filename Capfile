@@ -1,7 +1,3 @@
-# For whenever gem
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
-
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
 

@@ -33,6 +33,9 @@ lock '3.6.0'
 set :application, 'PoGoBag'
 set :repo_url, 'git@github.com:dphuang2/PoGoBag.git'
 set :passenger_restart_with_touch, true
+# For whenever gem
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 set :deploy_to, '/home/deploy/PoGoBag'
 
