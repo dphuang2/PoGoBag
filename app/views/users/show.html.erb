@@ -2,11 +2,13 @@
 <div class="show-pokemon-container">
   <div class="container-fluid">
     <div class="row">
-        <% @pokemon.each do |p| %>
+      <% @pokemon.each do |p| %>
+        <% if p.pokeball != nil %>
           <div class="col-xs-4 col-sm-3 col-md-2">
             <%= render 'pokemons/pokemon', pokemon: p %>
           </div>
         <% end %>
+      <% end %>
     </div>
   </div>
 </div>

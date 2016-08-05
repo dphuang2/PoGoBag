@@ -53,6 +53,10 @@ module SessionsHelper
             user.battle_attack_total = i[:battle_attack_total]
             user.battle_defended_won = i[:battle_defended_won]
             user.prestige_rasied_total = i[:prestige_rasied_total]
+            user.prestige_dropped_total = i[:prestige_dropped_total]
+            user.eggs_hatched = i[:eggs_hatched]
+            user.unique_pokedex_entries = i[:unique_pokedex_entries]
+            user.evolutions = i[:evolutions]
             user.save
           when :item 
             item_id = i[:item_id]
@@ -73,10 +77,11 @@ module SessionsHelper
             end
 
             # Instantiate pokemon
-            pokemon = user.pokemon.new
+            pokemon = user.pokemon.where(:poke_id => poke_id).first_or_create!
             # Set data
             pokemon.poke_id = poke_id
             pokemon.poke_num = poke_num
+            pokemon.creation_time_ms = i[:creation_time_ms]
             pokemon.move_1 = i[:move_1]
             pokemon.move_2 = i[:move_2]
             pokemon.health = i[:stamina]
@@ -95,6 +100,16 @@ module SessionsHelper
             pokemon.height_m = i[:height_m]
             pokemon.weight_kg = i[:weight_kg]
             # Save record
+            pokemon.save
+          when :pokemon_family
+            poke_id = i[:family_id].to_s
+            poke_id.slice! 'FAMILY_'
+            poke_id = poke_id.capitalize.to_s
+            candy = i[:candy]
+
+            # Instantiate pokemon
+            pokemon = user.pokemon.where(:poke_id => poke_id).first_or_create!
+            pokemon.candy = candy 
             pokemon.save
           end
         end
