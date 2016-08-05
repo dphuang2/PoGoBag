@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805121536) do
+ActiveRecord::Schema.define(version: 20160805224803) do
 
   create_table "items", force: :cascade do |t|
     t.string   "item_id"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20160805121536) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "screen_name"
     t.integer  "level"
     t.integer  "experience"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160805121536) do
     t.integer  "evolutions"
     t.integer  "unique_pokedex_entries"
     t.string   "refresh_token"
+    t.float    "access_token_expire_time"
   end
 
 end

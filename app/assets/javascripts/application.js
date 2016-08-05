@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(function(){
+  var bg = jQuery(".home-page-wrap);
+  jQuery(window).resize("resizeBackground");
+  function resizeBackground() {
+    bg.height(jQuery(window).height());
+  }
+resizeBackground();
+});

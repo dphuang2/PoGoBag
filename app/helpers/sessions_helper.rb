@@ -27,7 +27,6 @@ module SessionsHelper
   def store_data(client, user)
     call = get_call(client, :get_inventory)
     while call.response[:status_code] != 1
-      logger.debug "GET_INVENTORY yielded nil response...Calling again"
       call = get_call(client, :get_inventory)
     end
     response = call.response
@@ -138,20 +137,28 @@ module SessionsHelper
       client = response[:client]
       refresh_token = response[:refresh_token]
     end
-    # Save name to ActiveRecord
+    if defined? refresh_token
+      @user = setup_client_user_pair(client, refresh_token)
+      @user.refresh_token = refresh_token
+    end
+    return {:user => @user, :client => client}
+  end 
+
+  def setup_client_user_pair(client, refresh_token)
     screen_name = get_name(client)
     name = screen_name.downcase
     @user = User.where(:name => name).first_or_create!
     @user.screen_name = screen_name
-    if defined? refresh_token
-      @user.refresh_token = refresh_token
-    end
+    @user.access_token_expire_time = Time.now.to_formatted_s(:number).to_f + 10000
     @user.save
-    return {:user => @user, :client => client}
-  end 
+    return @user
+  end
 
-  def refresh_pokemon(token)
-    client = authorized_client(token, 'refresh_token')
+  def refresh_data(user)
+    auth_objects = authorized_client(user.refresh_token, 'refresh_token')
+    client = auth_objects[:client]
+    user = setup_client_user_pair(client, user.refresh_token)
+    store_data(client, user)
   end
 
   def authorized_client(token, type = 'authorization_code')
