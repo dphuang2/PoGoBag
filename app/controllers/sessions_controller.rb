@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
-  rescue_from Poke::API::Errors::LoginFailure, :with => :login_error
+  rescue_from Poke::API::Errors::LoginFailure, :with => :login_error_ptc
   rescue_from ActionController::InvalidAuthenticityToken, :with => :logout_error
+  rescue_from Poke::API::Errors::UnknownProtoFault, :with => :login_error_google
 
   def create
     Poke::API::Logging.log_level = :DEBUG
@@ -29,11 +30,15 @@ class SessionsController < ApplicationController
   end
 
   protected
-    def login_error
+    def login_error_ptc
       flash.now[:danger] = 'Invalid user/password combination'
       render 'static_pages/home'
     end
     def logout_error
       redirect_to 'static_pages/home'
+    end
+    def login_error_google
+      flash.now[:danger] = 'Authorization code was empty'
+      render 'static_pages/home'
     end
 end

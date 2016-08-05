@@ -26,6 +26,9 @@
 
 /* header */
 
+.navbar {
+  margin-bottom: 0px;
+}
 #logo {
   float: left;
   margin-right: 10px;
@@ -57,22 +60,35 @@ body {
   @include box_sizing;
 }
 @media (max-width: 768px){
-  ul{
-    text-align: right;
-    li {
-      display: inline;
+  .alert {
+    margin-left: 6rem;
+  }
+  header {
+    ul{
+      text-align: right;
+      li {
+        display: inline;
+        a {
+          display: block;
+          text-align: right;
+        }
+      }
+    }
+    .form-control {
+      margin-left: 6rem;
+      width: 91%;
+    }
+    /* webkit */
+    ::-webkit-input-placeholder { 
+      text-align:right; 
+    }
+    /* mozilla */
+    input:-moz-placeholder { 
+      text-align:right; 
     }
   }
-  .form-control {
-    margin-left: 6rem;
-    width: 91%;
-  }
-  /* webkit */
-  ::-webkit-input-placeholder { 
-    text-align:right; 
-  }
-  /* mozilla */
-  input:-moz-placeholder { 
-    text-align:right; 
-  }
+}
+// To override style to 'display: inline-block;' from font-awesome rails gem
+.fa {
+  display: table-cell;
 }

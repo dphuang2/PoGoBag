@@ -10,7 +10,7 @@
        </div>
        <table> 
          <tr>
-           <td class="IV"> <%= pokemon[:iv] %></td>
+           <td class="IV"> <%= number_to_percentage(pokemon[:iv]*100, precision: 0) %></td>
            <td class="CP"><span class="CP-text"><%= pokemon[:cp] %></span></td>
            <td class="HP"> <%= pokemon[:max_health] %>HP</td>
          </tr>

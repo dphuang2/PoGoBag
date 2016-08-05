@@ -28,5 +28,19 @@
         </ul>
       <% end %>
     </div>
+    <div class="col-xs-4">
+      <div class="value-header">Battles Won</div>
+      <% if @pokemon_won.any? %>
+        <ul>
+          <% rank = 1 %>
+          <% @pokemon_won.each do |p| %>
+            <li>
+              <%= render partial: 'pokemons/pokemon', locals: {:pokemon => p, :img => rank_image(rank)} %>
+            </li>
+            <% rank += 1 %>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>

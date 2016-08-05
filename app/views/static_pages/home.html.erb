@@ -1,23 +1,26 @@
-<div class="container">
-  <div class="home-page">
-    <div class="landing-title">
-      <h1><%= image_tag 'itemstorageupgrade.1.png' %>PoGoBag</h1>
-      <h3>Share your Pok&eacute;mon Go bag!</h3>
-    </div>
-    <div class="row">
-      <div class="col-md-push-8 col-md-4">
-        <%= render 'sessions/login'%>
+<div class="home-page-wrap">
+  <div class="container">
+    <div class="home-page">
+      <div class="landing-title">
+        <h1><%= image_tag 'itemstorageupgrade.1.png' %>PoGoBag</h1>
+        <h3>Share your Pok&eacute;mon Go bag!</h3>
       </div>
-      <div class="col-md-pull-4 col-md-8">
-        <div class="features-list">
-          <ul>
-            <li><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>Share your Pok&eacute;mon and Items</li>
-            <li><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search for other trainers</li>
-            <li><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>See your Pok&eacute;mon's IV values</li>
-            <li><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Order by IV Perfection, CP, Health, Attack, Defense, Stamina, Name </li>
-            <li><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>See the top Pok&eacute;mon in the world</li>
-            <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Recieve a personal bag link on login</li>
-          </ul>
+      <div class="row">
+        <div class="col-md-push-8 col-md-4">
+          <%= render 'sessions/login'%>
+        </div>
+        <div class="col-md-pull-4 col-md-8">
+          <div class="features-list">
+            <ul>
+              <li><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>Share your Pok&eacute;mon</li>
+              <li><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search for other trainers</li>
+              <li><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>See your Pok&eacute;mon's IV values</li>
+              <li><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Order by IV Perfection, CP, Health, Attack, Defense, Stamina, Name </li>
+              <li><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>See the top Pok&eacute;mon in the world</li>
+              <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Recieve a persistent bag link on login</li>
+              <li><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Only one login required!</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
