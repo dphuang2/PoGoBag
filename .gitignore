@@ -52,3 +52,4 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 config/database.yml
 config/secrets.yml
+google_auth.rb
