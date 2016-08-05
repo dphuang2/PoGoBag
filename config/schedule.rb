@@ -1,5 +1,4 @@
-set :environment, :development
-set :output, "log/whenever.log"
+set :output, "#{path}/log/cron.log"
 every 1.minute do
-  runner "User.refresh_pokemon"
+  runner "User.scheduled_refresh"
 end

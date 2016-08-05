@@ -1,3 +1,7 @@
+# For whenever gem
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
 
@@ -14,7 +18,6 @@ require 'capistrano/rails/collection'
 #   https://github.com/capistrano/chruby
 #   https://github.com/capistrano/bundler
 #   https://github.com/capistrano/rails
-# If you are using rvm add these lines:
 require 'capistrano/rvm'
  set :rvm_type, :user
  set :rvm_ruby_version, '2.3.1'
