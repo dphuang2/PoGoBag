@@ -1,3 +1,4 @@
+require 'whenever/capistrano'
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
 
