@@ -51,7 +51,7 @@ GEM
     airbrussh (1.1.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.1)
-    autoprefixer-rails (6.4.0)
+    autoprefixer-rails (6.4.0.1)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
