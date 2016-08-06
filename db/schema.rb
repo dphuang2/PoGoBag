@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805224803) do
+ActiveRecord::Schema.define(version: 20160806000738) do
 
   create_table "items", force: :cascade do |t|
     t.string   "item_id"
@@ -74,6 +74,11 @@ ActiveRecord::Schema.define(version: 20160805224803) do
     t.integer  "unique_pokedex_entries"
     t.string   "refresh_token"
     t.float    "access_token_expire_time"
+    t.string   "team"
+    t.string   "max_pokemon_storage"
+    t.string   "max_item_storage"
+    t.float    "POKECOIN"
+    t.float    "STARDUST"
   end
 
 end

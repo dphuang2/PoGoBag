@@ -118,9 +118,14 @@ module SessionsHelper
   end
 
   # get name from logged in client
-  def get_name(client)
+  def get_player_info(client)
     call = get_call(client, :get_player)
-    name = call.response[:GET_PLAYER][:player_data][:username]
+    info[:name] = call.response[:GET_PLAYER][:player_data][:username]
+    info[:team] = call.response[:GET_PLAYER][:player_data][:team]
+    info[:max_pokemon_storage] = call.response[:GET_PLAYER][:player_data][:max_pokemon_storage]
+    info[:max_item_storage] = call.response[:GET_PLAYER][:player_data][:max_item_storage]
+    info[:POKECOIN] = call.response[:GET_PLAYER][:player_data][:currencies][0][:amount]
+    info[:STARDUST] = call.response[:GET_PLAYER][:player_data][:currencies][1][:amount]
   end
 
   # Handle login logic
@@ -145,10 +150,16 @@ module SessionsHelper
   end 
 
   def setup_client_user_pair(client, refresh_token)
-    screen_name = get_name(client)
+    info = get_player_info(client)
+    screen_name = info[:name]
     name = screen_name.downcase
     @user = User.where(:name => name).first_or_create!
     @user.screen_name = screen_name
+    @user.team = info[:team]
+    @user.max_pokemon_storage = info[:max_pokemon_storage]
+    @user.max_item_storage = info[:max_item_storage]
+    @user.POKECOIN = info[:POKECOIN]
+    @user.STARDUST = info[:STARDUST]
     @user.access_token_expire_time = Time.now.to_formatted_s(:number).to_f + 10000
     @user.save
     return @user
