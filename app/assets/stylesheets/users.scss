@@ -2,6 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin border-right{
+  padding-right: 2rem;
+  border-right: 1px solid lightgray;
+}
 .show-pokemon-container{
   padding-left: 6rem;
+}
+.user-list{
+  padding-top: 10px;
+  margin: 0 auto;
+  width: 70%;
+  ul {
+    font-size: 6rem;
+    text-align: center;
+    a {
+      text-decoration: none;
+    }
+    li {
+      border: 1px solid lightgray;
+      .lvl {
+        @include border-right;
+      }
+      .screen_name{
+        @include border-right;
+      }
+      img {
+        max-height: 6rem;
+      }
+    }
+  }
 }

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="user-list">
+    <ul>
+      <% @users.each do |user| %>
+        <a href="/<%=user.name%>">
+          <li>
+            <span class="lvl"><%=user.level%></span>
+            <span class="screen_name"><%=user.screen_name%></span>
+            <img src="<%=image_path 'etc/team_'+user.team.downcase+'.png'%>">
+        </li>
+        </a>
+      <% end %>
+    </ul>
+  </div>
+</div>

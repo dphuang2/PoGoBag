@@ -2,6 +2,14 @@ class UsersController < ApplicationController
   #rescue_from ActiveRecord::RecordNotFound, :with => :not_found
   rescue_from ActiveRecord::StatementInvalid, :with => :direct_to_default
 
+  def index
+    if params[:search]
+      @users = User.search(params[:search]).order("created_at DESC")
+    else
+      @users = User.all.order('created_at DESC')
+    end
+  end
+
   def show
     if @user = User.find_by(name: params[:id]) 
     else
@@ -22,15 +30,15 @@ class UsersController < ApplicationController
   end
 
   private 
-    def not_found
-      if logged_in?
-        redirect_to user_link
-      else
-        redirect_to root_path
-      end
-      flash[:danger] = 'The player you are looking for does not exist (Trainers have to log into PoGoBag to be seen)'
+  def not_found
+    if logged_in?
+      redirect_to user_link
+    else
+      redirect_to root_path
     end
-    def direct_to_default
-      redirect_to '/'+params[:id]
-    end
+    flash[:danger] = 'The player you are looking for does not exist (Trainers have to log into PoGoBag to be seen)'
+  end
+  def direct_to_default
+    redirect_to '/'+params[:id]
+  end
 end

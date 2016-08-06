@@ -3,6 +3,10 @@ class User < ApplicationRecord
   has_many :items
   has_many :pokemon
 
+  def self.search(query)
+    where("screen_name like ?", "%#{query}%")
+  end
+
   private
     def name_downcase
       self.name = name.downcase

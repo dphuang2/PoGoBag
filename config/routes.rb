@@ -10,10 +10,9 @@ Rails.application.routes.draw do
   get '/stats', to: 'stats#show'
 
   # User content
+  get '/search', to: 'users#index'
   get '/:id', to: 'users#show'
   get '/:id/:stat', to: 'users#show'
-  get 'users/show'
-  resources :users
 
   root 'static_pages#home'
 end

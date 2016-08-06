@@ -14,12 +14,12 @@
     <div class="collapse navbar-collapse" id="collection-navlinks"> 
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <form class="navbar-form" role="search">
+          <%= form_tag('/search', :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search other trainers">
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search other Trainers" %>
+              <%= submit_tag "Search", :name => nil , class: "btn btn-default"%>
             </div>
-            <button type="submit" class="btn btn-default">Search</button>
-          </form>
+          <% end %>
         </li>
         <% if !logged_in? %>
           <li><%= link_to "Home", root_path %></li>
