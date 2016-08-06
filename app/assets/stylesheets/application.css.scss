@@ -60,6 +60,12 @@ body {
   @include box_sizing;
 }
 @media (max-width: 768px){
+  .copy-form{
+    text-align: right;
+    input {
+      text-align: right;
+    }
+  }
   .alert {
     //margin-left: 6rem;
   }
