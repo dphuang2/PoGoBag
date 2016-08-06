@@ -1,34 +1,38 @@
-<div class="table-responsive">
-  <table id="cp_table" class="table table-condensed table-hover tablesorter">
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Pokemon</th>
-        <th>CP</th>
-        <th>IV</th>
-        <th>Health</th>
-        <th>Move 1</th>
-        <th>Move 2</th>
-        <th>ATK</th>
-        <th>DEF</th>
-        <th>STA</th>
-        <th>Attacked</th>
-        <th>Defended</th>
-        <th>Upgrades</th>
-        <th>Height</th>
-        <th>Weight</th>
-        <th>#</th>
-        <th>Ball</th>
-        <th>Nickname</th>
-        <th>Owner</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% rank = 1 %>
-      <% @pokemon_cp.each do |p| %>
-        <%= render partial: 'stats/pokemon_row', locals: {:pokemon => p, :rank => rank} %>
-        <% rank += 1 %>
-      <% end %>
-    </tbody>
-  </table>
+<div class="panel panel-default">
+  <div class="panel-heading"> Top 100 Pokemon on earth</div>
+  <!-- Table -->
+  <div class="table-responsive">
+    <table id="cp_table" class="table table-condensed table-hover tablesorter">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Pokemon</th>
+          <th>CP</th>
+          <th>IV</th>
+          <th>Health</th>
+          <th>Move 1</th>
+          <th>Move 2</th>
+          <th>ATK</th>
+          <th>DEF</th>
+          <th>STA</th>
+          <th>Attacked</th>
+          <th>Defended</th>
+          <th>Upgrades</th>
+          <th>Height</th>
+          <th>Weight</th>
+          <th>#</th>
+          <th>Ball</th>
+          <th>Nickname</th>
+          <th>Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% rank = 1 %>
+        <% @pokemon_cp.each do |p| %>
+          <%= render partial: 'stats/pokemon_row', locals: {:pokemon => p, :rank => rank} %>
+          <% rank += 1 %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -66,8 +66,9 @@ body {
   header {
     ul{
       text-align: right;
-      button {
-        margin-right: 7px;
+      input[type="submit"] {
+        margin-right: 8px;
+        margin-top: 5px;
       }
       li {
         display: inline;
@@ -91,7 +92,53 @@ body {
     }
   }
 }
+// 20px gutter
+.gutter-20.row {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+.gutter-20 > [class^="col-"], .gutter-20 > [class^=" col-"] {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+// 10px gutter
+.gutter-10.row {
+  margin-right: -.5rem;
+  margin-left: -.5rem;
+}
+.gutter-10 > [class^="col-"], .gutter-10 > [class^=" col-"] {
+  padding-right: .5rem;
+  padding-left: .5rem;
+}
+// 0px gutter
+.gutter-0.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+.gutter-0 > [class^="col-"], .gutter-0 > [class^=" col-"]{
+  padding-right: 0;
+  padding-left: 0;
+}
 // To override style to 'display: inline-block;' from font-awesome rails gem
 .fa {
   display: table-cell;
+}
+.thumbnail {
+  .data {
+    padding: 0px;
+  }
+  margin-bottom: .8rem;
+}
+:root {
+  font-size: 10px;
+}
+@media (max-width: 1262px){
+  :root {
+    font-size: 8px;
+  }
+}
+@media (max-width: 515px){
+  :root {
+    font-size: 5px;
+  }
 }
