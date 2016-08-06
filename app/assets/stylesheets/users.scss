@@ -13,7 +13,7 @@
 .user-list{
   padding-top: 10px;
   margin: 0 auto;
-  width: 70%;
+  width: 100%;
   ul {
     font-size: 6rem;
     text-align: center;
@@ -37,6 +37,9 @@
         }
         .team {
           width: 20%;
+        }
+        td {
+          font-size: 2.4rem;
         }
       }
     }

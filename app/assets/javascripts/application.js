@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require zeroclipboard
 //= require jquery
 //= require jquery-tablesorter
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require zeroclipboard
