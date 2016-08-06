@@ -120,12 +120,14 @@ module SessionsHelper
   # get name from logged in client
   def get_player_info(client)
     call = get_call(client, :get_player)
+    info= Hash.new
     info[:name] = call.response[:GET_PLAYER][:player_data][:username]
     info[:team] = call.response[:GET_PLAYER][:player_data][:team]
     info[:max_pokemon_storage] = call.response[:GET_PLAYER][:player_data][:max_pokemon_storage]
     info[:max_item_storage] = call.response[:GET_PLAYER][:player_data][:max_item_storage]
     info[:POKECOIN] = call.response[:GET_PLAYER][:player_data][:currencies][0][:amount]
     info[:STARDUST] = call.response[:GET_PLAYER][:player_data][:currencies][1][:amount]
+    return info
   end
 
   # Handle login logic
