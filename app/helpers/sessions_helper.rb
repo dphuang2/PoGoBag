@@ -144,12 +144,13 @@ module SessionsHelper
     end
     if defined? refresh_token
       @user = setup_client_user_pair(client, refresh_token)
-      @user.refresh_token = refresh_token
+    else
+      @user = setup_client_user_pair(client)
     end
     return {:user => @user, :client => client}
   end 
 
-  def setup_client_user_pair(client, refresh_token)
+  def setup_client_user_pair(client, refresh_token = nil)
     info = get_player_info(client)
     screen_name = info[:name]
     name = screen_name.downcase
@@ -160,7 +161,10 @@ module SessionsHelper
     @user.max_item_storage = info[:max_item_storage]
     @user.POKECOIN = info[:POKECOIN]
     @user.STARDUST = info[:STARDUST]
-    @user.access_token_expire_time = Time.now.to_formatted_s(:number).to_f + 10000
+    if !refresh_token.nil?
+      @user.access_token_expire_time = Time.now.to_formatted_s(:number).to_f + 10000
+      @user.refresh_token = refresh_token
+    end
     @user.save
     return @user
   end
