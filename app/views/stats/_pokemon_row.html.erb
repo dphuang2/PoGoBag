@@ -18,6 +18,6 @@
   <th><%= pokemon.pokeball %></th>
   <th><%= pokemon.nickname %></th>
   <% @user = User.find(pokemon.user_id) %>
-  <% name = @user.name %>
+  <% name = @user.screen_name %>
   <th><%= link_to name, @user.name %></th>
 </tr>
