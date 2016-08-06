@@ -1,5 +1,5 @@
 set :output, "#{path}/log/cron.log"
 
-every 1.minute do
-  runner "User.scheduled_refresh"
+every 2.minutes do
+  rake 'refresh_data'
 end
