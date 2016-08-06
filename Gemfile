@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'zeroclipboard-rails', '~> 0.1.2'
 gem 'jquery-tablesorter', '~> 1.22', '>= 1.22.1'
 # Scheduler
 gem 'whenever', :require => false

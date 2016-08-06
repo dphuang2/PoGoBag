@@ -22,14 +22,22 @@
     }
     li {
       border: 1px solid lightgray;
-      .lvl {
-        @include border-right;
-      }
-      .screen_name{
-        @include border-right;
-      }
       img {
         max-height: 6rem;
+      }
+      table{
+        width: 100%;
+        .level {
+          width: 20%;
+        @include border-right;
+        }
+        .name {
+          width: 60%;
+        @include border-right;
+        }
+        .team {
+          width: 20%;
+        }
       }
     }
   }
