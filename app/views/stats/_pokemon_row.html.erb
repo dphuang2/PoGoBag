@@ -4,18 +4,21 @@
   <th><%= pokemon.cp %></th>
   <th><%= pokemon.iv %></th>
   <th><%= pokemon.max_health %></th>
-  <th><%= pokemon.move_1 %></th>
-  <th><%= pokemon.move_2 %></th>
+  <th><%= format_move(pokemon.move_1) %></th>
+  <th><%= format_move(pokemon.move_2) %></th>
   <th><%= pokemon.attack %></th>
   <th><%= pokemon.defense %></th>
   <th><%= pokemon.stamina %></th>
   <th><%= pokemon.battles_attacked %></th>
   <th><%= pokemon.battles_defended %></th>
   <th><%= pokemon.num_upgrades %></th>
-  <th><%= pokemon.height_m %></th>
-  <th><%= pokemon.weight_kg %></th>
+  <th><%= pokemon.height_m.round(2) %></th>
+  <th><%= pokemon.weight_kg.round(2) %></th>
   <th><%= pokemon.poke_num %></th>
-  <th><%= pokemon.pokeball %></th>
+  <% ball = pokemon.pokeball %>
+  <% ball.slice! 'ITEM_' %>
+  <% ball.slice! '_BALL' %>
+  <th><%= ball.capitalize %></th>
   <th><%= pokemon.nickname %></th>
   <% @user = User.find(pokemon.user_id) %>
   <% name = @user.screen_name %>
