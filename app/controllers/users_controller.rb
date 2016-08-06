@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       end
       @pokemon = @user.pokemon.order(params[:stat]+direction+', cp DESC, iv DESC')
     else
-      @pokemon = @user.pokemon
+      @pokemon = @user.pokemon.order("cp DESC")
     end
   end
 
