@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     # Store all data
     store_data(client, @user)
     # Redirect
-    flash[:success] = "You logged in! Share your link with others: http://pogobag.me/"+session[:pogo_alias]
+    #flash[:success] = "You logged in! Share your link with others: http://pogobag.me/"+session[:pogo_alias]
     redirect_to user_link
   end
 
