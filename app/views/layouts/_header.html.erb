@@ -21,6 +21,9 @@
         </form>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
+        <% if user = User.find_by(name: params[:id]) %>
+          <li class="header-name"><%=user.level%> | <%= user.screen_name %></li>
+        <% end %>
         <li>
           <%= form_tag('/search', :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
             <div class="form-group">

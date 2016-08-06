@@ -53,13 +53,24 @@ body {
   text-align: center;
 }
 .debug_dump {
+  padding-left: 8rem;
   clear: both;
   float: left;
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
 }
+ul .header-name {
+  position: relative;
+  font-weight: bold;
+  font-size: 30px;
+  right: 30px;
+  top: 2px;
+}
 @media (max-width: 768px){
+  ul .header-name{
+    right: 10px;
+  }
   .copy-form{
     text-align: right;
     input {
