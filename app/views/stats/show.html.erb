@@ -1,46 +1,34 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-4">
-      <div class="value-header">Combat Power</div>
-      <% if @pokemon_cp.any? %>
-        <ul>
-          <% rank = 1 %>
-          <% @pokemon_cp.each do |p| %>
-            <li>
-              <%= render partial: 'pokemons/pokemon', locals: {:pokemon => p, :img => rank_image(rank)} %>
-            </li>
-            <% rank += 1 %>
-          <% end %>
-        </ul>
+<div class="table-responsive">
+  <table id="cp_table" class="table table-condensed table-hover tablesorter">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Pokemon</th>
+        <th>CP</th>
+        <th>IV</th>
+        <th>Max Health</th>
+        <th>Move 1</th>
+        <th>Move 2</th>
+        <th>ATK</th>
+        <th>DEF</th>
+        <th>STA</th>
+        <th>Battles Attacked</th>
+        <th>Battles Defended</th>
+        <th># of upgrades</th>
+        <th>Height</th>
+        <th>Weight</th>
+        <th>Number</th>
+        <th>Pokeball</th>
+        <th>Nickname</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rank = 1 %>
+      <% @pokemon_cp.each do |p| %>
+        <%= render partial: 'stats/pokemon_row', locals: {:pokemon => p, :rank => rank} %>
+        <% rank += 1 %>
       <% end %>
-    </div>
-    <div class="col-xs-4">
-      <div class="value-header">Individual Values</div>
-      <% if @pokemon_iv.any? %>
-        <ul>
-          <% rank = 1 %>
-          <% @pokemon_iv.each do |p| %>
-            <li>
-              <%= render partial: 'pokemons/pokemon', locals: {:pokemon => p, :img => rank_image(rank)} %>
-            </li>
-            <% rank += 1 %>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-    <div class="col-xs-4">
-      <div class="value-header">Battles Won</div>
-      <% if @pokemon_won.any? %>
-        <ul>
-          <% rank = 1 %>
-          <% @pokemon_won.each do |p| %>
-            <li>
-              <%= render partial: 'pokemons/pokemon', locals: {:pokemon => p, :img => rank_image(rank)} %>
-            </li>
-            <% rank += 1 %>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-  </div>
+    </tbody>
+  </table>
 </div>

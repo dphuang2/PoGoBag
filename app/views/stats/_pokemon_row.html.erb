@@ -1,0 +1,23 @@
+<tr>
+  <th><%=rank%></th>
+  <th><%= pokemon.poke_id %></th>
+  <th><%= pokemon.cp %></th>
+  <th><%= pokemon.iv %></th>
+  <th><%= pokemon.max_health %></th>
+  <th><%= pokemon.move_1 %></th>
+  <th><%= pokemon.move_2 %></th>
+  <th><%= pokemon.attack %></th>
+  <th><%= pokemon.defense %></th>
+  <th><%= pokemon.stamina %></th>
+  <th><%= pokemon.battles_attacked %></th>
+  <th><%= pokemon.battles_defended %></th>
+  <th><%= pokemon.num_upgrades %></th>
+  <th><%= pokemon.height_m %></th>
+  <th><%= pokemon.weight_kg %></th>
+  <th><%= pokemon.poke_num %></th>
+  <th><%= pokemon.pokeball %></th>
+  <th><%= pokemon.nickname %></th>
+  <% @user = User.find(pokemon.user_id) %>
+  <% name = @user.name %>
+  <th><%= link_to name, @user.name %></th>
+</tr>

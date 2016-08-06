@@ -1,5 +1,5 @@
 set :output, "#{path}/log/cron.log"
 
-every 2.minutes do
+every 1.minute do
   rake 'refresh_data'
 end
