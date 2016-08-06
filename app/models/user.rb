@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  include SessionsHelper
-
   before_create :name_downcase 
   has_many :items
   has_many :pokemon

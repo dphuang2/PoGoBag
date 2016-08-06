@@ -25,6 +25,7 @@ module SessionsHelper
 
   # Parse through all data and store into database
   def store_data(client, user)
+    destroy_user_data(user)
     call = get_call(client, :get_inventory)
     while call.response[:status_code] != 1
       call = get_call(client, :get_inventory)

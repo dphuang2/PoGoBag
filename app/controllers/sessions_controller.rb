@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
     # set session variable to log in
     session[:pogo_alias] = @user.name
     # Store all data
-    destroy_user_data(@user)
     store_data(client, @user)
     # Redirect
     flash[:success] = "You logged in! Share your link with others: http://pogobag.me/"+session[:pogo_alias]
