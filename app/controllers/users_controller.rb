@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #rescue_from ActiveRecord::RecordNotFound, :with => :not_found
+  rescue_from ActiveRecord::RecordNotFound, :with => :not_found
   rescue_from ActiveRecord::StatementInvalid, :with => :direct_to_default
 
   def index
