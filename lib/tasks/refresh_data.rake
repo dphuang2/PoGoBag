@@ -3,7 +3,7 @@ task refresh_data: :environment do
   include SessionsHelper
   @users = User.where.not('refresh_token' => nil)
   @users.each do |user|
-    if user.access_token_expire_time > Time.now.to_formatted_s(:number).to_f
+    if user.access_token_expire_time > Time.now.to_i
       refresh_data(user)
     end
   end
