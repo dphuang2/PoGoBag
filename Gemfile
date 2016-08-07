@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'will_paginate',           '3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
 gem 'zeroclipboard-rails', '~> 0.1.2'
 gem 'jquery-tablesorter', '~> 1.22', '>= 1.22.1'
 # Scheduler

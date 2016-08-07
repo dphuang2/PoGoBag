@@ -4,9 +4,9 @@ class UsersController < ApplicationController
 
   def index
     if params[:search]
-      @users = User.search(params[:search]).order("created_at DESC")
+      @users = User.search(params[:search]).order("created_at DESC").paginate(page: params[:page])
     else
-      @users = User.all.order('created_at DESC')
+      @users = User.all.order('created_at DESC').paginate(page: params[:page])
     end
   end
 
