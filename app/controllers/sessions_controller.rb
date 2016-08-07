@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     Poke::API::Logging.log_level = :DEBUG if Rails.env.development?
+    Poke::API::Logging.log_level = :WARN if Rails.env.production?
 
     # Authorize
     auth_objects = setup_user
