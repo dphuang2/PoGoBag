@@ -41,7 +41,7 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 namespace :deploy do
 
   task :reset_crontab do
-    on role(:app), in: :sequence,, wait: 5 do
+    on role(:app), in: :sequence, wait: 5 do
       execute :crontab, "-r"
     end
   end
