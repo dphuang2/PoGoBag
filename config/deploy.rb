@@ -40,6 +40,12 @@ set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 namespace :deploy do
 
+  task :reset_crontab do
+    on role(:app), in: :sequence,, wait: 5 do
+      execute :crontab, "-r"
+    end
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -48,13 +54,14 @@ namespace :deploy do
     end
   end
 
+
   after :publishing, :restart
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
        #within release_path do
-         #execute :rake, "db:migrate"
+         #execute :crontab, "-r"
        #end
     end
   end
