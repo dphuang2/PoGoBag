@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806203636) do
+ActiveRecord::Schema.define(version: 20160807213852) do
 
   create_table "items", force: :cascade do |t|
     t.string   "item_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20160806203636) do
     t.string   "max_item_storage"
     t.float    "POKECOIN"
     t.float    "STARDUST"
+    t.string   "last_data_update"
   end
 
 end
