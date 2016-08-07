@@ -138,6 +138,9 @@ ul .header-name {
   padding-left: 0;
 }
 // To override style to 'display: inline-block;' from font-awesome rails gem
+.pagination {
+  margin: 5px 0;
+}
 .fa {
   display: table-cell;
 }
