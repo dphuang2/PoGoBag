@@ -22,7 +22,7 @@
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if user = User.find_by(name: params[:id]) %>
-          <li class="header-name"><%=user.level%> | <%= user.screen_name %></li>
+          <li class="header-name"><%=user.level%> | <%= user.screen_name %> | <span class="last-data-update">Updated: <%=user.last_data_update%></span></li>
         <% end %>
         <li>
           <%= form_tag('/search', :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
