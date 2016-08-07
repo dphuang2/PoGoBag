@@ -125,7 +125,6 @@ module SessionsHelper
       call = get_call(client, :get_player)
     end
     info = Hash.new
-    debugger
     info[:name] = call.response[:GET_PLAYER][:player_data][:username]
     info[:team] = call.response[:GET_PLAYER][:player_data][:team]
     info[:max_pokemon_storage] = call.response[:GET_PLAYER][:player_data][:max_pokemon_storage]
