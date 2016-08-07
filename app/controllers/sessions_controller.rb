@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   rescue_from Poke::API::Errors::UnknownProtoFault, :with => :login_error_google
 
   def create
-    Poke::API::Logging.log_level = :DEBUG
+    Poke::API::Logging.log_level = :DEBUG if Rails.env.development?
 
     # Authorize
     auth_objects = setup_user
