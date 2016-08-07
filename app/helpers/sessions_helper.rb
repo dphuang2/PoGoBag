@@ -165,7 +165,9 @@ module SessionsHelper
     @user.POKECOIN = info[:POKECOIN]
     @user.STARDUST = info[:STARDUST]
     if !refresh_token.nil?
-      @user.access_token_expire_time = Time.now.to_formatted_s(:number).to_f + 10000
+      time = Time.now + 3600
+      time = time.to_i
+      @user.access_token_expire_time = time
       @user.refresh_token = refresh_token
     end
     @user.save
