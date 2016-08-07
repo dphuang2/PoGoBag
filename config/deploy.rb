@@ -52,11 +52,18 @@ namespace :deploy do
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
-       within release_path do
-         execute :crontab, "-r"
-         execute :whenever, "-w"
-       end
+       #within release_path do
+         #execute :crontab, "-r"
+         #execute :whenever, "-w"
+       #end
     end
+  end
+
+  after :restart, :crontab do
+    on roles(:web), in: :sequence, wait: 5 do
+      execute :crontab, "-r"
+      execute "~/.rvm/bin/rvm default do bundle exec whenever --update-crontab PoGoBag --set environment=production --roles=web,app,db"
+    end 
   end
 
 end
