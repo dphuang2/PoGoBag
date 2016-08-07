@@ -60,6 +60,9 @@ body {
   margin-top: 45px;
   @include box_sizing;
 }
+.form-group .copy-field {
+  width: 218px;
+}
 ul .header-name {
   position: relative;
   font-weight: bold;

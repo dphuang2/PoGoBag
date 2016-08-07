@@ -15,9 +15,9 @@
       <% if logged_in? %>
         <form class="copy-form navbar-form navbar-left" role="copy">
           <div class="form-group">
-            <input type="text" id="user-link" class="form-control" readonly="readonly" value="http://pogobag.me<%=user_link%>">
+            <input type="text" id="user-link" class="copy-field form-control" readonly="readonly" value="http://pogobag.me<%=user_link%>">
           </div>
-          <button type="button" id="d_clip_button" data-clipboard-target="user-link" title="Click to copy your link!" class="btn btn-default"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button>
+          <button type="button" id="copy-clipboard-button" data-clipbard-text="http://pogobag.me<%=user_link%>" data-clipboard-target="user-link" title="Click to copy your link!" class="btn btn-default"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button>
         </form>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
@@ -52,6 +52,6 @@
 </header>
 <script>
 $(document).ready(function() {
-  var clip = new ZeroClipboard($("#d_clip_button"));
+  var clip = new ZeroClipboard($("#copy-clipboard-button"));
 });
 </script>
