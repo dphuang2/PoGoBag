@@ -59,11 +59,4 @@ namespace :deploy do
     end
   end
 
-  after :restart, :crontab do
-    on roles(:web), in: :sequence, wait: 5 do
-      execute :crontab, "-r"
-      execute "~/.rvm/bin/rvm default do bundle exec whenever --update-crontab PoGoBag --set environment=production --roles=web,app,db"
-    end 
-  end
-
 end
