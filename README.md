@@ -10,30 +10,37 @@ Feel free to contribute and make pull request.
 * Git
 #### 
 Steps
-1. Go to http://installrails.com/steps/choose_os and install Ruby and Rails for your OS
-2. Open terminal and cd into whichever directory you want to place the project in. For example into your home directory:
+<ol>
+<li>Go to http://installrails.com/steps/choose_os and install Ruby and Rails for your OS</li>
+<li>Open terminal and cd into whichever directory you want to place the project in. For example into your home directory:</li>
+
 ```
 cd ~
 ```
-3. In that directory, clone the project
+<li>In that directory, clone the project</li>
+
 ```
 git clone https://github.com/dphuang2/PoGoBag.git
 ```
-4. cd into the project:
+<li>cd into the project:</li>
+
 ```
 cd PoGoBag
 ```
-5. Install all dependencies
+<li>Install all dependencies</li>
+
 ```
 bundle install
 ```
-6. Run database setup and start the server
+<li>Run database setup and start the server</li>
+
 ```
 rake db:setup
 rails s
 ```
-7. Open your browser and navigate to http://localhost:3000
-8. Login and browse your Pokemon!
+<li>Open your browser and navigate to http://localhost:3000</li>
+<li>Login and browse your Pokemon!</li>
+</ol>
 
 ![Imgur](http://i.imgur.com/Yzz5ouC.png)
 ## Screenshots:
