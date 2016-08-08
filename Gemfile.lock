@@ -139,7 +139,6 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    pg (0.18.4)
     pkg-config (1.1.7)
     puma (3.6.0)
     rack (2.0.1)
@@ -239,7 +238,6 @@ DEPENDENCIES
   jquery-rails
   jquery-tablesorter (~> 1.22, >= 1.22.1)
   listen (~> 3.0.5)
-  pg
   poke-go-api!
   puma (~> 3.0)
   rails (~> 5.0.0)
@@ -254,9 +252,6 @@ DEPENDENCIES
   whenever
   will_paginate (= 3.1.0)
   zeroclipboard-rails (~> 0.1.2)
-
-RUBY VERSION
-   ruby 2.3.1p112
 
 BUNDLED WITH
    1.12.5
