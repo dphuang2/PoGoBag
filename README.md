@@ -28,18 +28,16 @@ gem install bundler
 ##### Mac:
 1) Install Ruby with RVM <br>
 ```
-sudo apt-get update
-sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
-sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew -v
+brew doctor
+\curl -L https://get.rvm.io | bash -s stable
 rvm install 2.3.1
 rvm use 2.3.1 --default
 ruby -v
 ```
-2) Install Node.js: "sudo apt-get install nodejs" <br>
-3) Install Git: "sudo apt-get install git" <br>
+2) Install Node.js: "brew install node" <br>
+3) Install Git: "brew install git" <br>
 4) Run these two commands: <br>
 ```
 gem install rails
