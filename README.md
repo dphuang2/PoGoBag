@@ -17,7 +17,6 @@ Feel free to contribute and make pull request.
 2) Open terminal and change direcotry into whichever directory you want to place the project in: "cd ~" (for home directory) <br>
 3) In that directory, clone the project "git clone https://github.com/dphuang2/PoGoBag.git" <br>
 4) change directory into the project: "cd PoGoBag" <br>
-5) Copy database.yml example: "cp config/database.yml.example config/database.yml"
 6) Install all dependencies: "bundle install" <br>
 7) Run database setup and start the server <br>
 ```
