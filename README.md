@@ -14,9 +14,9 @@ Feel free to contribute and make pull request.
 #### Steps
 
 1) Go to http://installrails.com/steps/choose_os and install Ruby and Rails for your OS <br>
-2) Open terminal and cd into whichever directory you want to place the project in: "cd ~" (for home directory) <br>
+2) Open terminal and change direcotry into whichever directory you want to place the project in: "cd ~" (for home directory) <br>
 3) In that directory, clone the project "git clone https://github.com/dphuang2/PoGoBag.git" <br>
-4) "cd PoGoBag" <br>
+4) change directory into the project: "cd PoGoBag" <br>
 5) Install all dependencies: "bundle install" <br>
 6) Run database setup and start the server <br>
 ```
