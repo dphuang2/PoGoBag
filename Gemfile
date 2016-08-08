@@ -19,8 +19,6 @@ gem 'poke-go-api',
   git: "https://github.com/nabeelamjad/poke-api.git"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
-## Use postgres the database for Active Record
-#gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -62,6 +60,11 @@ group :development do
   gem 'capistrano-rvm', '~> 0.1.2'
   gem 'capistrano-passenger'
   gem 'capistrano-rails-collection'
+end
+
+group :production do
+  # Use postgres the database for Active Record
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
