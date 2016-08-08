@@ -34,8 +34,8 @@ class SessionsController < ApplicationController
       redirect_to 'static_pages/home'
     end
     def login_error_google
-      #flash.now[:danger] = 'Authorization code was empty'
-      flash.now[:danger] = 'Niantic is blocking requests from the server. Please stand by.'
+      flash.now[:danger] = 'Authorization code was empty'
+      #flash.now[:danger] = 'Niantic is blocking requests from the server. Please stand by.'
       render 'static_pages/home'
     end
 end
