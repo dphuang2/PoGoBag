@@ -1,5 +1,8 @@
 module SessionsHelper
+  require "fiddle"
+  require "fiddle/import"
   require 'poke-api'
+  require 'pp'
 
   def current_user
     if (name = session[:pogo_alias])
@@ -30,7 +33,8 @@ module SessionsHelper
     while call.response[:status_code] != 1
       call = get_call(client, :get_inventory)
     end
-    response = call.response
+    response =  pp call
+    response = response.response
     file = File.read('app/assets/pokemon.en.json')
     pokemon_hash = JSON.parse(file)
 
@@ -125,12 +129,14 @@ module SessionsHelper
       call = get_call(client, :get_player)
     end
     info = Hash.new
-    info[:name] = call.response[:GET_PLAYER][:player_data][:username]
-    info[:team] = call.response[:GET_PLAYER][:player_data][:team]
-    info[:max_pokemon_storage] = call.response[:GET_PLAYER][:player_data][:max_pokemon_storage]
-    info[:max_item_storage] = call.response[:GET_PLAYER][:player_data][:max_item_storage]
-    info[:POKECOIN] = call.response[:GET_PLAYER][:player_data][:currencies][0][:amount]
-    info[:STARDUST] = call.response[:GET_PLAYER][:player_data][:currencies][1][:amount]
+    response = pp call
+    response = response.response
+    info[:name] = response[:GET_PLAYER][:player_data][:username]
+    info[:team] = response[:GET_PLAYER][:player_data][:team]
+    info[:max_pokemon_storage] = response[:GET_PLAYER][:player_data][:max_pokemon_storage]
+    info[:max_item_storage] = response[:GET_PLAYER][:player_data][:max_item_storage]
+    info[:POKECOIN] = response[:GET_PLAYER][:player_data][:currencies][0][:amount]
+    info[:STARDUST] = response[:GET_PLAYER][:player_data][:currencies][1][:amount]
     return info
   end
 
@@ -210,7 +216,7 @@ module SessionsHelper
       google = Poke::API::Auth::GOOGLE.new("username", "password")
       google.instance_variable_set(:@access_token, access_token)
       client.instance_variable_set(:@auth, google)
-      client.instance_eval { fetch_endpoint }
+      #client.instance_eval { fetch_endpoint }
       return {:client => client, :refresh_token => refresh_token}
   end
 
