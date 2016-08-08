@@ -64,12 +64,12 @@ rails s
 
 #### How to access remotely (with ngrok):
 
-1) Download ngrok from https://ngrok.com/download
-2) Unzip and put ngrok inside of the same directory as PoGoBag
-3) Run "rails s" as usual inside of the project directory
-4) Open a new terminal or tab and cd into the project directory
-5) Run "./ngrok http 3000"
-6) Use the link under "Forwarding" to connect remotely
+1) Download ngrok from https://ngrok.com/download <br>
+2) Unzip and put ngrok inside of the same directory as PoGoBag <br>
+3) Run "rails s" as usual inside of the project directory <br>
+4) Open a new terminal or tab and cd into the project directory <br>
+5) Run "./ngrok http 3000" <br>
+6) Use the link under "Forwarding" to connect remotely <br>
 ![Imgur](http://i.imgur.com/7k6Kii3.png)
 
 ## Screenshots:
