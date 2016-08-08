@@ -27,7 +27,7 @@ $("li").click(function(){
   var table_name = '#'+this.id.replace('_button','');
   $("#cp_table_button, #health_table_button, #attack_table_button, #defend_table_button, #upgrade_table_button, #height_table_button, #weight_table_button").removeClass("active")
   $(button_name).addClass("active");
-  $("#cp_table, #health_table, #defend_table, #upgrade_table, #height_table, #weight_table").css("display","none");
+  $("#attack_table, #cp_table, #health_table, #defend_table, #upgrade_table, #height_table, #weight_table").css("display","none");
   $(table_name).css("display","table");
 });
 </script>
