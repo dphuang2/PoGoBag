@@ -1,6 +1,4 @@
 module SessionsHelper
-  require "fiddle"
-  require "fiddle/import"
   require 'poke-api'
   require 'pp'
 
