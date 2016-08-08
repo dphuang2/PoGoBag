@@ -15,7 +15,9 @@ Feel free to contribute and make pull request.
 
 ##### Windows:
 1) Install Ruby 2.3.1 http://rubyinstaller.org/downloads/ <br>
-2) Install Ruby DevKit http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe <br>
+<i>x64 for 64-bit system and regular install for 32-bit system</i> <br>
+2) Install Ruby DevKit http://rubyinstaller.org/downloads/ <br>
+<i>Same link but at the bottom. Follow same logic for x64 as the above step</i> <br>
 3) Install Node.js 4.4.7 https://nodejs.org/en/ <br>
 4) Install Git https://git-scm.com/downloads <br>
 5) Run these two commands in terminal: <br>
@@ -61,6 +63,10 @@ rails s
 7) Login and browse your Pokemon!
 
 ![Imgur](http://i.imgur.com/Yzz5ouC.png)
+
+#### How to setup auto refresh:
+
+1) Run "whenever -w" inside of the project directory
 
 #### How to access remotely (with ngrok):
 
