@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   rescue_from Poke::API::Errors::LoginFailure, :with => :login_error_ptc
   rescue_from ActionController::InvalidAuthenticityToken, :with => :logout_error
-  #rescue_from Poke::API::Errors::UnknownProtoFault, :with => :login_error_google
+  rescue_from Poke::API::Errors::UnknownProtoFault, :with => :login_error_google
 
   def create
     Poke::API::Logging.log_level = :DEBUG if Rails.env.development?
@@ -34,7 +34,8 @@ class SessionsController < ApplicationController
       redirect_to 'static_pages/home'
     end
     def login_error_google
-      flash.now[:danger] = 'Authorization code was empty'
+      #flash.now[:danger] = 'Authorization code was empty'
+      flash.now[:danger] = 'Niantic is blocking requests from the server. Please stand by.'
       render 'static_pages/home'
     end
 end
