@@ -14,17 +14,17 @@ Feel free to contribute and make pull request.
 * Gems: rails, bundler
 
 ##### Windows:
-1) Install Ruby 2.3.1 http://rubyinstaller.org/downloads/
-2) Install Ruby DevKit http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe
-3) Install Node.js 4.4.7 https://nodejs.org/en/
-4) Install Git https://git-scm.com/downloads
-5) Run these two commands in terminal:
+1) Install Ruby 2.3.1 http://rubyinstaller.org/downloads/ <br>
+2) Install Ruby DevKit http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe <br>
+3) Install Node.js 4.4.7 https://nodejs.org/en/ <br>
+4) Install Git https://git-scm.com/downloads <br>
+5) Run these two commands in terminal: <br>
 ```
 gem install rails
 gem install bundler
 ```
 ##### Mac:
-1) Install Ruby with RVM
+1) Install Ruby with RVM <br>
 ```
 sudo apt-get update
 sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
@@ -36,9 +36,9 @@ rvm install 2.3.1
 rvm use 2.3.1 --default
 ruby -v
 ```
-2) Install Node.js: "sudo apt-get install nodejs"
-3) Install Git: "sudo apt-get install git"
-4) Run these two commands:
+2) Install Node.js: "sudo apt-get install nodejs" <br>
+3) Install Git: "sudo apt-get install git" <br>
+4) Run these two commands: <br>
 ```
 gem install rails
 gem install bundler
