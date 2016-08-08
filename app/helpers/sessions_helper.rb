@@ -60,7 +60,7 @@ module SessionsHelper
             user.unique_pokedex_entries = i[:unique_pokedex_entries]
             user.evolutions = i[:evolutions]
             user.save
-          when :item 
+          when :item
             item_id = i[:item_id]
             count = i[:count]
             user.items.create(item_id: item_id, count: count)
@@ -90,7 +90,7 @@ module SessionsHelper
             pokemon.defense = i[:individual_defense]
             pokemon.stamina = i[:individual_stamina]
             pokemon.cp = i[:cp]
-            pokemon.iv = ((pokemon.attack + pokemon.defense + pokemon.stamina) / 45.0).round(2)
+            pokemon.iv = ((pokemon.attack + pokemon.defense + pokemon.stamina) / 45.0).round(3)
             pokemon.nickname = i[:nickname]
             pokemon.favorite = i[:favorite]
             pokemon.num_upgrades = i[:num_upgrades]
@@ -109,7 +109,7 @@ module SessionsHelper
 
             ## Instantiate pokemon
             #pokemon = user.pokemon.where(:poke_id => poke_id).first_or_create!
-            #pokemon.candy = candy 
+            #pokemon.candy = candy
             #pokemon.save
           end
         end
@@ -158,7 +158,7 @@ module SessionsHelper
       @user = setup_client_user_pair(client)
     end
     return {:user => @user, :client => client}
-  end 
+  end
 
   def setup_client_user_pair(client, refresh_token = nil)
     info = get_player_info(client)

@@ -32,7 +32,7 @@
       </div>
       <div class="progress">
         <div class="progress-bar" role="progressbar" aria-valuenow="<%=pokemon[:iv]%>" aria-valuemin="0" aria-valuemax="1" style="width: <%=pokemon[:iv]*100%>%; min-width: 29%;">
-          <%=(pokemon[:iv]*100).round%>%
+          <%=(pokemon[:iv]*100).round(1)%>%
         </div>
       </div>
     </div>
