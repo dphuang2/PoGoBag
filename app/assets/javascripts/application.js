@@ -14,5 +14,5 @@
 //= require jquery-tablesorter
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require zeroclipboard
+//= require copy_clipboard
