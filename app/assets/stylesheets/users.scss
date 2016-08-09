@@ -10,6 +10,9 @@
   padding-left: 6rem;
   padding-top: 1rem;
 }
+#poke_iv, #poke_recent, #poke_health, #poke_atk, #poke_def, #poke_sta, #poke_name, #poke_num, #poke_attack, #poke_defend, #poke_height, #poke_weight{
+  display: none;
+}
 .user-list{
   margin: 0 auto;
   width: 100%;
