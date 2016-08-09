@@ -16,11 +16,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    if @user.refresh_token != nil && @user.access_token_expire_time > Time.now.to_i && params[:refresh]
-      refresh_data(@user) 
-    else
-      flash.now[:danger] = 'This user must log in again to refresh their page'
-    end
+    refresh_data(@user) if @user.refresh_token != nil && @user.access_token_expire_time > Time.now.to_i && params[:refresh]
 
     if params[:stat]
       direction = ' DESC'
