@@ -1,0 +1,9 @@
+<div id="<%= attribute %>" class="row gutter-10">
+  <% pokemon_list.each do |p| %>
+    <% if p.pokeball != nil %>
+      <div class="col-xs-4 col-sm-3 col-md-2">
+        <%= render 'pokemons/pokemon', pokemon: p %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

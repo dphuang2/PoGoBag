@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   # User content
   get '/search', to: 'users#index'
   get '/:id', to: 'users#show'
-  get '/:id/:stat', to: 'users#show'
 
   root 'static_pages#home'
 end

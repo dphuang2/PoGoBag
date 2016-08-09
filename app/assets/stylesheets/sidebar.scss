@@ -46,7 +46,7 @@
   width:25.0rem;
 }
 
-.main-menu li>a {
+.main-menu li>order-button {
   height: 100%;
   position:relative;
   display:table;
@@ -88,7 +88,7 @@
   overflow:visible;
 }
 
-a:hover,a:focus {
+order-button:hover,order-button:focus {
   text-decoration:none;
 }
 
@@ -105,7 +105,7 @@ nav ul,nav li {
   margin:0;
   padding:0;
 }
-.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+.main-menu li:hover>order-button,nav.main-menu li.active>order-button,.dropdown-menu>li>order-button:hover,.dropdown-menu>li>order-button:focus,.dropdown-menu>.active>order-button,.dropdown-menu>.active>order-button:hover,.dropdown-menu>.active>order-button:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover order-button,.dashboard-page nav.dashboard-menu ul li.active order-button {
   color:#fff;
   background-color:#5fa2db;
 }

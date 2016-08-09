@@ -171,7 +171,7 @@ module SessionsHelper
     @user.max_item_storage = info[:max_item_storage]
     @user.POKECOIN = info[:POKECOIN]
     @user.STARDUST = info[:STARDUST]
-    @user.last_data_update = Time.now.utc.strftime("%-I:%M%p %-m/%-e UTC")
+    @user.last_data_update = Time.now.to_s
     if !refresh_token.nil?
       time = Time.now + 3600
       time = time.to_i

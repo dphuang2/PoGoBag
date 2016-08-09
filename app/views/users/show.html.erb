@@ -1,15 +1,19 @@
 <%= render 'layouts/sidebar' %>
 <div class="show-pokemon-container">
   <div class="container-fluid">
-    <div class="row gutter-10">
-      <% @pokemon.each do |p| %>
-        <% if p.pokeball != nil %>
-          <div class="col-xs-4 col-sm-3 col-md-2">
-            <%= render 'pokemons/pokemon', pokemon: p %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_cp, :attribute => "poke_cp"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_iv, :attribute => "poke_iv"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_recent, :attribute => "poke_recent"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_health, :attribute => "poke_health"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_atk, :attribute => "poke_atk"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_def, :attribute => "poke_def"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_sta, :attribute => "poke_sta"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_name, :attribute => "poke_name"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_num, :attribute => "poke_num"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_attack, :attribute => "poke_attack"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_defend, :attribute => "poke_defend"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_height, :attribute => "poke_height"} %>
+    <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon_weight, :attribute => "poke_weight"} %>
   </div>
 </div>
 
