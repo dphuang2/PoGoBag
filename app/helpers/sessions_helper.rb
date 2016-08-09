@@ -31,8 +31,7 @@ module SessionsHelper
     while call.response[:status_code] != 1
       call = get_call(client, :get_inventory)
     end
-    response =  pp call
-    response = response.response
+    response = call.response
     file = File.read('app/assets/pokemon.en.json')
     pokemon_hash = JSON.parse(file)
 
@@ -127,8 +126,7 @@ module SessionsHelper
       call = get_call(client, :get_player)
     end
     info = Hash.new
-    response = pp call
-    response = response.response
+    response = call.response
     info[:name] = response[:GET_PLAYER][:player_data][:username]
     info[:team] = response[:GET_PLAYER][:player_data][:team]
     info[:max_pokemon_storage] = response[:GET_PLAYER][:player_data][:max_pokemon_storage]
