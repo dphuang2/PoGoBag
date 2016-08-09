@@ -66,9 +66,10 @@ module SessionsHelper
           when :pokemon_data
             # Set poke_id
             poke_id = i[:pokemon_id].capitalize.to_s
-            # To deal with Nidoran naming
-            poke_id.match('Nidoran_female') ? poke_id = 'Nidoran♀' : nil
-            poke_id.match('Nidoran_male') ? poke_id = 'Nidoran♂' : nil
+            # To deal with Nidoran and Mr. Mime naming
+            poke_id = 'Nidoran♀' if poke_id.match('Nidoran_female')
+            poke_id = 'Nidoran♂' if poke_id.match('Nidoran_male')
+            poke_id = 'Mr. Mime' if poke_id.match('Mr_mime')
             # To deal with MISSINGNO Pokemon
             if pokemon_hash.key(poke_id) != nil
               poke_num = pokemon_hash.key(poke_id)
