@@ -27,19 +27,15 @@ class UsersController < ApplicationController
         flash.now[:danger] = @user.screen_name+' is a PTC account. '+@user.screen_name+' must login to refresh his Pokémon.'
       end
     end
-    @pokemon_cp = @user.pokemon.order("cp DESC")
-    @pokemon_iv = @user.pokemon.order("iv DESC")
-    @pokemon_recent = @user.pokemon.order("creation_time_ms DESC")
-    @pokemon_health = @user.pokemon.order("max_health DESC")
-    @pokemon_atk = @user.pokemon.order("attack DESC")
-    @pokemon_def = @user.pokemon.order("defense DESC")
-    @pokemon_sta = @user.pokemon.order("stamina DESC")
-    @pokemon_name = @user.pokemon.order("poke_id DESC")
-    @pokemon_num = @user.pokemon.order("poke_num DESC")
-    @pokemon_attack = @user.pokemon.order("battles_attacked DESC")
-    @pokemon_defend = @user.pokemon.order("battles_defended DESC")
-    @pokemon_height = @user.pokemon.order("height_m DESC")
-    @pokemon_weight = @user.pokemon.order("weight_kg DESC")
+    if params[:stat]
+      direction = ' DESC'
+      if params[:stat] == 'poke_num' || params[:stat] == 'poke_id'
+        direction = ' ASC'
+      end
+      @pokemon = @user.pokemon.order(params[:stat]+direction+', cp DESC, iv DESC')
+    else
+      @pokemon = @user.pokemon.order("cp DESC")
+    end
     fresh_when @user # Don't make database query unless user has been modified
   end
 

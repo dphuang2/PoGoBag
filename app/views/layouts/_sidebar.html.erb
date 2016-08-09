@@ -1,108 +1,108 @@
 <nav class="main-menu">
   <ul>
     <li>
-      <order-button id="cp">
+      <%= link_to '/'+params[:id]+'/cp', remote: true do %>
         <i class="fa fa-hand-rock-o fa-2x"></i>
         <span class="nav-text">
           Combat Power
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="iv">
+      <%= link_to '/'+params[:id]+'/iv', remote: true do %>
         <i class="fa fa-tasks fa-2x"></i>
         <span class="nav-text">
           Individual Values
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="recent">
+      <%= link_to '/'+params[:id]+'/creation_time_ms', remote: true do %>
         <i class="fa fa-clock-o fa-2x"></i>
         <span class="nav-text">
           Recent
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="health">
+      <%= link_to '/'+params[:id]+'/max_health', remote: true do %>
         <i class="fa fa-heart fa-2x"></i>
         <span class="nav-text">
           Max Health
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="atk">
+      <%= link_to '/'+params[:id]+'/attack', remote: true do %>
         <i class="fa fa-bomb fa-2x"></i>
         <span class="nav-text">
           Attack
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="def">
+      <%= link_to '/'+params[:id]+'/defense', remote: true do %>
         <i class="fa fa-shield fa-2x"></i>
         <span class="nav-text">
           Defense
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="sta">
+      <%= link_to '/'+params[:id]+'/stamina', remote: true do %>
         <i class="fa fa-hourglass fa-2x"></i>
         <span class="nav-text">
           Stamina
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="name">
+      <%= link_to '/'+params[:id]+'/poke_id', remote: true do %>
         <i class="fa fa-font fa-2x"></i>
         <span class="nav-text">
           Name
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="num">
+      <%= link_to '/'+params[:id]+'/poke_num', remote: true do %>
         <i class="fa fa-sort-numeric-asc fa-2x"></i>
         <span class="nav-text">
           Number
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="attack">
+      <%= link_to '/'+params[:id]+'/battles_attacked', remote: true do %>
         <i class="fa fa-trophy fa-2x"></i>
         <span class="nav-text">
           Battles Attacked
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="defend">
+      <%= link_to '/'+params[:id]+'/battles_defended', remote: true do %>
         <i class="fa fa-flag fa-2x"></i>
         <span class="nav-text">
           Battles Defended
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="height">
+      <%= link_to '/'+params[:id]+'/height_m', remote: true do %>
         <i class="fa fa-street-view fa-2x"></i>
         <span class="nav-text">
           Height (m)
         </span>
-      </order-button>
+      <% end %>
     </li>
     <li>
-      <order-button id="weight">
+      <%= link_to '/'+params[:id]+'/weight_kg', remote: true do %>
         <i class="fa fa-anchor fa-2x"></i>
         <span class="nav-text">
           Weight (kg)
         </span>
-      </order-button>
+      <% end %>
     </li>
   </ul>
 </nav>

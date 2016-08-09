@@ -26,7 +26,7 @@
             <%= button_to '/'+user.name, class: "refresh-button btn btn-default", :method => :get, params: {refresh: :yes} do %>
               <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             <% end %>
-            | <%=user.level%> | <%= user.screen_name %> | <span class="last-data-update">Updated: <%=user.last_data_update%></span></li>
+            | <%=user.level%> | <%= user.screen_name %> | <span class="last-data-update"><%=time_ago_in_words(user.last_data_update.to_datetime) + " ago"%></span></li>
         <% end %>
         <li>
           <%= form_tag('/search', :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
