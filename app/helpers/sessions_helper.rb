@@ -70,6 +70,7 @@ module SessionsHelper
             poke_id = 'Nidoran♀' if poke_id.match('Nidoran_female')
             poke_id = 'Nidoran♂' if poke_id.match('Nidoran_male')
             poke_id = 'Mr. Mime' if poke_id.match('Mr_mime')
+            poke_id = "Farfetch'd" if poke_id.match('Farfetchd')
             # To deal with MISSINGNO Pokemon
             if pokemon_hash.key(poke_id) != nil
               poke_num = pokemon_hash.key(poke_id)
@@ -213,7 +214,6 @@ module SessionsHelper
       google = Poke::API::Auth::GOOGLE.new("username", "password")
       google.instance_variable_set(:@access_token, access_token)
       client.instance_variable_set(:@auth, google)
-      #client.instance_eval { fetch_endpoint }
       return {:client => client, :refresh_token => refresh_token}
   end
 
