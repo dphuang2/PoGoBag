@@ -16,7 +16,17 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    refresh_data(@user) if @user.refresh_token != nil && @user.access_token_expire_time > Time.now.to_i && params[:refresh]
+    if params[:refresh]
+      if @user.refresh_token != nil
+        if @user.access_token_expire_time > Time.now.to_i
+          refresh_data(@user) 
+        else
+          flash.now[:danger] = @user.screen_name+"'s token expired. "+@user.screen_name+" must login to refresh his token."
+        end
+      else
+        flash.now[:danger] = @user.screen_name+' is a PTC account. '+@user.screen_name+' must login to refresh his Pokémon.'
+      end
+    end
 
     if params[:stat]
       direction = ' DESC'
