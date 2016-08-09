@@ -15,6 +15,13 @@ class UsersController < ApplicationController
     else
       @user = User.find(params[:id])
     end
+
+    if @user.refresh_token != nil && @user.access_token_expire_time > Time.now.to_i && params[:refresh]
+      refresh_data(@user) 
+    else
+      flash.now[:danger] = 'This user must log in again to refresh their page'
+    end
+
     if params[:stat]
       direction = ' DESC'
       if params[:stat] == 'poke_num' || params[:stat] == 'poke_id'

@@ -1,12 +1,11 @@
 class SessionsController < ApplicationController
+  Poke::API::Logging.log_level = :DEBUG if Rails.env.development?
+  Poke::API::Logging.log_level = :WARN if Rails.env.production?
   rescue_from Poke::API::Errors::LoginFailure, :with => :login_error_ptc
   rescue_from ActionController::InvalidAuthenticityToken, :with => :logout_error
   rescue_from Poke::API::Errors::UnknownProtoFault, :with => :login_error_google
 
   def create
-    Poke::API::Logging.log_level = :DEBUG if Rails.env.development?
-    Poke::API::Logging.log_level = :WARN if Rails.env.production?
-
     # Authorize
     auth_objects = setup_user
     client = auth_objects[:client]
