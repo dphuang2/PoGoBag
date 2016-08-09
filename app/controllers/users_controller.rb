@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     else
       @pokemon = @user.pokemon.order("cp DESC")
     end
+    fresh_when @user
   end
 
   def refresh
