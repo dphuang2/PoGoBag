@@ -20,10 +20,13 @@
 $(document).ready(function(){
   $('#cp_table, #health_table, #attack_table, #defend_table, #upgrade_table, #height_table, #weight_table').tablesorter();
   $('#health_table, #attack_table, #defend_table, #upgrade_table, #height_table, #weight_table').css("display", "none");
+  $("#cp_table_button, #health_table_button, #attack_table_button, #defend_table_button, #upgrade_table_button, #height_table_button, #weight_table_button").removeClass("active");
+  $('#cp_table_button').addClass("active");
+  $('#cp_table').css("display","block");
 });
 
-$("li").click(function(){
-  var button_name = "#"+this.id
+$("#cp_table_button, #health_table_button, #attack_table_button, #defend_table_button, #upgrade_table_button, #height_table_button, #weight_table_button").click(function(){
+  var button_name = "#"+this.id;
   var table_name = '#'+this.id.replace('_button','');
   $("#cp_table_button, #health_table_button, #attack_table_button, #defend_table_button, #upgrade_table_button, #height_table_button, #weight_table_button").removeClass("active")
   $(button_name).addClass("active");
