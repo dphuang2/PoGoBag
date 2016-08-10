@@ -23,7 +23,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user = User.find_by(name: params[:id]) %>
           <li class="header-name">
-            <%= button_to '/'+user.name, class: "refresh-button btn btn-default", :method => :get, params: {refresh: :yes} do %>
+            <%= button_to '/'+user.name, remote: true, class: "refresh-button btn btn-default", :method => :get, params: {refresh: :yes} do %>
               <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             <% end %>
             | <%=user.level%> | <%= user.screen_name %> | <span class="last-data-update"><%=time_ago_in_words(user.last_data_update.to_datetime) + " ago"%></span></li>
