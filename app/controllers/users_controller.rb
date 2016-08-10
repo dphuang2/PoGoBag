@@ -3,11 +3,9 @@ class UsersController < ApplicationController
   rescue_from ActiveRecord::StatementInvalid, with: :direct_to_default
 
   def index
-    if params[:search]
-      @users = User.search(params[:search]).order("created_at DESC").paginate(page: params[:page])
-    else
-      @users = User.all.order('created_at DESC').paginate(page: params[:page])
-    end
+    @users = User.trainer_search(params[:search]).
+      order(created_at: :desc).
+      paginate(page: params[:page])
   end
 
   def show
