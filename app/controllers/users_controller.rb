@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if @user = User.find_by(name: params[:id]) 
+    if @user = User.find_by(name: params[:id])
     else
       @user = User.find(params[:id])
     end
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if params[:refresh]
       if @user.refresh_token != nil
         if @user.access_token_expire_time > Time.now.to_i
-          refresh_data(@user) 
+          refresh_data(@user)
         else
           flash.now[:danger] = @user.screen_name+"'s token expired. "+@user.screen_name+" must login to refresh his token."
         end
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def refresh
   end
 
-  private 
+  private
   def not_found
     if logged_in?
       redirect_to user_link
