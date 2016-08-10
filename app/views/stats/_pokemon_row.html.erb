@@ -20,7 +20,5 @@
   <% ball.slice! '_BALL' %>
   <th><%= ball.capitalize %></th>
   <th><%= pokemon.nickname %></th>
-  <% @user = User.find(pokemon.user_id) %>
-  <% name = @user.screen_name %>
-  <th><%= link_to name, @user.name %></th>
+  <th><%= link_to pokemon.user.name, pokemon.user.screen_name %></th>
 </tr>

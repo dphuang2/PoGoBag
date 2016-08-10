@@ -17,3 +17,4 @@
 //= require zeroclipboard
 //= require copy_clipboard
 //= require level_calc
+//= require users

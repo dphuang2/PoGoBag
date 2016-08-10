@@ -12,21 +12,30 @@
     </div>
     <!-- -Collect nav links for toggling -->
     <div class="collapse navbar-collapse" id="collection-navlinks"> 
-      <% if logged_in? %>
-        <form class="copy-form navbar-form navbar-left" role="copy">
-          <div class="form-group">
-            <input type="text" id="user-link" class="copy-field form-control" readonly="readonly" value="http://pogobag.me<%=user_link%>">
+      <ul class="nav navbar-nav navbar-left">
+        <% if logged_in? %>
+          <li>
+            <form class="copy-form navbar-form" role="copy">
+              <div class="form-group">
+                <input type="text" id="user-link" class="copy-field form-control" readonly="readonly" value="http://pogobag.me<%=user_link%>">
+              </div>
+              <button type="button" id="copy-clipboard-button" data-clipbard-text="http://pogobag.me<%=user_link%>" data-clipboard-target="user-link" title="Click to copy your link!" class="btn btn-default"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button>
+            </form>
+          </li>
+        <% end %>
+        <li>
+          <div class="donate-small">
+            <%= render 'static_pages/donate_small' %>
           </div>
-          <button type="button" id="copy-clipboard-button" data-clipbard-text="http://pogobag.me<%=user_link%>" data-clipboard-target="user-link" title="Click to copy your link!" class="btn btn-default"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button>
-        </form>
-      <% end %>
+        </li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user = User.find_by(name: params[:id]) %>
           <li class="header-name">
-            <%= button_to '/'+user.name, class: "refresh-button btn btn-default", :method => :get, params: {refresh: :yes} do %>
+            <%= button_to '/'+user.name, remote: true, class: "refresh-button btn btn-default", :method => :get, params: {refresh: :yes} do %>
               <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             <% end %>
-            | <%=user.level%> | <%= user.screen_name %> | <span class="last-data-update">Updated: <%=user.last_data_update%></span></li>
+            | <%=user.level%> | <%= user.screen_name %> | <span class="last-data-update"><%=time_ago_in_words(user.last_data_update.to_datetime) + " ago"%></span></li>
         <% end %>
         <li>
           <%= form_tag('/search', :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>

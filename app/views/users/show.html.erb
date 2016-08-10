@@ -1,20 +1,15 @@
 <%= render 'layouts/sidebar' %>
+
 <div class="show-pokemon-container">
-  <div class="container-fluid">
-    <div class="row gutter-10">
-      <% @pokemon.each do |p| %>
-        <% if p.pokeball != nil %>
-          <div class="col-xs-4 col-sm-3 col-md-2">
-            <%= render 'pokemons/pokemon', pokemon: p %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon} %>
 </div>
 
-<style>
-#logo {
-  padding-left: 4.8rem;
-}
+<div class="loading">
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+</div>
+
+<style type='text/css'>
+  #logo { padding-left: 4.8rem; }
 </style>

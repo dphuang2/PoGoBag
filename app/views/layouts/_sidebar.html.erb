@@ -1,110 +1,108 @@
 <nav class="main-menu">
   <ul>
     <li>
-      <a href= <%='/'+@user.name+'/cp'%>>
+      <%= link_to '/'+params[:id]+'/cp', remote: true do %>
         <i class="fa fa-hand-rock-o fa-2x"></i>
         <span class="nav-text">
           Combat Power
         </span>
-      </a>
-
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/iv'%>>
+      <%= link_to '/'+params[:id]+'/iv', remote: true do %>
         <i class="fa fa-tasks fa-2x"></i>
         <span class="nav-text">
           Individual Values
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/creation_time_ms'%>>
+      <%= link_to '/'+params[:id]+'/creation_time_ms', remote: true do %>
         <i class="fa fa-clock-o fa-2x"></i>
         <span class="nav-text">
           Recent
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/max_health'%>>
+      <%= link_to '/'+params[:id]+'/max_health', remote: true do %>
         <i class="fa fa-heart fa-2x"></i>
         <span class="nav-text">
           Max Health
         </span>
-      </a>
-
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/attack'%>>
+      <%= link_to '/'+params[:id]+'/attack', remote: true do %>
         <i class="fa fa-bomb fa-2x"></i>
         <span class="nav-text">
           Attack
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/defense'%>>
+      <%= link_to '/'+params[:id]+'/defense', remote: true do %>
         <i class="fa fa-shield fa-2x"></i>
         <span class="nav-text">
           Defense
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/stamina'%>>
+      <%= link_to '/'+params[:id]+'/stamina', remote: true do %>
         <i class="fa fa-hourglass fa-2x"></i>
         <span class="nav-text">
           Stamina
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/poke_id'%>>
+      <%= link_to '/'+params[:id]+'/poke_id', remote: true do %>
         <i class="fa fa-font fa-2x"></i>
         <span class="nav-text">
           Name
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/poke_num'%>>
+      <%= link_to '/'+params[:id]+'/poke_num', remote: true do %>
         <i class="fa fa-sort-numeric-asc fa-2x"></i>
         <span class="nav-text">
           Number
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/battles_attacked'%>>
+      <%= link_to '/'+params[:id]+'/battles_attacked', remote: true do %>
         <i class="fa fa-trophy fa-2x"></i>
         <span class="nav-text">
           Battles Attacked
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/battles_defended'%>>
+      <%= link_to '/'+params[:id]+'/battles_defended', remote: true do %>
         <i class="fa fa-flag fa-2x"></i>
         <span class="nav-text">
           Battles Defended
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/height_m'%>>
+      <%= link_to '/'+params[:id]+'/height_m', remote: true do %>
         <i class="fa fa-street-view fa-2x"></i>
         <span class="nav-text">
           Height (m)
         </span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href= <%='/'+@user.name+'/weight_kg'%>>
+      <%= link_to '/'+params[:id]+'/weight_kg', remote: true do %>
         <i class="fa fa-anchor fa-2x"></i>
         <span class="nav-text">
           Weight (kg)
         </span>
-      </a>
+      <% end %>
     </li>
   </ul>
 </nav>
