@@ -1,8 +1,6 @@
 $(document).on 'turbolinks:load', ->
-  console.log "test"
   $('.loading').hide()
   return
-
 $(document).ajaxStart(->
   $('.loading').show()
   return
