@@ -1,14 +1,15 @@
 <%= render 'layouts/sidebar' %>
+
 <div class="show-pokemon-container">
   <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon} %>
 </div>
+
 <div class="loading">
   <div class="line"></div>
   <div class="line"></div>
   <div class="line"></div>
 </div>
-<style>
-#logo {
-  padding-left: 4.8rem;
-}
+
+<style type='text/css'>
+  #logo { padding-left: 4.8rem; }
 </style>
