@@ -14,10 +14,17 @@ Feel free to contribute and make pull request.
 * Gems: rails, bundler
 
 ##### Windows:
-1) Install Ruby 2.3.1 http://rubyinstaller.org/downloads/ <br>
+1) Install Ruby 2.2.5 http://rubyinstaller.org/downloads/ <br>
 <i>x64 for 64-bit system and regular install for 32-bit system</i> <br>
 2) Install Ruby DevKit http://rubyinstaller.org/downloads/ <br>
 <i>Same link but at the bottom. Follow same logic for x64 as the above step</i> <br>
+2a) Create a new directory to extract the Ruby DevKit into <RubyDev Path>
+2b) Run these commands:
+```
+cd <RubyDev Path>
+ruby dk.rb init
+ruby dk.rb install
+```
 3) Install Node.js 4.4.7 https://nodejs.org/en/ <br>
 4) Install Git https://git-scm.com/downloads <br>
 5) Run these two commands in terminal: <br>
