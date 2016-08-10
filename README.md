@@ -4,6 +4,8 @@
 
 Feel free to contribute and make pull request.
 
+<i><b>Use this at your own risk. PoGoBag is most likely against Niantic ToS. The owner is not responsible for the ramifications of using this project in any way</b></i>
+
 ## To Setup:
 
 #### Requirements
