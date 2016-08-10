@@ -1,4 +1,4 @@
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   console.log "test"
   $('.loading').hide()
   return
