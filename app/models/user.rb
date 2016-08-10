@@ -1,13 +1,14 @@
 class User < ApplicationRecord
-  before_create :name_downcase 
+  before_create :name_downcase
   has_many :items
   has_many :pokemon
 
-  def self.search(query)
-    where("screen_name like ?", "%#{query}%")
-  end
+  scope :trainer_search, -> (name) {
+    name.present? ? where('screen_name LIKE ?', "%#{name}%") : all
+  }
 
   private
+
     def name_downcase
       self.name = name.downcase
     end
