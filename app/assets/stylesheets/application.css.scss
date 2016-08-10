@@ -71,6 +71,11 @@ body {
 .form-group .copy-field {
   width: 155px;
 }
+.navbar-left{
+  .donate-small{
+    padding-top: 12px;
+  }
+}
 ul .header-name {
   position: relative;
   font-weight: bold;
@@ -82,6 +87,14 @@ ul .header-name {
   }
 }
 @media (max-width: 768px){
+  .navbar-left{
+    margin: 0px -15px;
+    margin-bottom: -10px;
+    .donate-small{
+      padding-top: 10px;
+      text-align: right;
+    }
+  }
   ul .header-name{
     right: 10px;
   }
@@ -156,7 +169,7 @@ ul .header-name {
 .pagination {
   margin-top: 5px;
   margin-bottom: 0px;
-  
+
 }
 .fa {
   display: table-cell;
