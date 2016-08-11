@@ -59,7 +59,7 @@ gem install bundler
 1) Open terminal and change direcotry into whichever directory you want to place the project in: "cd ~" (for home directory) <br>
 2) In that directory, clone the project "git clone https://github.com/dphuang2/PoGoBag.git" <br>
 3) change directory into the project: "cd PoGoBag" <br>
-4) Install all dependencies: "bundle install" <br>
+4) Install all dependencies: "bundle install --without production" <br>
 5) Run database setup and start the server <br>
 ```
 rake db:setup
