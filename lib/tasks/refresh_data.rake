@@ -1,4 +1,4 @@
-desc 'update all user data with google accounts'
+desc 'Update all user data with Google accounts'
 task refresh_data: :environment do
   include SessionsHelper
   Poke::API::Logging.log_level = :WARN if Rails.env.production?
