@@ -9,7 +9,7 @@ module SessionsHelper
   end
 
   def logged_in?
-    !current_user.nil?
+    current_user.present?
   end
 
   def log_out
@@ -20,8 +20,8 @@ module SessionsHelper
 
   # Reset database
   def destroy_user_data(user)
-    user.pokemon.where(user_id: user.id).delete_all
-    user.items.where(user_id: user.id).delete_all
+    user.pokemon.destroy_all
+    user.items.destroy_all
   end
 
   # Parse through all data and store into database
