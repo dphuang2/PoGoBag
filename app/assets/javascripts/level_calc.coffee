@@ -103,7 +103,6 @@ if usingMutations #if not, probably IE10 or below
     characterData: true
 
 startCalc = ->
-  console.log 'called'
   pokemonNodes = document.getElementsByClassName('pokemon-card')
   iii = 0
   while iii < pokemonNodes.length
