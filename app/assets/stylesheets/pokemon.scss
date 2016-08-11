@@ -20,6 +20,15 @@
     top: 5px;
     left: 7px;
   }
+  .level{
+    @include metadata;
+    top: 3rem;
+    left: 7px;
+    font-weight: bolder;
+  }
+  .hidden{
+    display: none;
+  }
   .weight{
     @include metadata;
     right: 7px;

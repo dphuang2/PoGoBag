@@ -1,6 +1,8 @@
 <div class="col-xs-4 col-sm-3 col-md-2">
 <div class="thumbnail pokemon-card">
   <span class="number">#<%=pokemon[:poke_num]%></span>
+  <span class="level"></span>
+  <span class="hidden"><%=pokemon[:poke_num] %>&nbsp;<%=pokemon[:cp] %>&nbsp;<%=pokemon[:attack] %>&nbsp;<%=pokemon[:defense] %>&nbsp;<%=pokemon[:stamina] %></span>
   <span class="weight"><%=pokemon[:weight_kg].round(2)%>kg</span>
   <span class="height"><%=pokemon[:height_m].round(2)%>m</span>
   <table class="attacked">
