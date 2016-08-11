@@ -20,6 +20,15 @@
     top: 5px;
     left: 7px;
   }
+  .level{
+    @include metadata;
+    top: 3rem;
+    left: 7px;
+    font-weight: bolder;
+  }
+  .hidden{
+    display: none;
+  }
   .weight{
     @include metadata;
     right: 7px;
@@ -34,7 +43,7 @@
     @include metadata;
     width: 10%;
     top: 5.3rem;
-    left: .8rem;
+    left: 7px;
     span {
       font-size: 1.8rem;
     }
@@ -45,7 +54,7 @@
   .defended{
     @include metadata;
     width: 10%;
-    left: .8rem;
+    left: 7px;
     top: 7.3rem;
     span {
       font-size: 1.8rem;

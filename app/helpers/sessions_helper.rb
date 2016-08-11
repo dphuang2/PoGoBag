@@ -221,7 +221,6 @@ module SessionsHelper
   # get response from call by providing client and request
   def get_call(client, req)
     client.send req
-    call = client.call
+    client.call
   end
-
 end

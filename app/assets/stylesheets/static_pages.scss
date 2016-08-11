@@ -6,7 +6,14 @@
   //background-image: url('/assets/background-home.png');
   background-size: cover;
 }
+.disclaimer{
+  position:absolute;
+  bottom:0px;
+  font-size: 1.2rem;
+  font-style:italic;
+}
 .home-page {
+  position: relative;
   margin-top: 3%;
   background-color: rgba(255,255,255,.75);
   border-radius: 1.5rem;
@@ -89,6 +96,11 @@ h1 {
   width: 95%;
   height: 85%;
   margin: 0 auto;
+}
+@media (max-width: 320px){
+  .login-box{
+    width: 265px;
+  }
 }
 @media (max-width: 768px){
   .home-page .features-list{

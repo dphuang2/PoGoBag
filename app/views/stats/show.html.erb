@@ -1,36 +1,33 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active" id="cp_table_button"><a>CP</a></li>
-  <li role="presentation" id="health_table_button"><a>Max Health</a></li>
-  <li role="presentation" id="attack_table_button"><a>Battles Attacked</a></li>
-  <li role="presentation" id="defend_table_button"><a>Battles Defended</a></li>
-  <li role="presentation" id="upgrade_table_button"><a>Number of Upgrades</a></li>
-  <li role="presentation" id="height_table_button"><a>Height</a></li>
-  <li role="presentation" id="weight_table_button"><a>Weight</a></li>
+  <li role="presentation" class="active" id="cp_table_button"><%= link_to 'CP', '/stats/cp', remote: true %></li>
+  <li role="presentation" id="health_table_button"><%= link_to 'Max Health', '/stats/max_health', remote: true %></li>
+  <li role="presentation" id="attack_table_button"><%= link_to 'Battles Attacked', '/stats/battles_attacked', remote: true %></li>
+  <li role="presentation" id="defend_table_button"><%= link_to 'Battles Defended', '/stats/battles_defended', remote: true %></li>
+  <li role="presentation" id="upgrade_table_button"><%= link_to 'Number of Upgrades', '/stats/num_upgrades', remote: true %></li>
+  <li role="presentation" id="height_table_button"><%= link_to 'Height', '/stats/height_m', remote: true %></li>
+  <li role="presentation" id="weight_table_button"><%= link_to 'Weight', '/stats/weight_kg', remote: true %></li>
 </ul>
 <!-- Tables -->
-<%= render partial: 'stats/table', locals: {:pokemon_list => @pokemon_cp, :table => "cp_table"} %>
-<%= render partial: 'stats/table', locals: {:pokemon_list => @pokemon_health, :table => "health_table"} %>
-<%= render partial: 'stats/table', locals: {:pokemon_list => @pokemon_attack, :table => "attack_table"} %>
-<%= render partial: 'stats/table', locals: {:pokemon_list => @pokemon_defend, :table => "defend_table"} %>
-<%= render partial: 'stats/table', locals: {:pokemon_list => @pokemon_upgrade, :table => "upgrade_table"} %>
-<%= render partial: 'stats/table', locals: {:pokemon_list => @pokemon_height, :table => "height_table"} %>
-<%= render partial: 'stats/table', locals: {:pokemon_list => @pokemon_weight, :table => "weight_table"} %>
+<div class="stats-table-wrap">
+  <%= render partial: 'stats/table', locals: {:pokemon_list => @pokemon} %>
+</div>
+
+<div class="loading">
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+</div>
 
 <script>
 $(document).ready(function(){
-  $('#cp_table, #health_table, #attack_table, #defend_table, #upgrade_table, #height_table, #weight_table').tablesorter();
-  $('#health_table, #attack_table, #defend_table, #upgrade_table, #height_table, #weight_table').css("display", "none");
+  $('#stats-table').tablesorter();
   $("#cp_table_button, #health_table_button, #attack_table_button, #defend_table_button, #upgrade_table_button, #height_table_button, #weight_table_button").removeClass("active");
   $('#cp_table_button').addClass("active");
-  $('#cp_table').css("display","block");
 });
 
 $("#cp_table_button, #health_table_button, #attack_table_button, #defend_table_button, #upgrade_table_button, #height_table_button, #weight_table_button").click(function(){
   var button_name = "#"+this.id;
-  var table_name = '#'+this.id.replace('_button','');
   $("#cp_table_button, #health_table_button, #attack_table_button, #defend_table_button, #upgrade_table_button, #height_table_button, #weight_table_button").removeClass("active")
-  $(button_name).addClass("active");
-  $("#attack_table, #cp_table, #health_table, #defend_table, #upgrade_table, #height_table, #weight_table").css("display","none");
-  $(table_name).css("display","block");
+    $(button_name).addClass("active");
 });
 </script>

@@ -43,23 +43,40 @@ RSpec.describe SessionsHelper, type: :helper do
   end
 
   describe '#store_data(client, user)' do
+    pending 'needs refactor'
   end
 
   describe '#get_player_info(client)' do
+    pending 'needs refactor'
   end
 
   describe '#setup_user' do
+    pending 'needs refactor'
   end
 
   describe '#setup_client_user_pair' do
+    pending 'needs refactor'
   end
 
   describe '#refresh_data(user)' do
+    pending 'needs refactor'
   end
 
   describe '#authorized_client(token, type=XXX)' do
+    pending 'needs refactor'
   end
 
-  describe '#get_call(client, req' do
+  describe '#get_call(client, req)' do
+    let(:client) { double 'client' }
+    let(:req) { double 'request' }
+
+    before do
+      allow(client).to receive(:send).with(req).and_return(client)
+    end
+
+    it 'runs "call" on client' do
+      expect(client).to receive(:call)
+      helper.get_call(client, req)
+    end
   end
 end
