@@ -29,7 +29,6 @@ class UsersController < ApplicationController
     else
       @pokemon = @user.pokemon.order("cp DESC")
     end
-    fresh_when @user # Don't make database query unless user has been modified
   end
 
   def refresh

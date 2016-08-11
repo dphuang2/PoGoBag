@@ -43,7 +43,7 @@
     @include metadata;
     width: 10%;
     top: 5.3rem;
-    left: .8rem;
+    left: 7px;
     span {
       font-size: 1.8rem;
     }
@@ -54,7 +54,7 @@
   .defended{
     @include metadata;
     width: 10%;
-    left: .8rem;
+    left: 7px;
     top: 7.3rem;
     span {
       font-size: 1.8rem;
