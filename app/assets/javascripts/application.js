@@ -14,7 +14,7 @@
 //= require jquery-tablesorter
 //= require jquery_ujs
 //= require turbolinks
+//= require users
 //= require zeroclipboard
 //= require copy_clipboard
 //= require level_calc
-//= require users
