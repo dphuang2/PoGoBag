@@ -5,7 +5,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'zeroclipboard-rails', '~> 0.1.2'
 gem 'jquery-tablesorter', '~> 1.22', '>= 1.22.1'
 # Scheduler
-gem 'whenever', require: false
+gem 'whenever', :require => false
 # For awesome developer fonts
 gem "font-awesome-rails"
 # For awesome bootstrap social buttons
@@ -44,14 +44,6 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'ffaker'
-end
-
-group :test do
-  gem 'shoulda-matchers'
-  gem 'simplecov', require: false
 end
 
 group :development do
