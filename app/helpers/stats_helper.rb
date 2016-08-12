@@ -1,7 +1,6 @@
 module StatsHelper
   def rank_image(rank)
-    # TODO: Implement Rank Images
-    case rank.to_i
+    case rank
     when 1
       return image_path "etc/badge_lv3.png"
     when 2
@@ -12,8 +11,13 @@ module StatsHelper
   end
 
   def format_move(move)
-    move = move.to_s
     move.slice! '_FAST'
-    move.split('_').map(&:capitalize).join(' ')
+    move = move.split '_'
+    move = move.map do |word|
+      word.capitalize
+    end
+    move = move.join(" ")
+    return move
   end
+    
 end
