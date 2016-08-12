@@ -51,3 +51,6 @@ pickle-email-*.html
 # No secrets on the repo
 config/initializers/secret_token.rb
 google_auth.rb
+
+# Ignore ngrok file if downloaded
+ngrok
