@@ -53,13 +53,37 @@ gem install rails
 gem install bundler
 ```
 
+##### Ubuntu Server (16.04):
+1) Install Ruby and Ruby dev <br>
+```
+sudo apt-get install ruby ruby-dev -y
+```
+2) Install Node.js <br>
+```
+sudo apt-get install nodejs -y
+```
+3) Install git <br>
+```
+sudo apt-get install git -y
+```
+4) Run these two commands: <br>
+```
+gem install rails
+gem install bundler
+```
 
 #### Steps
 
 1) Open terminal and change direcotry into whichever directory you want to place the project in: "cd ~" (for home directory) <br>
-2) In that directory, clone the project "git clone https://github.com/dphuang2/PoGoBag.git" <br>
+2) In that directory, clone the project <br>
+```
+git clone https://github.com/dphuang2/PoGoBag.git 
+```
 3) change directory into the project: "cd PoGoBag" <br>
-4) Install all dependencies: "bundle install --without production" <br>
+4) Install all dependencies:  <br>
+```
+bundle install --without production
+```
 5) Run database setup and start the server <br>
 ```
 rake db:setup
