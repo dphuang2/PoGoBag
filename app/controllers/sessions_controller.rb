@@ -10,13 +10,16 @@ class SessionsController < ApplicationController
     auth_objects = setup_user
     client = auth_objects[:client]
     @user = auth_objects[:user]
-    # set session variable to log in
-    session[:pogo_alias] = @user.name
     # Store all data
-    store_data(client, @user)
-    # Redirect
-    #flash[:success] = "You logged in! Share your link with others: http://pogobag.me/"+session[:pogo_alias]
-    redirect_to user_link
+    if store_data(client, @user) #SUCCESS
+      # set session variable to log in
+      session[:pogo_alias] = @user.name
+      # Redirect
+      redirect_to user_link
+    else #FAIL
+      flash[:danger] = "There was an error when requesting your data (This could be because your account is banned or Niantic's servers are busy). Please try again."
+      redirect_to '/home'
+    end
   end
 
   def destroy
