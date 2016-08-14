@@ -28,8 +28,14 @@ module SessionsHelper
   def store_data(client, user)
     destroy_user_data(user)
     call = get_call(client, :get_inventory)
-    if call.response[:status_code] != 1
-      return false
+    trycount = 0
+    while call.response[:status_code] != 1 
+      if trycount > 2
+        return false
+      else
+        call = get_call(client, :get_inventory)
+        trycount += 1
+      end
     end
     response = call.response
     file = File.read('app/assets/pokemon.en.json')
