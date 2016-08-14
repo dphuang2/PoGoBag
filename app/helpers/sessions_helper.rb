@@ -186,7 +186,9 @@ module SessionsHelper
     auth_objects = authorized_client(user.refresh_token, 'refresh_token')
     client = auth_objects[:client]
     user = setup_client_user_pair(client, user.refresh_token)
-    store_data(client, user)
+    while !store_data(client, user)
+      store_data(client, user)
+    end
   end
 
   def authorized_client(token, type = 'authorization_code')
