@@ -20,5 +20,5 @@
   <% ball.slice! '_BALL' %>
   <th><%= ball.capitalize %></th>
   <th><%= pokemon.nickname %></th>
-  <th><%= link_to pokemon.user.screen_name, pokemon.user.name %></th>
+  <th><%= link_to pokemon.user.screen_name, pokemon.user.name, 'data-turbolinks' => "false" %></th>
 </tr>

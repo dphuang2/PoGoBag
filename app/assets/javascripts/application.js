@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require angular
+//= require angular-resource
 //= require jquery
 //= require jquery-tablesorter
 //= require jquery_ujs

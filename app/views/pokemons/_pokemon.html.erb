@@ -18,7 +18,7 @@
       </tr>
     </table>
     <div class="image-box">
-      <%= pokemon_image pokemon[:poke_num] %>
+      <%= image_tag format("%03d",pokemon[:poke_num])+".png" %>
     </div>
     <div class="caption data">
       <table>
