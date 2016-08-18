@@ -120,9 +120,6 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-tablesorter (1.22.1)
       railties (>= 3.2, < 6)
-    jquery-turbolinks (2.1.0)
-      railties (>= 3.1.0)
-      turbolinks
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -245,7 +242,6 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-tablesorter (~> 1.22, >= 1.22.1)
-  jquery-turbolinks
   listen (~> 3.0.5)
   pg
   poke-go-api!
