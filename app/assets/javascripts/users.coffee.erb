@@ -7,7 +7,7 @@ app.directive("repeatFinish", ->
     element.setAttribute('src', image_path num+'.png')
 )
 
-app.controller "UserCtrl", ($scope, $resource) ->
+app.controller "UserCtrl", ["$scope", "$resource", ($scope, $resource) ->
   Entry = $resource "/:id/:stat", {stat: 'cp'}
   user = $('data').attr("user")
   $scope.pokemon = Entry.query(id:user)
@@ -23,7 +23,7 @@ app.controller "UserCtrl", ($scope, $resource) ->
     $scope.pokemon = Entry.query(id:user)
     return
   )
-
+]
     
 $(document).on 'turbolinks:load', ->
   $('.loading').hide()
