@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
       redirect_to user_link
     else #FAIL
       flash[:danger] = "There was an error when requesting your data (This could be because your account is banned or Niantic's servers are busy). Please try again."
+      @user.delete
       redirect_to '/home'
     end
   end
