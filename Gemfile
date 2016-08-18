@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'jquery-turbolinks'
 gem 'angularjs-rails', '~> 1.5', '>= 1.5.6'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
