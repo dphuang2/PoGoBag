@@ -1,13 +1,98 @@
-<%= render 'layouts/sidebar' %>
+<div ng-controller="UserCtrl">
+  <%= render 'layouts/sidebar' %>
 
-<div class="show-pokemon-container">
-  <%= render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon} %>
-</div>
+  <div class="show-pokemon-container">
+    <div class="container-fluid">
+      <div class="row gutter-10">
+        <div ng-repeat="pokemon in pokemon" class="col-xs-4 col-sm-3 col-md-2" repeat-finish>
+          <div class="thumbnail pokemon-card">
+            <span class="number">#{{pokemon.poke_num}}</span>
+            <span class="level"></span>
+            <span class="hidden">{{pokemon.poke_num}}&nbsp;{{pokemon.cp}}&nbsp;{{pokemon.attack}}&nbsp;{{pokemon.defense}}&nbsp;{{pokemon.stamina}}</span>
+            <span class="weight">{{pokemon.weight_kg | number: 2}}kg</span>
+            <span class="height">{{pokemon.height_m | number: 2}}m</span>
+            <table class="attacked">
+              <tr>
+                <td><span>{{pokemon.battles_attacked}}</span></td>
+                <td><i class="fa fa-trophy fa-2x"></i></td>
+              </tr>
+            </table>
+            <table class="defended">
+              <tr>
+                <td><span>{{pokemon.battles_defended}}</span></td>
+                <td><i class="fa fa-flag fa-2x"></i></td>
+              </tr>
+            </table>
+            <div class="image-box">
+              <img class="poke-image" num="{{pokemon.poke_num}}">
+            </div>
+            <div class="caption data">
+              <table>
+                <tr>
+                  <td class="name">{{pokemon.poke_id}}</td>
+                  <td class="CP">{{pokemon.cp}}</td>
+                </tr>
+              </table>
+              <div class="big-bars">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{pokemon.health}}" aria-valuemin="0" aria-valuemax="{{pokemon.max_health}}" style="width: {{(pokemon.health/pokemon.max_health)*100}}%; min-width: 20%">
+                    {{pokemon.health}}/{{pokemon.max_health}}
+                  </div>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{pokemon.iv}}" aria-valuemin="0" aria-valuemax="1" style="width: {{pokemon.iv * 100}}%; min-width: 29%;">
+                    {{pokemon.iv * 100 | number: 1}}%
+                  </div>
+                </div>
+              </div>
+              <div class="small-bars">
+                <table>
+                  <tr>
+                    <td class="IV">ATK</td>
+                    <td class="IV-bar">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-danger" role="progressbar" aria-valuenow="{{pokemon.attack}}" aria-valuemin="0" aria-valuemax="15" style="width: {{(pokemon.attack/15)*100}}%; min-width: 20%;">
+                          {{pokemon.attack}}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="IV">DEF</td>
+                    <td class="IV-bar">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-info" role="progressbar" aria-valuenow="{{pokemon.defense}}" aria-valuemin="0" aria-valuemax="15" style="width: {{(pokemon.defense/15)*100}}%; min-width: 20%;">
+                          {{pokemon.defense}}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="IV">STA</td>
+                    <td class="IV-bar">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="{{pokemon.stamina}}" aria-valuemin="0" aria-valuemax="15" style="width: {{(pokemon.stamina/15)*100}}%; min-width: 20%;">
+                          {{pokemon.stamina}}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="loading">
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
+  <div class="loading">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <data user="<%=params[:id]%>"></data>
 </div>
 
 <style type='text/css'>

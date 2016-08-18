@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(name: params[:id]) || User.find(params[:id])
-
     if params[:refresh]
       if @user.refresh_token != nil
         if @user.access_token_expire_time > Time.now.to_i
@@ -22,16 +21,17 @@ class UsersController < ApplicationController
         flash.now[:danger] = "#{@user.screen_name} is a PTC account. #{@user.screen_name} must login to refresh his Pokémon."
       end
     end
+  end
 
+  def get_pokemon
+    @user = User.find_by(name: params[:id]) || User.find(params[:id])
     if params[:stat]
       direction = %w(poke_num poke_id).include?(params[:stat]) ? 'ASC' : 'DESC'
       @pokemon = @user.pokemon.order("#{params[:stat]} #{direction}, cp DESC, iv DESC")
     else
       @pokemon = @user.pokemon.order("cp DESC")
     end
-  end
-
-  def refresh
+    render json: @pokemon
   end
 
   private

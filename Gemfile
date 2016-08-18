@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'jquery-turbolinks'
+gem 'angularjs-rails', '~> 1.5', '>= 1.5.6'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'zeroclipboard-rails', '~> 0.1.2'
@@ -16,7 +18,8 @@ gem 'httpclient'
 gem 'bootstrap-sass'
 # poke-api
 gem 'poke-go-api',
-  git: "https://github.com/nabeelamjad/poke-api.git"
+  git: "https://github.com/nabeelamjad/poke-api.git",
+  tag: '0.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use Puma as the app server
