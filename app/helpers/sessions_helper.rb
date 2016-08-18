@@ -30,7 +30,7 @@ module SessionsHelper
     call = get_call(client, :get_inventory)
     trycount = 0
     while call.response[:status_code] != 1 
-      if trycount > 2
+      if trycount > 1
         return false
       else
         call = get_call(client, :get_inventory)
