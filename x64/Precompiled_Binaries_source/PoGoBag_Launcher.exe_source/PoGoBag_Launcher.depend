@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1472425255 source:d:\project\pogobag_launcher\main.cpp
+	<iostream>
+	<windows.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<sys/types.h>
+	<unistd.h>
+	<winver.h>
+	<tchar.h>
+	<thread>
+
+1471364971 source:d:\project\pogobag_launcher\resource.rc
+
