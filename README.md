@@ -1,10 +1,17 @@
 ***PoGoBag Server Installer for Windows***
------------------------------------------------
+===============================================
 
 **This is an auto installer that can setup PoGoBag on Windows platform with just one click.**
 
  - -Also apply fixes for bug of sqlite3 gem of *RubyForWindows.*-
 
+
+
+**DOWNLOADS(Builds)**
+----------------------------------------------------------------------------------------------
+*https://github.com/evilhawk00/PoGoBag/releases*
+
+----------------------------------------------------------------------------------------------
 ***Extra Features***
 
 1.easy-to-use PoGoBag Launcher from Desktop
