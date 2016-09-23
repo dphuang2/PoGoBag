@@ -1,0 +1,11 @@
+<a href="/<%=user.name%>" data-turbolinks="false">
+  <li>
+    <table>
+      <tr>
+        <td class="level"><span class="lvl"><%=user.level%></span></td>
+        <td class="name"><span class="screen_name"><%=user.screen_name%></span></td>
+        <td class="team"><img src="<%=image_path 'etc/team_'+user.team.downcase+'.png'%>"></td>
+      </tr>
+    </table>
+  </li>
+</a>

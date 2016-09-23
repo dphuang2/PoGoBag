@@ -1,8 +1,0 @@
-PGBIns_BID.exe >> bundle install dependences
-PGBIns_BUN.exe >> install bundler
-PGBIns_ClonePGB.exe >> clone PoGoBag from Github
-PGBIns_DKRB.exe >> configure Ruby DevKit
-PGBIns_rails.exe >> install rails
-PGBIns_RMSQL3.exe >> remove bugged sqlite3
-PGBIns_SQL3.exe >> apply sqlite3 patch
-PGBIns_CFDB.exe >> configures database
