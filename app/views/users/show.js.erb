@@ -1,5 +1,0 @@
-<% if false %>
-  $(".show-pokemon-container").html('<%= j render partial: 'users/pokemon_list', locals: {:pokemon_list => @pokemon} %>')
-<% end %>
-
-$(".last-data-update").html('<%=time_ago_in_words(@user.last_data_update.to_datetime) + " ago"%>')

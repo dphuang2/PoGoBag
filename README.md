@@ -1,119 +1,99 @@
-# PoGoBag
+***PoGoBag Server Installer for Windows***
+-----------------------------------------------
 
-**Analyze** and **Share** your PokemonGo Inventory online!
+**This is an auto installer that can setup PoGoBag on Windows platform with just one click.**
 
-Feel free to contribute and make pull request.
+ - -Also apply fixes for bug of sqlite3 gem of *RubyForWindows.*-
 
-<i><b>Use this at your own risk. PoGoBag is most likely against Niantic ToS. The owner is not responsible for the ramifications of using this project in any way</b></i>
+***Extra Features***
 
-## To Setup:
+1.easy-to-use PoGoBag Launcher from Desktop
 
-#### Requirements
+2.One Click Automatic Updater(Automatically download update from https://github.com/dphuang2/PoGoBag)
 
-* Ruby
-* Git
-* Node.js
-* Gems: rails, bundler
+**About the source code:**
 
-##### Windows:
-1) Install Ruby 2.2.5 http://rubyinstaller.org/downloads/ <br>
-<i>x64 for 64-bit system and regular install for 32-bit system</i> <br>
-2) Install Ruby DevKit http://rubyinstaller.org/downloads/ <br>
-<i>Same link but at the bottom. Follow same logic for x64 as the above step</i> <br>
-2a) Create a new directory to extract the Ruby DevKit into <RubyDev Path>
-2b) Run these commands:
-```
-cd <RubyDev Path>
-ruby dk.rb init
-ruby dk.rb install
-```
-3) Install Node.js 4.4.7 https://nodejs.org/en/ <br>
-4) Install Git https://git-scm.com/downloads <br>
-5) Run these two commands in terminal: <br>
-```
-gem install rails
-gem install bundler
-```
-##### Mac:
-1) Install Ruby with RVM <br>
-```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew -v
-brew doctor
-\curl -L https://get.rvm.io | bash -s stable
-rvm install 2.3.1
-rvm use 2.3.1 --default
-ruby -v
-```
-2) Install Node.js: "brew install node" <br>
-3) Install Git: "brew install git" <br>
-4) Run these two commands: <br>
-```
-gem install rails
-gem install bundler
-```
+ - This installer was made with "Nullsoft Scriptable Install
+   System"(NSIS)
+   
+ - To compile the setup file, you must include the plugins that are used
+   in "pogobag.nsi".
+ - In regard of some incompatible issues with some old NSIS plugins,
+   most of the command-line execution steps are replaced with few
+   precompiled console binaries to avoid most problems.
 
-##### Ubuntu Server (16.04):
-1) Install Ruby and Ruby dev <br>
-```
-sudo apt-get install ruby ruby-dev -y
-```
-2) Install Node.js <br>
-```
-sudo apt-get install nodejs -y
-```
-3) Install git <br>
-```
-sudo apt-get install git -y
-```
-4) Run these two commands: <br>
-```
-gem install rails
-gem install bundler
-```
+ 
 
-#### Steps
+ - Source codes of each precompiled binaries can be found under the
+   /source folder, they're  written with C++. Source codes contains Code::Blocks project files(.cbp) which contains some compile settings can be opened with Code::Blocks. They're just very very simple
+   codes which can complete all the tasks.
+ - In the beginning, I separated every execution steps into different
+   binaries for better debugging purpose. I'll merge them into one
+   executable to reduce the size of installer once I have time to do
+   this.
 
-1) Open terminal and change direcotry into whichever directory you want to place the project in: "cd ~" (for home directory) <br>
-2) In that directory, clone the project <br>
-```
-git clone https://github.com/dphuang2/PoGoBag.git 
-```
-3) change directory into the project: "cd PoGoBag" <br>
-4) Install all dependencies:  <br>
-```
-bundle install --without production
-```
-5) Run database setup and start the server <br>
-```
-rake db:setup
-rails s
-```
+**About the installer:**
 
-6) Open your browser and navigate to http://localhost:3000 <br>
-7) Login and browse your Pokemon!
+ - The installer downloads newest PoGoBag and poke-api from Git during
+   the installation, they do not come with the installer. As a result,
+   an Internet connection is necessary during the installation.
+    - Packages listed below are included in this installer:
 
-![Imgur](http://i.imgur.com/Yzz5ouC.png)
+     -*RubyInstaller for Windows   (http://rubyinstaller.org/)*
 
-#### How to setup auto refresh:
+     -*Ruby Development Kit         (http://rubyinstaller.org/)*
 
-1) Run "whenever -w" inside of the project directory
+     -*Git                                      (https://git-scm.com/)*
 
-#### How to access remotely (with ngrok):
+     -*Node.js                                (https://nodejs.org/)*
 
-1) Download ngrok from https://ngrok.com/download <br>
-2) Unzip and put ngrok inside of the same directory as PoGoBag <br>
-3) Run "rails s" as usual inside of the project directory <br>
-4) Open a new terminal or tab and cd into the project directory <br>
-5) Run "./ngrok http 3000" <br>
-6) Use the link under "Forwarding" to connect remotely <br>
-![Imgur](http://i.imgur.com/7k6Kii3.png)
+     -*Sqlite3 Source&Binaries    (https://www.sqlite.org/)*
 
-## Screenshots:
+**About the Launcher:**
 
-![Imgur](http://i.imgur.com/SdEIGjF.png)
-![Imgur](http://i.imgur.com/lPvCpYa.png)
+ - It's just an easy-to-use function that can help you launch PoGoBag
+   server with one click from desktop. 
+   
 
-## Credits:
+ - Default running port is 80. Some version of Windows does come with IIS server startup by default. The Launcher will show a message and abort the load of PoGoBag if IIS is detected running.
 
-[nabeelamjad](https://github.com/nabeelamjad/poke-api) - For the API
+ 
+
+ - Adding the binary PoGoBag_Launcher.exe  to srartup registry can let  
+   you start PoGoBag whenever your remote Windows Server boots up.
+ 
+**About the Updater:**
+ - An easy-to-use function that can update your PoGoBag with the latest
+   version from Github.
+
+   
+
+
+
+**Other 3rd Party distribution are included to make this installer:**
+**Icons:* 
+_____________________________________________________________________________________
+http://www.flaticon.com/authors/roundicons-freebies
+
+Pokemon Egg icon made by roundicons.com under license (CC BY 3.0)
+
+Hatching Pokemon Egg icon made by roundicons.com under license (CC BY 3.0)
+______________________________________________________________________________________
+https://www.iconfinder.com/GeoGavilanes
+
+Blastoise icon By Geovanny Gavilanes under license (CC BY 2.5)
+
+Lapras icon By Geovanny Gavilanes under license (CC BY 2.5)
+______________________________________________________________________________________
+
+
+
+
+
+
+
+
+2016/09/23
+enjoy,
+evilhawk00 =)
+
