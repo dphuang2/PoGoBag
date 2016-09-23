@@ -1,0 +1,24 @@
+<tr>
+  <th><%=rank%></th>
+  <th><%= pokemon.poke_id %></th>
+  <th><%= pokemon.cp %></th>
+  <th><%= pokemon.iv %></th>
+  <th><%= pokemon.max_health %></th>
+  <th><%= format_move(pokemon.move_1) %></th>
+  <th><%= format_move(pokemon.move_2) %></th>
+  <th><%= pokemon.attack %></th>
+  <th><%= pokemon.defense %></th>
+  <th><%= pokemon.stamina %></th>
+  <th><%= pokemon.battles_attacked %></th>
+  <th><%= pokemon.battles_defended %></th>
+  <th><%= pokemon.num_upgrades %></th>
+  <th><%= pokemon.height_m.round(2) %></th>
+  <th><%= pokemon.weight_kg.round(2) %></th>
+  <th><%= pokemon.poke_num %></th>
+  <% ball = pokemon.pokeball %>
+  <% ball.slice! 'ITEM_' %>
+  <% ball.slice! '_BALL' %>
+  <th><%= ball.capitalize %></th>
+  <th><%= pokemon.nickname %></th>
+  <th><%= link_to pokemon.user.screen_name, pokemon.user.name, 'data-turbolinks' => "false" %></th>
+</tr>

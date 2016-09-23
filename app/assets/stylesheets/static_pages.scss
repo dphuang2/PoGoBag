@@ -1,0 +1,109 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.home-page-wrap{
+  height: 100vh;
+  //background-image: url('/assets/background-home.png');
+  background-size: cover;
+}
+.disclaimer{
+  position:absolute;
+  bottom:0px;
+  font-size: 1.2rem;
+  font-style:italic;
+}
+.home-page {
+  position: relative;
+  margin-top: 3%;
+  background-color: rgba(255,255,255,.75);
+  border-radius: 1.5rem;
+  box-shadow: 1rem 1rem 0.5rem #888888;
+  padding: 2vh;
+  .landing-title{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    img {
+      width: 50px;
+    }
+    h3{
+      margin-top: 0px;
+    }
+  }
+  h1 {
+    a {
+      font-size: 17px;
+      font-weight: 250;
+      letter-spacing: 5px;
+    }
+  }
+  li {
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .features-list{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    li {
+      .glyphicon {
+        margin-right: 5px;
+      }
+      list-style-type: none;
+      margin-top: 14px;
+    }
+  }
+}
+.about-page{
+  margin-bottom: 30px;
+  display: block;
+  width: 75%;
+  margin: 0 auto;
+  p {
+    font-size: 20px;
+  }
+}
+h1 {
+  text-align: center;
+}
+.login-box{
+  display: block;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 5px;
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  h1 {
+    line-height: 1;
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .code-field{
+    margin-top: 10px;
+  }
+  #login-btn{
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+.form-container{
+  width: 95%;
+  height: 85%;
+  margin: 0 auto;
+}
+@media (max-width: 320px){
+  .login-box{
+    width: 265px;
+  }
+}
+@media (max-width: 768px){
+  .home-page .features-list{
+    display: none;
+  }
+}

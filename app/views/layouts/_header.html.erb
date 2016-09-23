@@ -1,0 +1,70 @@
+<header class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Band and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <% if logged_in? %>
+        <%= link_to "Pokemon Go bag", user_link, id: "logo", 'data-turbolinks'=>"false" %>
+      <% else %>
+        <%= link_to "Pokemon Go Bag", root_path, id: "logo" %>
+      <% end %>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collection-navlinks" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <!-- -Collect nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collection-navlinks"> 
+      <ul class="nav navbar-nav navbar-left">
+        <% if logged_in? %>
+          <li>
+            <form class="copy-form navbar-form" role="copy">
+              <div class="form-group">
+                <input type="text" id="user-link" class="copy-field form-control" readonly="readonly" value="http://pogobag.me<%=user_link%>">
+              </div>
+              <button type="button" id="copy-clipboard-button" data-clipbard-text="http://pogobag.me<%=user_link%>" data-clipboard-target="user-link" title="Click to copy your link!" class="btn btn-default"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span></button>
+            </form>
+          </li>
+        <% end %>
+        <li>
+          <div class="donate-small">
+            <%= render 'static_pages/donate_small' %>
+          </div>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user = User.find_by(name: params[:id]) %>
+          <li class="header-name">
+            <%= button_to '/'+user.name, remote: true, class: "refresh-button btn btn-default", :method => :get, params: {refresh: :yes} do %>
+              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            <% end %>
+            | <%=user.level%> | <%= user.screen_name %> | <span class="last-data-update"><%=time_ago_in_words(user.last_data_update.to_datetime) + " ago"%></span></li>
+        <% end %>
+        <li>
+          <%= form_tag('/search', :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search other Trainers" %>
+              <%= submit_tag "Search", :name => nil , class: "btn btn-default"%>
+            </div>
+          <% end %>
+        </li>
+        <% if !logged_in? %>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Top 100", stats_path %></li>
+          <li><%= link_to "About", about_path %></li>
+        <% else %> 
+          <li><%= link_to "Bag", user_link, 'data-turbolinks'=>"false" %></li>
+          <li><%= link_to "Top 100", stats_path %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.screen_name%><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "About", about_path %></li>
+              <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div> <!-- navbar-collapse -->
+  </div>
+</header>

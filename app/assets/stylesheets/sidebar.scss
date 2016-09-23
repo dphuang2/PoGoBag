@@ -1,0 +1,115 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+.fa-2x {
+  font-size: 2em;
+}
+.fa {
+  position: relative;
+  display: table-cell;
+  width: 6.0rem;
+  height: 3.6rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size:2.0rem;
+}
+
+
+.main-menu:hover,nav.main-menu.expanded {
+  width:25.0rem;
+  overflow:visible;
+}
+
+.main-menu {
+  background:#fbfbfb;
+  border-right:.1rem solid #e5e5e5;
+  position: fixed;
+  top:0;
+  bottom:0;
+  height:100%;
+  left:0;
+  width:6.0rem;
+  overflow:hidden;
+  -webkit-transition:width .05s linear;
+  transition:width .05s linear;
+  -webkit-transform:translateZ(0) scale(1,1);
+  z-index:1000;
+}
+
+.main-menu>ul {
+  margin: 0;
+  height: 100vh;
+}
+
+.main-menu li {
+  position:relative;
+  height: 7.6923077vh;
+  display:block;
+  width:25.0rem;
+}
+
+.main-menu li>a {
+  height: 100%;
+  position:relative;
+  display:table;
+  border-collapse:collapse;
+  border-spacing:0;
+  color:#999;
+  font-family: arial;
+  font-size: 2rem;
+  text-decoration:none;
+  -webkit-transform:translateZ(0) scale(1,1);
+  -webkit-transition:all .1s linear;
+  transition:all .1s linear;
+
+}
+
+.main-menu .nav-icon {
+  position:relative;
+  display:table-cell;
+  width:6.0rem;
+  height:3.6rem;
+  text-align:center;
+  vertical-align:middle;
+  font-size:1.8rem;
+}
+
+.main-menu .nav-text {
+  position:relative;
+  display:table-cell;
+  vertical-align:middle;
+  width:19.0rem;
+}
+
+.no-touch .scrollable.hover {
+  overflow-y:hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+  overflow-y:auto;
+  overflow:visible;
+}
+
+a:hover,a:focus {
+  text-decoration:none;
+}
+
+nav {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  -o-user-select:none;
+  user-select:none;
+}
+
+nav ul,nav li {
+  outline:0;
+  margin:0;
+  padding:0;
+}
+.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+  color:#fff;
+  background-color:#5fa2db;
+}
+@font-face {
+  font-style: normal;
+  font-weight: 300;
+}
