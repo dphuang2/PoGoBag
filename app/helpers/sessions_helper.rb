@@ -219,9 +219,8 @@ module SessionsHelper
       access_token = hash["id_token"]
       refresh_token = hash["refresh_token"]
       client = Poke::API::Client.new
-      google = Poke::API::Auth::GOOGLE.new("username", "password")
-      google.instance_variable_set(:@access_token, access_token)
-      client.instance_variable_set(:@auth, google)
+      client.refresh_token = refresh_token
+      client.login('', '', 'google')
       return {:client => client, :refresh_token => refresh_token}
   end
 

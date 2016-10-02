@@ -18,7 +18,7 @@ gem 'bootstrap-sass'
 # poke-api
 gem 'poke-go-api',
   git: "https://github.com/nabeelamjad/poke-api.git",
-  tag: '0.1.0'
+  tag: '0.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use Puma as the app server
