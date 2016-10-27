@@ -16,6 +16,14 @@ Feel free to contribute and make pull request.
 * Gems: rails, bundler
 
 ##### Windows:
+There're two ways to install on Windows, Install via One-Click-Installer or install manually.
+
+**One-Click-Installer(recommended)
+https://github.com/dphuang2/PoGoBag/tree/WindowsInstaller/Windows%20Installer
+
+
+or you can install manually.
+**steps
 1) Install Ruby 2.2.5 http://rubyinstaller.org/downloads/ <br>
 <i>x64 for 64-bit system and regular install for 32-bit system</i> <br>
 2) Install Ruby DevKit http://rubyinstaller.org/downloads/ <br>
