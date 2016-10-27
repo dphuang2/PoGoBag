@@ -75,7 +75,7 @@ int ApplyPatch(){
     PatchSqlite3.hwnd = NULL;
     PatchSqlite3.lpVerb = NULL;
     PatchSqlite3.lpFile = "C:\\Ruby23-x64\\bin\\ruby.exe";
-    PatchSqlite3.lpParameters = "  -x \"C:\\Ruby23-x64\\bin\\gem.cmd\" install sqlite3 --no-rdoc --no-ri --platform=ruby -- --with-sqlite3-include=\"C:\\Ruby23-x64\\temp\" --with-sqlite3-lib=\"C:\\Ruby23-x64\\bin\"";
+    PatchSqlite3.lpParameters = "  -x \"C:\\Ruby23-x64\\bin\\gem.cmd\" install sqlite3 -v '1.3.11' --no-rdoc --no-ri --platform=ruby -- --with-sqlite3-include=\"C:\\Ruby23-x64\\temp\" --with-sqlite3-lib=\"C:\\Ruby23-x64\\bin\"";
     PatchSqlite3.lpDirectory = NULL;
     PatchSqlite3.nShow = SW_SHOW;
     PatchSqlite3.hInstApp = NULL;

@@ -1,3 +1,4 @@
+PGBIns_RGemFU.exe >> upgrade ruby gems to latest version
 PGBIns_BID.exe >> bundle install dependences
 PGBIns_BUN.exe >> install bundler
 PGBIns_ClonePGB.exe >> clone PoGoBag from Github

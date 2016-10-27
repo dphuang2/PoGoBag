@@ -5,7 +5,7 @@ RequestExecutionLevel admin
 
 
 !define PRODUCT_NAME "PoGoBag Server Installer for Windows(x64)"
-!define PRODUCT_VERSION "1.0"
+!define PRODUCT_VERSION "1.1"
 !define PRODUCT_PUBLISHER "evilhawk00"
 !define PRODUCT_WEB_SITE "http://github.com/evilhawk00"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\PoGoBag_Launcher.exe"
@@ -172,6 +172,28 @@ Section "MainSection" SEC01
   ;SetRegView 64
   ExecWait '"rubyinstaller-2.3.1-x64.exe" /SILENT /NOCANCEL /tasks="assocfiles,modpath"' $0
   Delete "$OUTDIR\rubyinstaller-2.3.1-x64.exe"
+  SetDetailsPrint textonly
+  DetailPrint "Preparing to Upgrade RubyGems..."
+  SetDetailsPrint none
+  CreateDirectory "C:\Ruby23-x64\temp.GemFramworkUpgrade"
+  SetOutPath "C:\Ruby23-x64\temp.GemFramworkUpgrade"
+  
+  SetDetailsPrint listonly
+  File "rubygems-2.6.7.7z"
+  DetailPrint "Extracting from Archive rubygems-2.6.7.7z"
+  SetDetailsPrint none
+  GetFunctionAddress $R9 7zExtractPrograss
+  Nsis7z::ExtractWithCallback "rubygems-2.6.7.7z" $R9
+  SetDetailsPrint none
+  Delete "$OUTDIR\rubygems-2.6.7.7z"
+  SetOutPath "$TEMP"
+  SetDetailsPrint both
+  DetailPrint "Upgrading RubyGems..."
+  SetDetailsPrint none
+  File "PGBIns_RGemFU.exe"
+  ExecWait 'PGBIns_RGemFU.exe' $0
+  Delete "$OUTDIR\PGBIns_RGemFU.exe"
+  
   ;${EnableX64FSRedirection}
   ;extract rubydevkit
   
@@ -221,21 +243,21 @@ Section "MainSection" SEC01
   SetDetailsPrint textonly
   DetailPrint "Preparing Git(64bit)..."
   SetDetailsPrint listonly
-  File "Git-2.9.3-64-bit.exe"
+  File "Git-2.10.1-64-bit.exe"
   SetDetailsPrint both
   DetailPrint "Installing Git(64bit)..."
   SetDetailsPrint none
-  ExecWait '"Git-2.9.3-64-bit.exe" /SILENT /NOCANCEL' $0
-  Delete "$OUTDIR\Git-2.9.3-64-bit.exe"
+  ExecWait '"Git-2.10.1-64-bit.exe" /SILENT /NOCANCEL' $0
+  Delete "$OUTDIR\Git-2.10.1-64-bit.exe"
   SetDetailsPrint textonly
   DetailPrint "Preparing Node.js(64bit)..."
   SetDetailsPrint listonly
-  File "node-v4.4.7-x64.msi"
+  File "node-v6.9.1-x64.msi"
   SetDetailsPrint both
   DetailPrint "Installing Node.js(64bit)..."
   SetDetailsPrint none
-  ExecWait '"msiexec.exe" /i "node-v4.4.7-x64.msi" /qb-!' $0
-  Delete "$OUTDIR\node-v4.4.7-x64.msi"
+  ExecWait '"msiexec.exe" /i "node-v6.9.1-x64.msi" /qb-!' $0
+  Delete "$OUTDIR\node-v6.9.1-x64.msi"
   
 
   ;temporary set custom path
@@ -289,12 +311,7 @@ Section "MainSection" SEC01
   ;SetDetailsPrint none
   ;SetOutPath "C:\PoGoBag"
   
-  
- 
-  
- 
-  
-  SetDetailsPrint textonly
+    SetDetailsPrint textonly
   DetailPrint "Downloading&Installing All Dependencies...This could take a long time."
   SetDetailsPrint listonly
   DetailPrint "Downloading&Installing All Dependencies..."
@@ -303,6 +320,11 @@ Section "MainSection" SEC01
   File "PGBIns_BID.exe"
   ExecWait 'PGBIns_BID.exe' $0
   Delete "$OUTDIR\PGBIns_BID.exe"
+ 
+  
+ 
+  
+
   ;ExecDos::exec 'ruby bundle install --without production'
   ;ExecWait '"$sysdir\cmd.exe" /c "bundle install'
   ;ExecWait '"C:\Ruby23-x64\bin\bundle.bat" install --without production' $0
@@ -323,21 +345,25 @@ Section "MainSection" SEC01
   SetDetailsPrint none
   CreateDirectory "C:\Ruby23-x64\temp"
   SetOutPath "C:\Ruby23-x64\temp"
-  File "sqlite-amalgamation-3140100.7z"
+  File "sqlite-amalgamation-3150000.7z"
   GetFunctionAddress $R9 7zExtractPrograss
-  Nsis7z::ExtractWithCallback "sqlite-amalgamation-3140100.7z" $R9
+  Nsis7z::ExtractWithCallback "sqlite-amalgamation-3150000.7z" $R9
   SetDetailsPrint none
-  Delete "$OUTDIR\sqlite-amalgamation-3140100.7z"
+  Delete "$OUTDIR\sqlite-amalgamation-3150000.7z"
   SetOutPath "C:\Ruby23-x64\bin"
-  File "sqlite-dll-win64-x64-3140100.7z"
+  File "sqlite-dll-win64-x64-3150000.7z"
   GetFunctionAddress $R9 7zExtractPrograss
-  Nsis7z::ExtractWithCallback "sqlite-dll-win64-x64-3140100.7z" $R9
+  Nsis7z::ExtractWithCallback "sqlite-dll-win64-x64-3150000.7z" $R9
   SetDetailsPrint textonly
   DetailPrint "Applying sqlite3 patch for Windows..."
   SetDetailsPrint none
-  Delete "$OUTDIR\sqlite-dll-win64-x64-3140100.7z"
+  Delete "$OUTDIR\sqlite-dll-win64-x64-3150000.7z"
   SetOutPath "$TEMP"
   ;ExecWait '"C:\Ruby23-x64\bin\gem.cmd" install sqlite3 --no-rdoc --no-ri --platform=ruby -- --with-sqlite3-include="C:\Ruby23-x64\temp" --with-sqlite3-lib="C:\Ruby23-x64\bin"' $0
+  
+  
+  
+  
   File "PGBIns_SQL3.exe"
   ExecWait 'PGBIns_SQL3.exe' $0
   Delete "$OUTDIR\PGBIns_SQL3.exe"

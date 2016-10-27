@@ -1,0 +1,34 @@
+#define VOS_NT_WINDOWS32    0x00040004L
+#define VFT_APP                      0x00000001L
+
+//this will set your .exe icon
+A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "009BLASTOISE.ico"
+
+1 24 "app.manifest"
+
+//include version information in .exe, modify these values to match your needs
+1 VERSIONINFO
+FILEVERSION 1,0
+PRODUCTVERSION 1,0
+FILETYPE VFT_APP
+{
+  BLOCK "StringFileInfo"
+	 {
+		 BLOCK "040904E4"
+		 {
+			 VALUE "CompanyName", "evilhawk00"
+			 VALUE "FileVersion", "1.0.0.0"
+			 VALUE "FileDescription", "PoGoBag Installer for Windows-Upgrade-Ruby-Gems"
+			 VALUE "InternalName", "PoGoBag Installer for Windows"
+			 VALUE "LegalCopyright", "https://github.com/evilhawk00"
+			 //VALUE "LegalTrademarks", "write version info here"
+			 VALUE "OriginalFilename", "PGBIns_RGemFU.exe"
+			 VALUE "ProductName", "PoGoBag Installer for Windows"
+			 VALUE "ProductVersion", "1.0"
+		 }
+	 }
+  BLOCK "VarFileInfo"
+	 {
+		 VALUE "Translation", 0x0409, 1252 //language codes
+	 }
+}
