@@ -19,6 +19,7 @@ Feel free to contribute and make pull request.
 There're two ways to install on Windows, Install via One-Click-Installer or install manually.
 
 **One-Click-Installer(recommended)
+Currently the One-Click-Installer only supports 64bit machine. To install on a 32bit machine, you have to install manually.
 https://github.com/dphuang2/PoGoBag/tree/WindowsInstaller/Windows%20Installer
 
 
