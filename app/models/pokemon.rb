@@ -22,7 +22,9 @@ class Pokemon < ApplicationRecord
 
   def self.evaluate_type(type)
     puts type
-    Pokemon.where(poke_id: type).order(:cp).map {|p| [p.cp, p.levels(31.5)]}.each {|ll| puts ll[0]; puts ll[1]}
+    pokemon = Pokemon.where(poke_id: type).order(:cp)
+    max_level = pokemon.length > 0 ? pokemon.first.user.level + 1.5 : 0
+    pokemon.map {|p| [p.cp, p.levels(max_level)]}.each {|ll| puts ll[0]; puts ll[1]}
     nil
   end
 
@@ -85,6 +87,10 @@ class Pokemon < ApplicationRecord
       cumulative_stardust_cost += Pokemon.power_up_cost[test_level][:stardust]
       {level: test_level, cp: cp, candy: candy_cost, stardust: stardust_cost}
     end.compact
+  end
+
+  def self.compute_cp(level, attack, defense, stamina)
+    ((attack * defense ** 0.5 * stamina ** 0.5 * cp_multiplier[level]**2)/10).floor
   end
 
   def self.power_up_cost
@@ -170,10 +176,6 @@ class Pokemon < ApplicationRecord
       [40.0, {candy: 15, stardust: 10000, cumulative_candy: 319, cumulative_stardust: 280000}],
       [40.5, {candy: 15, stardust: 10000, cumulative_candy: 334, cumulative_stardust: 290000}],
     ].to_h
-  end
-
-  def self.compute_cp(level, attack, defense, stamina)
-    ((attack * defense ** 0.5 * stamina ** 0.5 * cp_multiplier[level]**2)/10).round
   end
 
   def self.base_stats
