@@ -36,6 +36,34 @@ class Pokemon < ApplicationRecord
     nil
   end
 
+  def as_json(*)
+    super.as_json.merge(level: level, max_cp: max_cp, candy_to_max_cp: candy_to_max_cp, stardust_to_max_cp: stardust_to_max_cp)
+  end
+
+  def powered_up
+    return @powered_up if @powered_up
+    test_level = user.level+1.5
+    candy_investment = Pokemon.power_up_cost[level][:cumulative_candy]
+    stardust_investment = Pokemon.power_up_cost[level][:cumulative_stardust]
+
+    cp = Pokemon.compute_cp(test_level, evolved[:stats][0], evolved[:stats][1], evolved[:stats][2])
+    candy_cost = evolved[:cost] + Pokemon.power_up_cost[test_level][:cumulative_candy] - candy_investment
+    stardust_cost = Pokemon.power_up_cost[test_level][:cumulative_stardust] - stardust_investment
+    @powered_up = {level: test_level, cp: cp, candy: candy_cost, stardust: stardust_cost}
+  end
+
+  def max_cp
+    powered_up[:cp]
+  end
+
+  def stardust_to_max_cp
+    powered_up[:stardust]
+  end
+
+  def candy_to_max_cp
+    powered_up[:candy]
+  end
+
   # calculates cost (in candies and stardust) to reach 2500
   def cost_to_cp(reach_cp = 2500)
     level_above_cp = levels.find { |l| l[:cp] >= reach_cp }
@@ -44,6 +72,7 @@ class Pokemon < ApplicationRecord
   end
 
   def evolved
+    return @evolved if @evolved
     cost = 0
     evolved_poke_num = poke_num
     while evolve_cost = Pokemon.base_stats[evolved_poke_num][3] do
@@ -54,7 +83,7 @@ class Pokemon < ApplicationRecord
     total_stats[0] += attack
     total_stats[1] += defense
     total_stats[2] += stamina
-    {
+    @evolved = {
       stats: total_stats,
       cost: cost
     }
@@ -73,18 +102,15 @@ class Pokemon < ApplicationRecord
 
   # calculates outcomes of evolving and leveling
   def levels(max_level = 40.0)
-    e = evolved
-    cumulative_stardust_cost = 0
-    cumulative_candy_cost = e[:cost]
-    (0..78).map do |power_ups|
-      test_level = 1 + power_ups / 2.0
-      next if test_level < level
-      next if test_level > max_level
+    candy_investment = Pokemon.power_up_cost[level][:cumulative_candy]
+    stardust_investment = Pokemon.power_up_cost[level][:cumulative_stardust]
+    max_num_power_ups = (max_level - level) * 2.0
+
+    (0..max_num_power_ups).map do |power_ups|
+      test_level = level + power_ups / 2.0
       cp = Pokemon.compute_cp(test_level, evolved[:stats][0], evolved[:stats][1], evolved[:stats][2])
-      candy_cost = cumulative_candy_cost
-      stardust_cost = cumulative_stardust_cost
-      cumulative_candy_cost += Pokemon.power_up_cost[test_level][:candy]
-      cumulative_stardust_cost += Pokemon.power_up_cost[test_level][:stardust]
+      candy_cost = evolved[:cost] + Pokemon.power_up_cost[test_level][:cumulative_candy] - candy_investment
+      stardust_cost = Pokemon.power_up_cost[test_level][:cumulative_stardust] - stardust_investment
       {level: test_level, cp: cp, candy: candy_cost, stardust: stardust_cost}
     end.compact
   end
@@ -95,86 +121,86 @@ class Pokemon < ApplicationRecord
 
   def self.power_up_cost
     @@memoized_power_up_cost ||= [
-      [1.0, {candy: 1, stardust: 200, cumulative_candy: 1, cumulative_stardust: 200}],
-      [1.5, {candy: 1, stardust: 200, cumulative_candy: 2, cumulative_stardust: 400}],
-      [2.0, {candy: 1, stardust: 200, cumulative_candy: 3, cumulative_stardust: 600}],
-      [2.5, {candy: 1, stardust: 200, cumulative_candy: 4, cumulative_stardust: 800}],
-      [3.0, {candy: 1, stardust: 400, cumulative_candy: 5, cumulative_stardust: 1200}],
-      [3.5, {candy: 1, stardust: 400, cumulative_candy: 6, cumulative_stardust: 1600}],
-      [4.0, {candy: 1, stardust: 400, cumulative_candy: 7, cumulative_stardust: 2000}],
-      [4.5, {candy: 1, stardust: 400, cumulative_candy: 8, cumulative_stardust: 2400}],
-      [5.0, {candy: 1, stardust: 600, cumulative_candy: 9, cumulative_stardust: 3000}],
-      [5.5, {candy: 1, stardust: 600, cumulative_candy: 10, cumulative_stardust: 3600}],
-      [6.0, {candy: 1, stardust: 600, cumulative_candy: 11, cumulative_stardust: 4200}],
-      [6.5, {candy: 1, stardust: 600, cumulative_candy: 12, cumulative_stardust: 4800}],
-      [7.0, {candy: 1, stardust: 800, cumulative_candy: 13, cumulative_stardust: 5600}],
-      [7.5, {candy: 1, stardust: 800, cumulative_candy: 14, cumulative_stardust: 6400}],
-      [8.0, {candy: 1, stardust: 800, cumulative_candy: 15, cumulative_stardust: 7200}],
-      [8.5, {candy: 1, stardust: 800, cumulative_candy: 16, cumulative_stardust: 8000}],
-      [9.0, {candy: 1, stardust: 1000, cumulative_candy: 17, cumulative_stardust: 9000}],
-      [9.5, {candy: 1, stardust: 1000, cumulative_candy: 18, cumulative_stardust: 10000}],
-      [10.0, {candy: 1, stardust: 1000, cumulative_candy: 19, cumulative_stardust: 11000}],
-      [10.5, {candy: 1, stardust: 1000, cumulative_candy: 20, cumulative_stardust: 12000}],
-      [11.0, {candy: 2, stardust: 1300, cumulative_candy: 22, cumulative_stardust: 13300}],
-      [11.5, {candy: 2, stardust: 1300, cumulative_candy: 24, cumulative_stardust: 14600}],
-      [12.0, {candy: 2, stardust: 1300, cumulative_candy: 26, cumulative_stardust: 15900}],
-      [12.5, {candy: 2, stardust: 1300, cumulative_candy: 28, cumulative_stardust: 17200}],
-      [13.0, {candy: 2, stardust: 1600, cumulative_candy: 30, cumulative_stardust: 18800}],
-      [13.5, {candy: 2, stardust: 1600, cumulative_candy: 32, cumulative_stardust: 20400}],
-      [14.0, {candy: 2, stardust: 1600, cumulative_candy: 34, cumulative_stardust: 22000}],
-      [14.5, {candy: 2, stardust: 1600, cumulative_candy: 36, cumulative_stardust: 23600}],
-      [15.0, {candy: 2, stardust: 1900, cumulative_candy: 38, cumulative_stardust: 25500}],
-      [15.5, {candy: 2, stardust: 1900, cumulative_candy: 40, cumulative_stardust: 27400}],
-      [16.0, {candy: 2, stardust: 1900, cumulative_candy: 42, cumulative_stardust: 29300}],
-      [16.5, {candy: 2, stardust: 1900, cumulative_candy: 44, cumulative_stardust: 31200}],
-      [17.0, {candy: 2, stardust: 2200, cumulative_candy: 46, cumulative_stardust: 33400}],
-      [17.5, {candy: 2, stardust: 2200, cumulative_candy: 48, cumulative_stardust: 35600}],
-      [18.0, {candy: 2, stardust: 2200, cumulative_candy: 50, cumulative_stardust: 37800}],
-      [18.5, {candy: 2, stardust: 2200, cumulative_candy: 52, cumulative_stardust: 40000}],
-      [19.0, {candy: 2, stardust: 2500, cumulative_candy: 54, cumulative_stardust: 42500}],
-      [19.5, {candy: 2, stardust: 2500, cumulative_candy: 56, cumulative_stardust: 45000}],
-      [20.0, {candy: 2, stardust: 2500, cumulative_candy: 58, cumulative_stardust: 47500}],
-      [20.5, {candy: 2, stardust: 2500, cumulative_candy: 60, cumulative_stardust: 50000}],
-      [21.0, {candy: 3, stardust: 3000, cumulative_candy: 63, cumulative_stardust: 53000}],
-      [21.5, {candy: 3, stardust: 3000, cumulative_candy: 66, cumulative_stardust: 56000}],
-      [22.0, {candy: 3, stardust: 3000, cumulative_candy: 69, cumulative_stardust: 59000}],
-      [22.5, {candy: 3, stardust: 3000, cumulative_candy: 72, cumulative_stardust: 62000}],
-      [23.0, {candy: 3, stardust: 3500, cumulative_candy: 75, cumulative_stardust: 65500}],
-      [23.5, {candy: 3, stardust: 3500, cumulative_candy: 78, cumulative_stardust: 69000}],
-      [24.0, {candy: 3, stardust: 3500, cumulative_candy: 81, cumulative_stardust: 72500}],
-      [24.5, {candy: 3, stardust: 3500, cumulative_candy: 84, cumulative_stardust: 76000}],
-      [25.0, {candy: 3, stardust: 4000, cumulative_candy: 87, cumulative_stardust: 80000}],
-      [25.5, {candy: 3, stardust: 4000, cumulative_candy: 90, cumulative_stardust: 84000}],
-      [26.0, {candy: 4, stardust: 4000, cumulative_candy: 94, cumulative_stardust: 88000}],
-      [26.5, {candy: 4, stardust: 4000, cumulative_candy: 98, cumulative_stardust: 92000}],
-      [27.0, {candy: 4, stardust: 4500, cumulative_candy: 102, cumulative_stardust: 96500}],
-      [27.5, {candy: 4, stardust: 4500, cumulative_candy: 106, cumulative_stardust: 101000}],
-      [28.0, {candy: 4, stardust: 4500, cumulative_candy: 110, cumulative_stardust: 105500}],
-      [28.5, {candy: 4, stardust: 4500, cumulative_candy: 114, cumulative_stardust: 110000}],
-      [29.0, {candy: 4, stardust: 5000, cumulative_candy: 118, cumulative_stardust: 115000}],
-      [29.5, {candy: 4, stardust: 5000, cumulative_candy: 122, cumulative_stardust: 120000}],
-      [30.0, {candy: 4, stardust: 5000, cumulative_candy: 126, cumulative_stardust: 125000}],
-      [30.5, {candy: 4, stardust: 5000, cumulative_candy: 130, cumulative_stardust: 130000}],
-      [31.0, {candy: 6, stardust: 6000, cumulative_candy: 136, cumulative_stardust: 136000}],
-      [31.5, {candy: 6, stardust: 6000, cumulative_candy: 142, cumulative_stardust: 142000}],
-      [32.0, {candy: 6, stardust: 6000, cumulative_candy: 148, cumulative_stardust: 148000}],
-      [32.5, {candy: 6, stardust: 6000, cumulative_candy: 154, cumulative_stardust: 154000}],
-      [33.0, {candy: 8, stardust: 7000, cumulative_candy: 162, cumulative_stardust: 161000}],
-      [33.5, {candy: 8, stardust: 7000, cumulative_candy: 170, cumulative_stardust: 168000}],
-      [34.0, {candy: 8, stardust: 7000, cumulative_candy: 178, cumulative_stardust: 175000}],
-      [34.5, {candy: 8, stardust: 7000, cumulative_candy: 186, cumulative_stardust: 182000}],
-      [35.0, {candy: 10, stardust: 8000, cumulative_candy: 196, cumulative_stardust: 190000}],
-      [35.5, {candy: 10, stardust: 8000, cumulative_candy: 206, cumulative_stardust: 198000}],
-      [36.0, {candy: 10, stardust: 8000, cumulative_candy: 216, cumulative_stardust: 206000}],
-      [36.5, {candy: 10, stardust: 8000, cumulative_candy: 226, cumulative_stardust: 214000}],
-      [37.0, {candy: 12, stardust: 9000, cumulative_candy: 238, cumulative_stardust: 223000}],
-      [37.5, {candy: 12, stardust: 9000, cumulative_candy: 250, cumulative_stardust: 232000}],
-      [38.0, {candy: 12, stardust: 9000, cumulative_candy: 262, cumulative_stardust: 241000}],
-      [38.5, {candy: 12, stardust: 9000, cumulative_candy: 274, cumulative_stardust: 250000}],
-      [39.0, {candy: 15, stardust: 10000, cumulative_candy: 289, cumulative_stardust: 260000}],
-      [39.5, {candy: 15, stardust: 10000, cumulative_candy: 304, cumulative_stardust: 270000}],
-      [40.0, {candy: 15, stardust: 10000, cumulative_candy: 319, cumulative_stardust: 280000}],
-      [40.5, {candy: 15, stardust: 10000, cumulative_candy: 334, cumulative_stardust: 290000}],
+      [1.0, {:candy=>1, :stardust=>200, :cumulative_candy=>0, :cumulative_stardust=>0}],
+      [1.5, {:candy=>1, :stardust=>200, :cumulative_candy=>1, :cumulative_stardust=>200}],
+      [2.0, {:candy=>1, :stardust=>200, :cumulative_candy=>2, :cumulative_stardust=>400}],
+      [2.5, {:candy=>1, :stardust=>200, :cumulative_candy=>3, :cumulative_stardust=>600}],
+      [3.0, {:candy=>1, :stardust=>400, :cumulative_candy=>4, :cumulative_stardust=>800}],
+      [3.5, {:candy=>1, :stardust=>400, :cumulative_candy=>5, :cumulative_stardust=>1200}],
+      [4.0, {:candy=>1, :stardust=>400, :cumulative_candy=>6, :cumulative_stardust=>1600}],
+      [4.5, {:candy=>1, :stardust=>400, :cumulative_candy=>7, :cumulative_stardust=>2000}],
+      [5.0, {:candy=>1, :stardust=>600, :cumulative_candy=>8, :cumulative_stardust=>2400}],
+      [5.5, {:candy=>1, :stardust=>600, :cumulative_candy=>9, :cumulative_stardust=>3000}],
+      [6.0, {:candy=>1, :stardust=>600, :cumulative_candy=>10, :cumulative_stardust=>3600}],
+      [6.5, {:candy=>1, :stardust=>600, :cumulative_candy=>11, :cumulative_stardust=>4200}],
+      [7.0, {:candy=>1, :stardust=>800, :cumulative_candy=>12, :cumulative_stardust=>4800}],
+      [7.5, {:candy=>1, :stardust=>800, :cumulative_candy=>13, :cumulative_stardust=>5600}],
+      [8.0, {:candy=>1, :stardust=>800, :cumulative_candy=>14, :cumulative_stardust=>6400}],
+      [8.5, {:candy=>1, :stardust=>800, :cumulative_candy=>15, :cumulative_stardust=>7200}],
+      [9.0, {:candy=>1, :stardust=>1000, :cumulative_candy=>16, :cumulative_stardust=>8000}],
+      [9.5, {:candy=>1, :stardust=>1000, :cumulative_candy=>17, :cumulative_stardust=>9000}],
+      [10.0, {:candy=>1, :stardust=>1000, :cumulative_candy=>18, :cumulative_stardust=>10000}],
+      [10.5, {:candy=>1, :stardust=>1000, :cumulative_candy=>19, :cumulative_stardust=>11000}],
+      [11.0, {:candy=>2, :stardust=>1300, :cumulative_candy=>20, :cumulative_stardust=>12000}],
+      [11.5, {:candy=>2, :stardust=>1300, :cumulative_candy=>22, :cumulative_stardust=>13300}],
+      [12.0, {:candy=>2, :stardust=>1300, :cumulative_candy=>24, :cumulative_stardust=>14600}],
+      [12.5, {:candy=>2, :stardust=>1300, :cumulative_candy=>26, :cumulative_stardust=>15900}],
+      [13.0, {:candy=>2, :stardust=>1600, :cumulative_candy=>28, :cumulative_stardust=>17200}],
+      [13.5, {:candy=>2, :stardust=>1600, :cumulative_candy=>30, :cumulative_stardust=>18800}],
+      [14.0, {:candy=>2, :stardust=>1600, :cumulative_candy=>32, :cumulative_stardust=>20400}],
+      [14.5, {:candy=>2, :stardust=>1600, :cumulative_candy=>34, :cumulative_stardust=>22000}],
+      [15.0, {:candy=>2, :stardust=>1900, :cumulative_candy=>36, :cumulative_stardust=>23600}],
+      [15.5, {:candy=>2, :stardust=>1900, :cumulative_candy=>38, :cumulative_stardust=>25500}],
+      [16.0, {:candy=>2, :stardust=>1900, :cumulative_candy=>40, :cumulative_stardust=>27400}],
+      [16.5, {:candy=>2, :stardust=>1900, :cumulative_candy=>42, :cumulative_stardust=>29300}],
+      [17.0, {:candy=>2, :stardust=>2200, :cumulative_candy=>44, :cumulative_stardust=>31200}],
+      [17.5, {:candy=>2, :stardust=>2200, :cumulative_candy=>46, :cumulative_stardust=>33400}],
+      [18.0, {:candy=>2, :stardust=>2200, :cumulative_candy=>48, :cumulative_stardust=>35600}],
+      [18.5, {:candy=>2, :stardust=>2200, :cumulative_candy=>50, :cumulative_stardust=>37800}],
+      [19.0, {:candy=>2, :stardust=>2500, :cumulative_candy=>52, :cumulative_stardust=>40000}],
+      [19.5, {:candy=>2, :stardust=>2500, :cumulative_candy=>54, :cumulative_stardust=>42500}],
+      [20.0, {:candy=>2, :stardust=>2500, :cumulative_candy=>56, :cumulative_stardust=>45000}],
+      [20.5, {:candy=>2, :stardust=>2500, :cumulative_candy=>58, :cumulative_stardust=>47500}],
+      [21.0, {:candy=>3, :stardust=>3000, :cumulative_candy=>60, :cumulative_stardust=>50000}],
+      [21.5, {:candy=>3, :stardust=>3000, :cumulative_candy=>63, :cumulative_stardust=>53000}],
+      [22.0, {:candy=>3, :stardust=>3000, :cumulative_candy=>66, :cumulative_stardust=>56000}],
+      [22.5, {:candy=>3, :stardust=>3000, :cumulative_candy=>69, :cumulative_stardust=>59000}],
+      [23.0, {:candy=>3, :stardust=>3500, :cumulative_candy=>72, :cumulative_stardust=>62000}],
+      [23.5, {:candy=>3, :stardust=>3500, :cumulative_candy=>75, :cumulative_stardust=>65500}],
+      [24.0, {:candy=>3, :stardust=>3500, :cumulative_candy=>78, :cumulative_stardust=>69000}],
+      [24.5, {:candy=>3, :stardust=>3500, :cumulative_candy=>81, :cumulative_stardust=>72500}],
+      [25.0, {:candy=>3, :stardust=>4000, :cumulative_candy=>84, :cumulative_stardust=>76000}],
+      [25.5, {:candy=>3, :stardust=>4000, :cumulative_candy=>87, :cumulative_stardust=>80000}],
+      [26.0, {:candy=>4, :stardust=>4000, :cumulative_candy=>90, :cumulative_stardust=>84000}],
+      [26.5, {:candy=>4, :stardust=>4000, :cumulative_candy=>94, :cumulative_stardust=>88000}],
+      [27.0, {:candy=>4, :stardust=>4500, :cumulative_candy=>98, :cumulative_stardust=>92000}],
+      [27.5, {:candy=>4, :stardust=>4500, :cumulative_candy=>102, :cumulative_stardust=>96500}],
+      [28.0, {:candy=>4, :stardust=>4500, :cumulative_candy=>106, :cumulative_stardust=>101000}],
+      [28.5, {:candy=>4, :stardust=>4500, :cumulative_candy=>110, :cumulative_stardust=>105500}],
+      [29.0, {:candy=>4, :stardust=>5000, :cumulative_candy=>114, :cumulative_stardust=>110000}],
+      [29.5, {:candy=>4, :stardust=>5000, :cumulative_candy=>118, :cumulative_stardust=>115000}],
+      [30.0, {:candy=>4, :stardust=>5000, :cumulative_candy=>122, :cumulative_stardust=>120000}],
+      [30.5, {:candy=>4, :stardust=>5000, :cumulative_candy=>126, :cumulative_stardust=>125000}],
+      [31.0, {:candy=>6, :stardust=>6000, :cumulative_candy=>130, :cumulative_stardust=>130000}],
+      [31.5, {:candy=>6, :stardust=>6000, :cumulative_candy=>136, :cumulative_stardust=>136000}],
+      [32.0, {:candy=>6, :stardust=>6000, :cumulative_candy=>142, :cumulative_stardust=>142000}],
+      [32.5, {:candy=>6, :stardust=>6000, :cumulative_candy=>148, :cumulative_stardust=>148000}],
+      [33.0, {:candy=>8, :stardust=>7000, :cumulative_candy=>154, :cumulative_stardust=>154000}],
+      [33.5, {:candy=>8, :stardust=>7000, :cumulative_candy=>162, :cumulative_stardust=>161000}],
+      [34.0, {:candy=>8, :stardust=>7000, :cumulative_candy=>170, :cumulative_stardust=>168000}],
+      [34.5, {:candy=>8, :stardust=>7000, :cumulative_candy=>178, :cumulative_stardust=>175000}],
+      [35.0, {:candy=>10, :stardust=>8000, :cumulative_candy=>186, :cumulative_stardust=>182000}],
+      [35.5, {:candy=>10, :stardust=>8000, :cumulative_candy=>196, :cumulative_stardust=>190000}],
+      [36.0, {:candy=>10, :stardust=>8000, :cumulative_candy=>206, :cumulative_stardust=>198000}],
+      [36.5, {:candy=>10, :stardust=>8000, :cumulative_candy=>216, :cumulative_stardust=>206000}],
+      [37.0, {:candy=>12, :stardust=>9000, :cumulative_candy=>226, :cumulative_stardust=>214000}],
+      [37.5, {:candy=>12, :stardust=>9000, :cumulative_candy=>238, :cumulative_stardust=>223000}],
+      [38.0, {:candy=>12, :stardust=>9000, :cumulative_candy=>250, :cumulative_stardust=>232000}],
+      [38.5, {:candy=>12, :stardust=>9000, :cumulative_candy=>262, :cumulative_stardust=>241000}],
+      [39.0, {:candy=>15, :stardust=>10000, :cumulative_candy=>274, :cumulative_stardust=>250000}],
+      [39.5, {:candy=>15, :stardust=>10000, :cumulative_candy=>289, :cumulative_stardust=>260000}],
+      [40.0, {:candy=>15, :stardust=>10000, :cumulative_candy=>304, :cumulative_stardust=>270000}],
+      [40.5, {:candy=>15, :stardust=>10000, :cumulative_candy=>319, :cumulative_stardust=>280000}]
     ].to_h
   end
 

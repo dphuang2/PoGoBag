@@ -6,11 +6,12 @@
       <div class="row gutter-10">
         <div ng-repeat="pokemon in pokemon" class="col-xs-4 col-sm-3 col-md-2" repeat-finish>
           <div class="thumbnail pokemon-card">
-            <span class="number">#{{pokemon.poke_num}}</span>
-            <span class="level"></span>
-            <span class="hidden">{{pokemon.poke_num}}&nbsp;{{pokemon.cp}}&nbsp;{{pokemon.attack}}&nbsp;{{pokemon.defense}}&nbsp;{{pokemon.stamina}}</span>
-            <span class="weight">{{pokemon.weight_kg | number: 2}}kg</span>
-            <span class="height">{{pokemon.height_m | number: 2}}m</span>
+            <span class="number" title="Pokedex number">#{{pokemon.poke_num}}</span>
+            <span class="level" title="Level">{{pokemon.level}}</span>
+            <span class="hidden">{{pokemon.poke_num}}&nbsp;{{pokemon.cp}}&nbsp;{{pokemon.attack}}&nbsp;{{pokemon.defense}}&nbsp;{{pokemon.stamina}}&nbsp;{{pokemon.weight_kg | number: 2}}kg&nbsp;{{pokemon.height_m | number: 2}}m</span>
+            <span class="max_cp" title="Maximum CP when evolved and powered up as far as possible (given current trainer level)">{{pokemon.max_cp}}</span>
+            <span class="stardust_to_max_cp" title="Stardust required to power up to max CP">{{pokemon.stardust_to_max_cp}}</span>
+            <span class="candy_to_max_cp" title="Candies required to evolve and power up to max CP">{{pokemon.candy_to_max_cp}}</span>
             <table class="attacked">
               <tr>
                 <td><span>{{pokemon.battles_attacked}}</span></td>

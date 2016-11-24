@@ -2,7 +2,7 @@ app = angular.module("Pogobag",["ngResource"])
 
 app.directive("repeatFinish", ->
   return (scope, element, attr) ->
-    element = angular.element(element)[0].children[0].children[7].children[0]
+    element = angular.element(element)[0].children[0].children[8].children[0]
     num = pad scope.pokemon.poke_num, 3
     element.setAttribute('src', image_path num+'.png')
 )

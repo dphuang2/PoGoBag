@@ -22,9 +22,24 @@
   }
   .level{
     @include metadata;
-    top: 3rem;
+    top: 2rem;
     left: 7px;
     font-weight: bolder;
+  }
+  .max_cp{
+    @include metadata;
+    right: 7px;
+    top: 5px;
+  }
+  .stardust_to_max_cp{
+    @include metadata;
+    right: 7px;
+    top: 2rem;
+  }
+  .candy_to_max_cp{
+    @include metadata;
+    right: 7px;
+    top: 3.5rem;
   }
   .hidden{
     display: none;
