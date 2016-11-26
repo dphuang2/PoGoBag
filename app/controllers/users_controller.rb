@@ -26,8 +26,12 @@ class UsersController < ApplicationController
   def get_pokemon
     @user = User.find_by(name: params[:id]) || User.find(params[:id])
     if params[:stat]
-      direction = %w(poke_num poke_id).include?(params[:stat]) ? 'ASC' : 'DESC'
-      @pokemon = @user.pokemon.order("#{params[:stat]} #{direction}, cp DESC, iv DESC")
+      if %w(level max_cp candy_to_max_cp stardust_to_max_cp).include?(params[:stat])
+        @pokemon = @user.pokemon.sort_by {|p| p.send(params[:stat].to_s)}.reverse
+      else
+        direction = %w(poke_num poke_id).include?(params[:stat]) ? 'ASC' : 'DESC'
+        @pokemon = @user.pokemon.order("#{params[:stat]} #{direction}, cp DESC, iv DESC")
+      end
     else
       @pokemon = @user.pokemon.order("cp DESC")
     end
