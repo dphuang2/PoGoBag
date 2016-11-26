@@ -15,11 +15,14 @@
 # gem 'pg'
 #
 development:
-  adapter: postgresql
-  database: pogobag_development
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
 test:
-  adapter: postgresql
-  database: pogobag_test
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
 production: 
   adapter: postgresql
   database: pogobag
