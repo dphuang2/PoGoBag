@@ -2,6 +2,9 @@ module SessionsHelper
   require 'poke-api'
   require 'pp'
 
+  file = File.read('app/assets/pokemon.en.json')
+  @@pokemon_hash = JSON.parse(file)
+
   def current_user
     if (name = session[:pogo_alias])
       @current_user ||= User.find_by(name: name)
@@ -38,8 +41,6 @@ module SessionsHelper
       end
     end
     response = call.response
-    file = File.read('app/assets/pokemon.en.json')
-    pokemon_hash = JSON.parse(file)
 
     #begin
     response[:GET_INVENTORY][:inventory_delta][:inventory_items].each do |item|
@@ -78,8 +79,8 @@ module SessionsHelper
             poke_id = 'Mr. Mime' if poke_id.match('Mr_mime')
             poke_id = "Farfetch'd" if poke_id.match('Farfetchd')
             # To deal with MISSINGNO Pokemon
-            if pokemon_hash.key(poke_id) != nil
-              poke_num = pokemon_hash.key(poke_id)
+            if @@pokemon_hash.key(poke_id) != nil
+              poke_num = @@pokemon_hash.key(poke_id)
             else
               poke_num = "0"
             end
