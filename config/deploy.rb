@@ -31,7 +31,7 @@ lock '3.6.0'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 set :application, 'PoGoBag'
-set :repo_url, 'git@github.com:dphuang2/PoGoBag.git'
+set :repo_url, 'https://github.com/dphuang2/PoGoBag.git'
 set :passenger_restart_with_touch, true
 
 set :deploy_to, '/home/deploy/PoGoBag'
